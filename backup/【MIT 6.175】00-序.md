@@ -21,12 +21,12 @@
 （更正，有课件但是和175重复多）
 ![image](https://github.com/user-attachments/assets/669abb20-5fc5-482c-bd8a-4fc0a68cac80)
 
-## 学习顺序
+## 1.1.学习顺序
 
 ![image](https://github.com/user-attachments/assets/fa459dd3-3c61-4a68-83b5-63d268f68fe0)
 ![image](https://github.com/user-attachments/assets/cde7d944-c34e-4812-8f44-ec9a5504f947)
 
-## 资源使用指南
+## 1.2.资源使用指南
 
 ![image](https://github.com/user-attachments/assets/dd2236ef-0091-49dc-aa8f-5f4ccaad2566)
 ![image](https://github.com/user-attachments/assets/9dea0a22-d9fc-436c-91b8-af00589104c2)
@@ -38,7 +38,7 @@
 ![image](https://github.com/user-attachments/assets/69ef61a5-3614-431f-82d1-63bf1e45e1dc)
 ![image](https://github.com/user-attachments/assets/d3f0a508-6e41-4166-9986-49f871015743)
 
-### 如何获得实验环境
+### 1.2.1.如何获得实验环境
 
 ![image](https://github.com/user-attachments/assets/b1ee7b94-28d0-438c-bcaf-694d593a8665)
 ![image](https://github.com/user-attachments/assets/0146cb29-e930-409f-b078-2acb4b795abc)
@@ -48,18 +48,18 @@
 ![image](https://github.com/user-attachments/assets/8dae511e-fca8-4b05-8de3-4b178e4b8ce1)
 ![image](https://github.com/user-attachments/assets/5973058b-61c1-4732-ae2c-d8fecdeda563)
 
-### BSV工具链
+### 1.2.2.BSV工具链
 ![image](https://github.com/user-attachments/assets/f75c6d4f-993c-4009-8866-0b420e25f99a)
 （docker还完全不了解）
 
-### RISCV工具链
+### 1.2.3.RISCV工具链
 ![image](https://github.com/user-attachments/assets/80175cd0-9cd6-4f62-8e0d-ae87cf19dd37)
 （这里很可能是容易卡的难点）
 
-### 工具链安装顺序建议
+### 1.2.4.工具链安装顺序建议
 ![image](https://github.com/user-attachments/assets/e3274355-7ded-47f6-b8c3-3d8d1470dcde)
 
-## FAQ
+## 1.3.FAQ
 
 ![image](https://github.com/user-attachments/assets/c7259655-ebfa-4996-ba4c-730e7d3cf7fb)
 （可能有一些testbench过时了，BSV更新很快）
