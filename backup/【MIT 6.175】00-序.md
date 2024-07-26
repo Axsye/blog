@@ -1,9 +1,16 @@
 # 一、几门相关课程
 
-【计算机体系结构 l MIT课程学习新手上路宣讲】 https://www.bilibili.com/video/BV1u8411i7Qw/?share_source=copy_web&vd_source=1735967fff393ffa3d39f23c1c1f2362
+🔔视频：
+[新手上路指导-重要必看] https://www.bilibili.com/video/BV1u8411i7Qw/?spm_id_from=333.999.0.0
+[学习经验分享] https://www.bilibili.com/video/BV1cs4y1r7T3/?spm_id_from=333.337.search-card.all.click
+🔔文章：
+[Q&A] https://mp.weixin.qq.com/s/-MnRFCXHy5v-tt4MujfqtQ
+[学习笔记] https://mp.weixin.qq.com/s/I5bPw_AUWTh2VgzAm4SHhg
+
 
 ## 6.004 
 
+MIT 6.004- https://b23.tv/o7YjSkA
 基础课程，共25节视频课（Arvind教授），数电、计组、BSV，B站有相关视频，没有实验
 【【MIT公开课】6.004 计算结构 · 2019年春（完结·中英字幕·机翻）】 https://www.bilibili.com/video/BV197411s736/?p=4&share_source=copy_web&vd_source=1735967fff393ffa3d39f23c1c1f2362
 ![屏幕截图 2024-07-26 003836](https://github.com/user-attachments/assets/76f03ad7-6f70-4dec-bd70-2b76b9e445a0)
@@ -11,12 +18,16 @@
 
 ## 6.175 
 
+MIT 6.17- 5共23个lecture，8个lab，1个project
+http://csg.csail.mit.edu/6.175/index.html
 主要课程，有课件和学习资料，有完善的Lab和Project，6.004的视频配合6.175的课件开展
 ![屏幕截图 2024-07-26 005305](https://github.com/user-attachments/assets/9b1cab55-4158-4726-abf2-7db22e856b07)
 ![屏幕截图 2024-07-26 005600](https://github.com/user-attachments/assets/f47e7642-2e36-41b7-9153-027f7da2267d)
 
 ## 6.375 
 
+MIT 6.375- 共13个lecture，5个lab，1个project
+http://csg.csail.mit.edu/6.375/6_375_2019_www/index.html
 实践课程 使用BSV 包含4+1个Lab，穿插到6.175中学习
 （更正，有课件但是和175重复多）
 ![image](https://github.com/user-attachments/assets/669abb20-5fc5-482c-bd8a-4fc0a68cac80)
