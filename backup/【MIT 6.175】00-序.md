@@ -4,6 +4,7 @@
 [新手上路指导-重要必看] https://www.bilibili.com/video/BV1u8411i7Qw/?spm_id_from=333.999.0.0
 [学习经验分享] https://www.bilibili.com/video/BV1cs4y1r7T3/?spm_id_from=333.337.search-card.all.click
 每周3-4天的情况下，花2个月学完
+两份教材
 ![image](https://github.com/user-attachments/assets/3b62da77-ab0d-44f3-a79a-89a79338d42a)
 http://csg.csail.mit.edu/6.375/6_375_2019_www/resources/Logic_Design.pdf
 http://csg.csail.mit.edu/6.175/resources/archbook_2015-08-25.pdf
