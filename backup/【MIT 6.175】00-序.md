@@ -7,6 +7,8 @@
 [Q&A] https://mp.weixin.qq.com/s/-MnRFCXHy5v-tt4MujfqtQ
 [学习笔记] https://mp.weixin.qq.com/s/I5bPw_AUWTh2VgzAm4SHhg
 
+笔记补充：
+【kazutoiris/connectal】https://github.com/kazutoiris/connectal-docker
 
 ## 6.004 
 
