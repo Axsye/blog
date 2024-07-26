@@ -4,6 +4,12 @@
 [新手上路指导-重要必看] https://www.bilibili.com/video/BV1u8411i7Qw/?spm_id_from=333.999.0.0
 [学习经验分享] https://www.bilibili.com/video/BV1cs4y1r7T3/?spm_id_from=333.337.search-card.all.click
 每周3-4天的情况下，花2个月学完
+![image](https://github.com/user-attachments/assets/3b62da77-ab0d-44f3-a79a-89a79338d42a)
+http://csg.csail.mit.edu/6.375/6_375_2019_www/resources/Logic_Design.pdf
+http://csg.csail.mit.edu/6.175/resources/archbook2015-08-25.pdf
+bluespec那个docx很重要
+![image](https://github.com/user-attachments/assets/5639f81e-64b8-4a02-a0cc-6cfe6af9da88)
+
 🔔文章：
 [Q&A] https://mp.weixin.qq.com/s/-MnRFCXHy5v-tt4MujfqtQ
 [学习笔记] https://mp.weixin.qq.com/s/I5bPw_AUWTh2VgzAm4SHhg
