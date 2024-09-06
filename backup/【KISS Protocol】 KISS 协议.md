@@ -49,11 +49,16 @@ Would you like to know more about how TNCs work or their applications in amateur
 
 # 2. 研究KISS的具体实现方法
 
-## 2.1. 基本知识——来自 BH2VJW 的 Packet Radio科普系列笔记
+## 2.1. 相关文章
+### 2.1.1. 基本知识——来自 BH2VJW 的 Packet Radio科普系列笔记
 
 >这blog真的好看
 
 - https://tccmu.com/2022/07/26/packet/
+
+### 2.1.2. 基于ATMega328微控制器的APRS Kiss TNC: 从原理到C语言实现的完整指南
+
+- https://blog.csdn.net/m0_57781768/article/details/133174158
 
 ## 2.2. GitHub 仓库——kiss3 - Python KISS Module
 
