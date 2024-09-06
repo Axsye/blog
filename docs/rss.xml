@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 06 Sep 2024 13:35:36 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【KISS Protocol】 KISS 协议</title><link>https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</link><description># 1. KISS是啥 from Bing:&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 06 Sep 2024 13:51:49 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【KISS Protocol】 KISS 协议</title><link>https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</link><description># 1. KISS是啥 from Bing:&#13;
 The **KISS protocol** (Keep It Simple, Stupid) is used in amateur radio to facilitate communication between a computer and a Terminal Node Controller (TNC). It simplifies the process by removing complex protocol handling from the TNC and shifting it to the host computer¹².&#13;
 &#13;
 Here are some key points about the KISS protocol:&#13;
@@ -53,13 +53,19 @@ Would you like to know more about how TNCs work or their applications in amateur
 ## 2.1. 相关文章&#13;
 ### 2.1.1. 基本知识——来自 BH2VJW 的 Packet Radio科普系列笔记&#13;
 &#13;
-&gt;这blog真的好看&#13;
+&gt;这blog网页真的好看&#13;
 &#13;
 - https://tccmu.com/2022/07/26/packet/&#13;
 &#13;
 ### 2.1.2. 基于ATMega328微控制器的APRS Kiss TNC: 从原理到C语言实现的完整指南&#13;
 &#13;
 - https://blog.csdn.net/m0_57781768/article/details/133174158&#13;
+&#13;
+### 2.1.3.  HB9CVV 的英文PDF教程&#13;
+&#13;
+- 原始链接 http://www.pestingers.net/pages-images/heathkit/radio-equipment/kiss-tnc.pdf&#13;
+- 以防失效的本地版本 [kiss-tnc.pdf](https://github.com/user-attachments/files/16908903/kiss-tnc.pdf)&#13;
+&#13;
 &#13;
 ## 2.2. GitHub 仓库——kiss3 - Python KISS Module&#13;
 &#13;

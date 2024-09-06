@@ -52,13 +52,19 @@ Would you like to know more about how TNCs work or their applications in amateur
 ## 2.1. 相关文章
 ### 2.1.1. 基本知识——来自 BH2VJW 的 Packet Radio科普系列笔记
 
->这blog真的好看
+>这blog网页真的好看
 
 - https://tccmu.com/2022/07/26/packet/
 
 ### 2.1.2. 基于ATMega328微控制器的APRS Kiss TNC: 从原理到C语言实现的完整指南
 
 - https://blog.csdn.net/m0_57781768/article/details/133174158
+
+### 2.1.3.  HB9CVV 的英文PDF教程
+
+- 原始链接 http://www.pestingers.net/pages-images/heathkit/radio-equipment/kiss-tnc.pdf
+- 以防失效的本地版本 [kiss-tnc.pdf](https://github.com/user-attachments/files/16908903/kiss-tnc.pdf)
+
 
 ## 2.2. GitHub 仓库——kiss3 - Python KISS Module
 
