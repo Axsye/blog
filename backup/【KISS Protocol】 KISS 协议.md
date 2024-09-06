@@ -9,9 +9,9 @@ Here are some key points about the KISS protocol:
 
 
 源: 与 Copilot 的对话， 2024/9/6
-([1](https://en.wikipedia.org/wiki/KISS_%28amateur_radio_protocol%29)) KISS (amateur radio protocol) - Wikipedia. https://en.wikipedia.org/wiki/KISS_%[2](http://www.ax25.net/kiss.aspx)8amateur_radio_protocol%29.
-(2) KISS Protocol - AX.[2](http://www.ax25.net/kiss.aspx)5. http://www.ax25.net/kiss.aspx.
-(3) KISS, HDLC, AX.25 and friends – Daniel Estévez. https://destevez.net/20[1](https://en.wikipedia.org/wiki/KISS_%28amateur_radio_protocol%29)6/06/kiss-hdlc-ax-[2](http://www.ax25.net/kiss.aspx)5-and-friends/.
+[1] KISS (amateur radio protocol) - Wikipedia. (https://en.wikipedia.org/wiki/KISS)
+(2) KISS Protocol - AX.(http://www.ax25.net/kiss.aspx)
+(3) KISS, HDLC, AX.25 and friends – Daniel Estévez. (https://destevez.net/2016/06/kiss-hdlc-ax-25-and-friends/).
 
 ---
 The KISS protocol has several practical applications, particularly in the realm of amateur radio and related fields. Here are a few notable ones:
