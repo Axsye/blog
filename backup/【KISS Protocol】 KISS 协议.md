@@ -14,6 +14,7 @@ Here are some key points about the KISS protocol:
 (3) KISS, HDLC, AX.25 and friends – Daniel Estévez. (https://destevez.net/2016/06/kiss-hdlc-ax-25-and-friends/).
 
 ---
+
 The KISS protocol has several practical applications, particularly in the realm of amateur radio and related fields. Here are a few notable ones:
 
 1. **Packet Radio**: KISS is widely used in packet radio communications, where it helps in transmitting digital data over radio frequencies. It simplifies the interface between the computer and the TNC, making it easier to handle AX.25 packet frames.
@@ -27,6 +28,7 @@ The KISS protocol has several practical applications, particularly in the realm 
 5. **Telemetry and Remote Sensing**: KISS can be used in telemetry systems to transmit sensor data from remote locations to a central monitoring station. This is useful in various fields, including environmental monitoring and scientific research.
 
 ---
+
 In the context of the KISS protocol, **TNC** stands for **Terminal Node Controller**. A TNC is a device used in amateur radio to convert digital data from a computer into audio signals that can be transmitted over radio waves, and vice versa. Essentially, it acts as a modem for radio communications¹².
 
 Here are some key functions of a TNC:
@@ -43,26 +45,38 @@ Would you like to know more about how TNCs work or their applications in amateur
 (3) The KISS TNC – too simple, too stupid? – owenduffy.net. https://owenduffy.net/blog/?p=2969.
 (4) The KISS TNC: A Simple Communications Protocol. https://minnie.tuhs.org/Seminars/Dual/section3_15.html.
 
+---
+
 # 2. 研究KISS的具体实现方法
 
-## kiss3 - Python KISS Module
+## 2.1. 基本知识——来自 BH2VJW 的 Packet Radio科普系列笔记
+
+>这blog真的好看
+
+- https://tccmu.com/2022/07/26/packet/
+
+## 2.2. GitHub 仓库——kiss3 - Python KISS Module
 
 > 来自GitHub的python包 https://github.com/python-aprs/kiss3
 
 kiss3 is a Python Module that implements the [KISS Protocol](https://en.wikipedia.org/wiki/KISS_(TNC)) for communicating with KISS-enabled devices (such as Serial or TCP TNCs) and provides support for encoding and decoding AX.25 frames.
 
 ### Versions
+
 - 8.x branch from python-aprs as kiss3, supports python 3.6+
+
 Previous versions were released by ampledata as kiss:
 
 - 7.x.x branch and-on will be Python 3.x ONLY.
 - 6.5.x branch will be the last version of this Module that supports Python 2.7.x
+
 ### Installation
+
 Install from pypi using pip: `pip install kiss3`
 
 ### Usage Examples
-Read & print frames from a TNC connected to '/dev/ttyUSB0' at 1200 baud:
 
+Read & print frames from a TNC connected to '/dev/ttyUSB0' at 1200 baud:
 
 ```python
 import kiss
