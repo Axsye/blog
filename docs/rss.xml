@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 06 Sep 2024 13:00:41 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【KISS Protocol】 KISS 协议</title><link>https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</link><description># 1. KISS是啥 from Bing:&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 06 Sep 2024 13:04:38 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【KISS Protocol】 KISS 协议</title><link>https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</link><description># 1. KISS是啥 from Bing:&#13;
 The **KISS protocol** (Keep It Simple, Stupid) is used in amateur radio to facilitate communication between a computer and a Terminal Node Controller (TNC). It simplifies the process by removing complex protocol handling from the TNC and shifting it to the host computer¹².&#13;
 &#13;
 Here are some key points about the KISS protocol:&#13;
@@ -26,7 +26,23 @@ The KISS protocol has several practical applications, particularly in the realm 
 4. **TCP/IP over Radio**: KISS is often employed in TCP/IP operations over amateur radio, enabling the use of internet protocols over radio links. This is useful for setting up wireless networks in remote areas.&#13;
 &#13;
 5. **Telemetry and Remote Sensing**: KISS can be used in telemetry systems to transmit sensor data from remote locations to a central monitoring station. This is useful in various fields, including environmental monitoring and scientific research.&#13;
-。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</guid><pubDate>Fri, 06 Sep 2024 12:51:50 +0000</pubDate></item><item><title>【Markdown】 记录写Markdown时遇到的问题</title><link>https://Axsye.github.io/blog/post/%E3%80%90Markdown%E3%80%91%20-ji-lu-xie-Markdown-shi-yu-dao-de-wen-ti.html</link><description># 1. 关于github上markdown不支持[TOC]生成目录&#13;
+&#13;
+---&#13;
+In the context of the KISS protocol, **TNC** stands for **Terminal Node Controller**. A TNC is a device used in amateur radio to convert digital data from a computer into audio signals that can be transmitted over radio waves, and vice versa. Essentially, it acts as a modem for radio communications¹².&#13;
+&#13;
+Here are some key functions of a TNC:&#13;
+- **Packet Assembler/Disassembler**: It assembles data into packets for transmission and disassembles received packets back into data.&#13;
+- **Modem**: It modulates digital data into audio signals for transmission and demodulates received audio signals back into digital data.&#13;
+- **Protocol Handling**: It can handle various protocols, such as AX.25, which is commonly used in amateur radio packet communications².&#13;
+&#13;
+Would you like to know more about how TNCs work or their applications in amateur radio?&#13;
+¹: [Wikipedia](https://en.wikipedia.org/wiki/KISS_%28amateur_radio_protocol%29)&#13;
+²: [AX.25](https://www.ax25.net/kiss.aspx)&#13;
+&#13;
+源: 与 Copilot 的对话， 2024/9/6&#13;
+&#13;
+(3) The KISS TNC – too simple, too stupid? – owenduffy.net. https://owenduffy.net/blog/?p=2969.&#13;
+(4) The KISS TNC: A Simple Communications Protocol. https://minnie.tuhs.org/Seminars/Dual/section3_15.html.。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90KISS%20Protocol%E3%80%91%20KISS%20-xie-yi.html</guid><pubDate>Fri, 06 Sep 2024 12:51:50 +0000</pubDate></item><item><title>【Markdown】 记录写Markdown时遇到的问题</title><link>https://Axsye.github.io/blog/post/%E3%80%90Markdown%E3%80%91%20-ji-lu-xie-Markdown-shi-yu-dao-de-wen-ti.html</link><description># 1. 关于github上markdown不支持[TOC]生成目录&#13;
 这篇文章列举了几种解决方法解决办法：&#13;
 https://blog.csdn.net/johnjim0/article/details/105353427&#13;
 &gt; 目前这些方法里面还没有特别满意的&#13;

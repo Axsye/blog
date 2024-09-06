@@ -25,3 +25,20 @@ The KISS protocol has several practical applications, particularly in the realm 
 4. **TCP/IP over Radio**: KISS is often employed in TCP/IP operations over amateur radio, enabling the use of internet protocols over radio links. This is useful for setting up wireless networks in remote areas.
 
 5. **Telemetry and Remote Sensing**: KISS can be used in telemetry systems to transmit sensor data from remote locations to a central monitoring station. This is useful in various fields, including environmental monitoring and scientific research.
+
+---
+In the context of the KISS protocol, **TNC** stands for **Terminal Node Controller**. A TNC is a device used in amateur radio to convert digital data from a computer into audio signals that can be transmitted over radio waves, and vice versa. Essentially, it acts as a modem for radio communications¹².
+
+Here are some key functions of a TNC:
+- **Packet Assembler/Disassembler**: It assembles data into packets for transmission and disassembles received packets back into data.
+- **Modem**: It modulates digital data into audio signals for transmission and demodulates received audio signals back into digital data.
+- **Protocol Handling**: It can handle various protocols, such as AX.25, which is commonly used in amateur radio packet communications².
+
+Would you like to know more about how TNCs work or their applications in amateur radio?
+¹: [Wikipedia](https://en.wikipedia.org/wiki/KISS_%28amateur_radio_protocol%29)
+²: [AX.25](https://www.ax25.net/kiss.aspx)
+
+源: 与 Copilot 的对话， 2024/9/6
+
+(3) The KISS TNC – too simple, too stupid? – owenduffy.net. https://owenduffy.net/blog/?p=2969.
+(4) The KISS TNC: A Simple Communications Protocol. https://minnie.tuhs.org/Seminars/Dual/section3_15.html.
