@@ -9,7 +9,7 @@ Here are some key points about the KISS protocol:
 
 
 源: 与 Copilot 的对话， 2024/9/6
-[1] KISS (amateur radio protocol) - Wikipedia. (https://en.wikipedia.org/wiki/KISS)
+[1] KISS (amateur radio protocol) - Wikipedia. (https://en.wikipedia.org/wiki/KISS_(amateur_radio_protocol))
 (2) KISS Protocol - AX.(http://www.ax25.net/kiss.aspx)
 (3) KISS, HDLC, AX.25 and friends – Daniel Estévez. (https://destevez.net/2016/06/kiss-hdlc-ax-25-and-friends/).
 
