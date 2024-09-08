@@ -230,7 +230,19 @@ Sorry about my wording. Perhaps it was confusing. In the terminology I follow in
 <h3>AX.25协议</h3>
 <p>AX.25是专为业余无线电设计的数据链路层协议，主要用于分组无线电通信。AX.25的帧处理和FCS校验与HDLC协议类似。Linux支持AX.25协议，可以通过配置AX.25端口和使用相关工具如<code class="notranslate">socat</code>、<code class="notranslate">kissnetd</code>等来实现AX.25通信。Wireshark还可以用于捕获和分析AX.25帧。</p>
 <h3>如何协同工作</h3>
-<p>这些协议在业余分组无线电通信中协同工作：KISS用于主机与TNC之间的接口；HDLC用于TNC和TNC间通信，负责数据的帧封装和完整性校验；而AX.25则是实际应用于无线电通信的协议层，是KISS和HDLC的内容。通过GNU Radio的gr-kiss模块，可以方便地处理这些协议的帧，进行自定义数据处理、分析和测试。</p></div>
+<p>这些协议在业余分组无线电通信中协同工作：KISS用于主机与TNC之间的接口；HDLC用于TNC和TNC间通信，负责数据的帧封装和完整性校验；而AX.25则是实际应用于无线电通信的协议层，是KISS和HDLC的内容。通过GNU Radio的gr-kiss模块，可以方便地处理这些协议的帧，进行自定义数据处理、分析和测试。</p>
+<p>通过无线电完成两台计算机之间的通信，通常的流程是这样的：</p>
+<ol>
+<li><strong>计算机1</strong> -&gt; 原始的 <strong>AX.25(数据)</strong> 封包成 <strong>KISS(AX.25(数据))</strong> 通过串行或USB接口发送到 <strong>TNC1</strong>。</li>
+<li><strong>TNC1</strong> -&gt; 将计算机1的 <strong>KISS(AX.25(数据))</strong> 进行解包成 <strong>AX.25(数据)</strong> ，转换成 <strong>HDLC(AX.25(数据))</strong> 调制，转换为无线电信号 <strong>调制(HDLC(AX.25(数据)))</strong> 。</li>
+<li><strong>无线电设备1</strong> -&gt; 通过天线将调制后的信号 <strong>调制(HDLC(AX.25(数据)))</strong> 发送到空气中。</li>
+<li><strong>无线电设备2</strong> -&gt; 另一端的接收无线电设备通过天线接收到信号 <strong>调制(HDLC(AX.25(数据)))</strong> 。</li>
+<li><strong>TNC2</strong> -&gt; 将接收到的无线电信号 <strong>调制(HDLC(AX.25(数据)))</strong> 解调、转换回数字数据 <strong>AX.25(数据)</strong> ，变成 <strong>KISS(AX.25(数据))</strong> 发送到 <strong>计算机2</strong>。</li>
+<li><strong>计算机2</strong> -&gt; 通过串行或USB接口从 <strong>TNC2</strong> 接收 <strong>KISS(AX.25(数据))</strong> 解包后得到 <strong>AX.25(数据)</strong> 。</li>
+</ol>
+<p>所以完整的链路是：</p>
+<p><strong>计算机1 → TNC1 → 无线电设备1 → 无线电链路（空气） → 无线电设备2 → TNC2 → 计算机2</strong></p>
+<p>TNC1和TNC2分别负责数据的调制和解调，而无线电设备负责实际的信号传输和接收。无线电链路是通过空气中的无线电波完成的，并不直接由TNC2发送到TNC1。这样，数据可以在没有物理连接的情况下从计算机1传输到计算机2。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
