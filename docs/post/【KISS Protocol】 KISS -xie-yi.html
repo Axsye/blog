@@ -183,13 +183,25 @@ KISS The KISS protocol was originally designed to interface a computer with a TN
 (4) The KISS TNC: A Simple Communications Protocol. <a href="https://minnie.tuhs.org/Seminars/Dual/section3_15.html" rel="nofollow">https://minnie.tuhs.org/Seminars/Dual/section3_15.html</a>.</p>
 <h2>1.4. 个人理解（需要确认）</h2>
 <h3>KISS协议</h3>
-<p>KISS（Keep It Simple, Stupid）协议主要用于在计算机和TNC（终端网络控制器）之间建立接口。KISS的设计理念是将大部分处理工作转移到主机计算机上，简化TNC的任务。KISS TNC只处理HDLC（高级数据链路控制）并将原始AX.25帧传递给主机。</p>
+<p>KISS（Keep It Simple, Stupid）协议（就添加了个帧尾，以及数据区出现帧尾的规避方法）主要用于在计算机和TNC（终端网络控制器）之间建立接口。KISS的设计理念是将大部分处理工作转移到主机计算机上，简化TNC的任务。KISS TNC（使用KISS和计算机通信的TNC）只处理HDLC（高级数据链路控制，其中的CRC和帧头帧尾）并将原始AX.25帧传递给主机。KISS用在短距离串口通信，不添加CRC。</p>
 <h3>HDLC协议</h3>
-<p>HDLC是一种数据链路层协议，通常用于X.25等协议中。在AX.25中，HDLC的作用是处理帧的封装和帧完整性的校验。HDLC使用NRZ-I编码方式，并通过比特填充机制避免长时间的连续1，从而保持接收器的同步。</p>
+<p>HDLC是一种数据链路层协议，通常用于AX.25等协议中。在X.25（和AX.25不完全是同一个）中，HDLC的作用是处理帧的封装和帧完整性的校验。HDLC使用NRZ-I编码方式，并通过比特填充机制避免长时间的连续1，从而保持接收器的同步。HDLC用在TNC发送数据时添加，并由另一个TNC接受后解码，是对AX.25外面套了个壳用于无线传输时的可靠性提升。</p>
 <h3>AX.25协议</h3>
 <p>AX.25是专为业余无线电设计的数据链路层协议，主要用于分组无线电通信。AX.25的帧处理和FCS校验与HDLC协议类似。Linux支持AX.25协议，可以通过配置AX.25端口和使用相关工具如<code class="notranslate">socat</code>、<code class="notranslate">kissnetd</code>等来实现AX.25通信。Wireshark还可以用于捕获和分析AX.25帧。</p>
 <h3>如何协同工作</h3>
-<p>这些协议在业余分组无线电通信中协同工作：KISS用于简化主机与TNC之间的接口，HDLC负责数据的帧封装和完整性校验，而AX.25则是实际应用于无线电通信的协议层。通过GNU Radio的gr-kiss模块，可以方便地处理这些协议的帧，进行自定义数据处理、分析和测试。</p>
+<p>这些协议在业余分组无线电通信中协同工作：KISS用于主机与TNC之间的接口；HDLC用于TNC和TNC间通信，负责数据的帧封装和完整性校验；而AX.25则是实际应用于无线电通信的协议层，是KISS和HDLC的内容。通过GNU Radio的gr-kiss模块，可以方便地处理这些协议的帧，进行自定义数据处理、分析和测试。</p>
+<p>通过无线电完成两台计算机之间的通信，通常的流程是这样的：</p>
+<ol>
+<li><strong>计算机1</strong> -&gt; 原始的 <strong>AX.25(数据)</strong> 封包成 <strong>KISS(AX.25(数据))</strong> 通过串行或USB接口发送到 <strong>TNC1</strong>。</li>
+<li><strong>TNC1</strong> -&gt; 将计算机1的 <strong>KISS(AX.25(数据))</strong> 进行解包成 <strong>AX.25(数据)</strong> ，转换成 <strong>HDLC(AX.25(数据))</strong> 调制，转换为无线电信号 <strong>调制(HDLC(AX.25(数据)))</strong> 。</li>
+<li><strong>无线电设备1</strong> -&gt; 通过天线将调制后的信号 <strong>调制(HDLC(AX.25(数据)))</strong> 发送到空气中。</li>
+<li><strong>无线电设备2</strong> -&gt; 另一端的接收无线电设备通过天线接收到信号 <strong>调制(HDLC(AX.25(数据)))</strong> 。</li>
+<li><strong>TNC2</strong> -&gt; 将接收到的无线电信号 <strong>调制(HDLC(AX.25(数据)))</strong> 解调、转换回数字数据 <strong>AX.25(数据)</strong> ，变成 <strong>KISS(AX.25(数据))</strong> 发送到 <strong>计算机2</strong>。</li>
+<li><strong>计算机2</strong> -&gt; 通过串行或USB接口从 <strong>TNC2</strong> 接收 <strong>KISS(AX.25(数据))</strong> 解包后得到 <strong>AX.25(数据)</strong> 。</li>
+</ol>
+<p>所以完整的链路是：</p>
+<p><strong>计算机1 → TNC1 → 无线电设备1 → 无线电链路（空气） → 无线电设备2 → TNC2 → 计算机2</strong></p>
+<p>TNC1和TNC2分别负责数据的调制和解调，而无线电设备负责实际的信号传输和接收。无线电链路是通过空气中的无线电波完成的。</p>
 <hr>
 <h1>2. 研究KISS的具体实现方法</h1>
 <h2>2.1. 相关文章</h2>
