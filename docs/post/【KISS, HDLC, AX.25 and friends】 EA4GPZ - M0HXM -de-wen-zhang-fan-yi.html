@@ -224,7 +224,7 @@ Sorry about my wording. Perhaps it was confusing. In the terminology I follow in
 <h1>讨论和理解</h1>
 <h2>个人理解（需要确认）</h2>
 <h3>KISS协议</h3>
-<p>KISS（Keep It Simple, Stupid）协议（就添加了个帧尾，以及数据区出现帧尾的规避方法）主要用于在计算机和TNC（终端网络控制器）之间建立接口。KISS的设计理念是将大部分处理工作转移到主机计算机上，简化TNC的任务。KISS TNC（使用KISS和计算机通信的TNC）只处理HDLC（高级数据链路控制，其中的CRC和帧头帧尾）并将原始AX.25帧传递给主机。AX.25用在短距离串口通信，不添加CRC。</p>
+<p>KISS（Keep It Simple, Stupid）协议（就添加了个帧尾，以及数据区出现帧尾的规避方法）主要用于在计算机和TNC（终端网络控制器）之间建立接口。KISS的设计理念是将大部分处理工作转移到主机计算机上，简化TNC的任务。KISS TNC（使用KISS和计算机通信的TNC）只处理HDLC（高级数据链路控制，其中的CRC和帧头帧尾）并将原始AX.25帧传递给主机。KISS用在短距离串口通信，不添加CRC。</p>
 <h3>HDLC协议</h3>
 <p>HDLC是一种数据链路层协议，通常用于AX.25等协议中。在X.25（和AX.25不完全是同一个）中，HDLC的作用是处理帧的封装和帧完整性的校验。HDLC使用NRZ-I编码方式，并通过比特填充机制避免长时间的连续1，从而保持接收器的同步。HDLC用在TNC发送数据时添加，并由另一个TNC接受后解码，是对AX.25外面套了个壳用于无线传输时的可靠性提升。</p>
 <h3>AX.25协议</h3>
