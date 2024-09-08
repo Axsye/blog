@@ -1,4 +1,6 @@
-# EA4GPZ / M0HXM 的[网站](https://destevez.net/)上的文章 **_KISS, HDLC, AX.25 and friends_**
+# KISS, HDLC, AX.25 and friends
+
+- EA4GPZ / M0HXM 的[网站](https://destevez.net/)上的文章 **_KISS, HDLC, AX.25 and friends_**
 
 > 原文链接
 > https://destevez.net/2016/06/kiss-hdlc-ax-25-and-friends/
@@ -98,3 +100,110 @@ AX.25端口test绑定到设备ax0
 Linux AX.25接口的基本使用
 
 Linux AX.25接口可以像任何其他网络接口一样配置用于IPv4。然后可以使用常规的IP流量工具。此外，还有几个特定于AX.25的工具，可用于监控AX.25流量。请记住，Wireshark也可以捕获并分析AX.25接口中的流量。AX.25连接也可以通过这些工具来实现，这也是生成测试数据包的简便方法。 
+
+---
+
+# 网站上的问答
+
+## Jeremy Kitchen - May 28, 2019 at 05:28 UTC
+
+> So, I’m confused. The PDF you link to there of the AX.25 spec says there are 2 bytes in the frame just after the control field that are the FCS. However, you also say that they aren’t there. And in my exploration of real-world usage so far (sniffing the packets of my Winlink client checking in), I concur, that FCS field isn’t being sent with any packet I’ve seen.
+> 
+> Is the spec wrong? Or is that a newer version than most implementations use? Or something else?
+> 
+> I’m working on an AX.25 library for Swift so I can do some packet stuff on my Mac/iOS devices and am getting to the FCS portion of the frame 🙂
+> 
+> Thanks!
+
+我有点困惑。你链接的AX.25规范的PDF中提到，在控制字段之后的帧中有2个字节是FCS。然而，你也说它们并不存在。而且，在我对实际使用情况的探索中（监听我的Winlink客户端的检查包），我也发现，在我见到的所有包中都没有看到FCS字段。
+
+是规范错了吗？还是说这是大多数实现使用的较新版本？还是其他原因？
+
+我正在为Swift开发一个AX.25库，以便我可以在Mac/iOS设备上处理一些数据包的事情，目前正在处理帧中的FCS部分 🙂
+
+谢谢！
+
+---
+
+## destevez - May 28, 2019 at 17:21 UTC
+
+> Hi Jeremy,  
+> Sorry about my wording. Perhaps it was confusing. In the terminology I follow in this post (of course there are different ways to explain things), the `0x7e` flags and the CRC form part of the HDLC frame. The AX.25 frame (addresses, PID, etc.) is transmitted as the payload of the HDLC frame, and so it doesn’t include the `0x7e` flags nor CRC. So in this post, I don’t consider the CRC to form part of the AX.25 frame, but rather of the HDLC frame.
+> 
+> This is consistent with the common use of AX.25 frames through a KISS interface. As a matter of fact, CRCs are not transmitted through the KISS interface.
+
+你好，Jeremy，  
+抱歉我的措辞可能有些混淆。在这篇文章中，我使用的术语（当然有不同的解释方法）是：`0x7e`标志和CRC是HDLC帧的一部分。AX.25帧（地址、PID等）作为HDLC帧的有效载荷传输，因此不包括`0x7e`标志和CRC。因此，在本文中，我不认为CRC是AX.25帧的一部分，而是HDLC帧的一部分。
+
+这与通过KISS接口使用AX.25帧的常见方式一致。实际上，CRC不会通过KISS接口传输。
+
+---
+
+## Jeremy Kitchen - May 28, 2019 at 21:36 UTC
+
+> Thanks for the reply!
+> 
+> So an HDLC frame is like a different wrapper around the AX.25 frame but also affects the contents? The spec says there’s a protocol field and an FCS field, so I’m confused 🙂 I don’t have any experience with HDLC or even know where I would use that, I’m working from a KISS TNC, so maybe things are very different, then 🙂
+> 
+> If there’s no CRC with KISS+AX.25, how is packet integrity verified? Or is that left as an exercise for the layer 3 or layer 7 implementation?
+
+谢谢你的回复！
+
+所以HDLC帧就像是AX.25帧的一个不同的封装，但也会影响内容吗？规范中提到有一个协议字段和一个FCS字段，所以我有点困惑 🙂 我没有HDLC的经验，甚至不知道在哪里使用它，我是从KISS TNC开始的，所以可能情况非常不同，对吗？🙂
+
+如果KISS+AX.25没有CRC，如何验证数据包的完整性？还是说这部分工作留给了第3层或第7层实现？
+
+---
+
+## destevez - May 28, 2019 at 21:42 UTC
+
+> In AX.25, the physical (OSI L1) and link (OSI L2) layers are somewhat mixed up, so I prefer to distinguish them and say that HDLC is the physical layer, while AX.25 is the link layer. This makes sense, as AX.25 can then be sent on top of other physical layers, such as KISS. (Note that however this correspondence doesn’t follow the OSI model 100% accurately).
+> 
+> An HDLC frame doesn’t affect the contents of an AX.25 frame. It just encapsulates it.
+> 
+> There is no CRC in AX.25 on top of KISS. Packet integrity is taken for granted, since this is used for a serial link between a host and a TNC, for routing AX.25 between different software, or for storage of AX.25 frames. Of course, when transmitting AX.25 over the air, it is encapsulated on HDLC, so a CRC is added.
+
+在AX.25中，物理层（OSI L1）和链路层（OSI L2）有些混杂，因此我更喜欢将它们区分开来，并说HDLC是物理层，而AX.25是链路层。这是有意义的，因为AX.25可以在其他物理层（如KISS）之上发送。（注意，这种对应关系并不完全符合OSI模型的100%精确性。）
+
+HDLC帧不会影响AX.25帧的内容。它只是将其封装。
+
+在KISS之上的AX.25中没有CRC。数据包的完整性被默认假定，因为这是用于主机和TNC之间的串行链接，用于在不同软件之间路由AX.25，或用于存储AX.25帧。当然，当通过无线传输AX.25时，它被封装在HDLC中，因此会添加CRC。
+
+---
+
+## Jeremy Kitchen - May 29, 2019 at 00:12 UTC
+
+> OH! So the TNC actually adds its own CRCing before sending it over the air? And that’s the HDLC stuff? Interesting! Thanks for the info!
+
+哦！所以TNC实际上在通过无线发送之前会添加自己的CRC？这就是HDLC的作用吗？有意思！谢谢提供的信息！
+
+
+---
+
+## destevez - May 29, 2019 at 05:53 UTC
+
+> Yes, the CRC is usually added/checked by the TNC.
+
+是的，CRC通常由TNC添加或检查。
+
+---
+
+# 讨论和理解
+
+## 2.1. 个人理解
+
+### KISS协议
+
+KISS（Keep It Simple, Stupid）协议主要用于在计算机和TNC（终端网络控制器）之间建立接口。KISS的设计理念是将大部分处理工作转移到主机计算机上，简化TNC的任务。KISS TNC只处理HDLC（高级数据链路控制）并将原始AX.25帧传递给主机。
+
+### HDLC协议
+
+HDLC是一种数据链路层协议，通常用于X.25等协议中。在AX.25中，HDLC的作用是处理帧的封装和帧完整性的校验。HDLC使用NRZ-I编码方式，并通过比特填充机制避免长时间的连续1，从而保持接收器的同步。
+
+### AX.25协议
+
+AX.25是专为业余无线电设计的数据链路层协议，主要用于分组无线电通信。AX.25的帧处理和FCS校验与HDLC协议类似。Linux支持AX.25协议，可以通过配置AX.25端口和使用相关工具如`socat`、`kissnetd`等来实现AX.25通信。Wireshark还可以用于捕获和分析AX.25帧。
+
+### 如何协同工作
+
+这些协议在业余分组无线电通信中协同工作：KISS用于简化主机与TNC之间的接口，HDLC负责数据的帧封装和完整性校验，而AX.25则是实际应用于无线电通信的协议层。通过GNU Radio的gr-kiss模块，可以方便地处理这些协议的帧，进行自定义数据处理、分析和测试。
