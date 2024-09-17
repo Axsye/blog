@@ -40,3 +40,43 @@ logging.basicConfig(level=logging.DEBUG,
 log = logging.getLogger(__name__)
 
 ```
+
+# 2. 树莓派开机启动脚本
+
+> 网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致
+> 【P8-开机启动Python程序】 https://www.bilibili.com/video/BV1bg411R7WJ/?share_source=copy_web&vd_source=1735967fff393ffa3d39f23c1c1f2362
+
+通过在/home/pi/.config/autostart/新建.desktop文件实现
+位置：
+/home/pi/.config/autostart/test.desktop
+
+> EDATEC没删掉的测试文件
+
+```
+
+[Desktop Entry]
+Name=test
+Comment=EDATEDtest
+Exec=/home/pi/.local/ed_test/ed_test_start.sh
+Terminal=yes
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+
+```
+
+> 自己亲测的文件，启动python脚本
+> 注意 Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py' 这一行内容最重要
+
+```
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=mpvtest
+Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py'
+Terminal=true
+Type=Application
+StartupNotify=true
+
+```

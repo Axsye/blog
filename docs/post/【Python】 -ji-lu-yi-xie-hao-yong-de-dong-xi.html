@@ -51,6 +51,46 @@ logging.basicConfig(level=logging.DEBUG,
 # 创建一个logger
 log = logging.getLogger(__name__)
 
+```
+
+# 2. 树莓派开机启动脚本
+
+> 网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致
+> 【P8-开机启动Python程序】 https://www.bilibili.com/video/BV1bg411R7WJ/?share_source=copy_web&vd_source=1735967fff393ffa3d39f23c1c1f2362
+
+通过在/home/pi/.config/autostart/新建.desktop文件实现
+位置：
+/home/pi/.config/autostart/test.desktop
+
+> EDATEC没删掉的测试文件
+
+```
+
+[Desktop Entry]
+Name=test
+Comment=EDATEDtest
+Exec=/home/pi/.local/ed_test/ed_test_start.sh
+Terminal=yes
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+
+```
+
+> 自己亲测的文件，启动python脚本
+> 注意 Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py' 这一行内容最重要
+
+```
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=mpvtest
+Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py'
+Terminal=true
+Type=Application
+StartupNotify=true
+
 ```。">
 <meta property="og:title" content="【Python】 记录一些好用的东西">
 <meta property="og:description" content="# 1.  logging
@@ -93,6 +133,46 @@ logging.basicConfig(level=logging.DEBUG,
 
 # 创建一个logger
 log = logging.getLogger(__name__)
+
+```
+
+# 2. 树莓派开机启动脚本
+
+> 网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致
+> 【P8-开机启动Python程序】 https://www.bilibili.com/video/BV1bg411R7WJ/?share_source=copy_web&vd_source=1735967fff393ffa3d39f23c1c1f2362
+
+通过在/home/pi/.config/autostart/新建.desktop文件实现
+位置：
+/home/pi/.config/autostart/test.desktop
+
+> EDATEC没删掉的测试文件
+
+```
+
+[Desktop Entry]
+Name=test
+Comment=EDATEDtest
+Exec=/home/pi/.local/ed_test/ed_test_start.sh
+Terminal=yes
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+
+```
+
+> 自己亲测的文件，启动python脚本
+> 注意 Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py' 这一行内容最重要
+
+```
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=mpvtest
+Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py'
+Terminal=true
+Type=Application
+StartupNotify=true
 
 ```。">
 <meta property="og:type" content="article">
@@ -194,7 +274,44 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
                     ])
 
 <span class="pl-c"># 创建一个logger</span>
-<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-en">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div></div>
+<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-en">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
+<h1>2. 树莓派开机启动脚本</h1>
+<blockquote>
+<p>网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致<br>
+【P8-开机启动Python程序】 <a href="https://www.bilibili.com/video/BV1bg411R7WJ/?share_source=copy_web&amp;vd_source=1735967fff393ffa3d39f23c1c1f2362" rel="nofollow">https://www.bilibili.com/video/BV1bg411R7WJ/?share_source=copy_web&amp;vd_source=1735967fff393ffa3d39f23c1c1f2362</a></p>
+</blockquote>
+<p>通过在/home/pi/.config/autostart/新建.desktop文件实现<br>
+位置：<br>
+/home/pi/.config/autostart/test.desktop</p>
+<blockquote>
+<p>EDATEC没删掉的测试文件</p>
+</blockquote>
+<pre class="notranslate"><code class="notranslate">
+[Desktop Entry]
+Name=test
+Comment=EDATEDtest
+Exec=/home/pi/.local/ed_test/ed_test_start.sh
+Terminal=yes
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+
+</code></pre>
+<blockquote>
+<p>自己亲测的文件，启动python脚本<br>
+注意 Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py' 这一行内容最重要</p>
+</blockquote>
+<pre class="notranslate"><code class="notranslate">
+[Desktop Entry]
+Encoding=UTF-8
+Name=mpvtest
+Exec=/usr/bin/x-terminal-emulator -e 'python3 -u /home/pi/work/test/mpvtest.py'
+Terminal=true
+Type=Application
+StartupNotify=true
+
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
