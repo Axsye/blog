@@ -91,7 +91,28 @@ Terminal=true
 Type=Application
 StartupNotify=true
 
-```。">
+```
+
+# 3. 字符串转字典的方法
+
+> https://blog.csdn.net/u012206617/article/details/114326884
+
+```python
+
+>>> import ast
+>>> user = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+user_info = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+
+```
+
+> 附上字典用法
+> https://www.runoob.com/python/python-dictionary.html。">
 <meta property="og:title" content="【Python】 记录一些好用的东西">
 <meta property="og:description" content="# 1.  logging
 
@@ -174,7 +195,28 @@ Terminal=true
 Type=Application
 StartupNotify=true
 
-```。">
+```
+
+# 3. 字符串转字典的方法
+
+> https://blog.csdn.net/u012206617/article/details/114326884
+
+```python
+
+>>> import ast
+>>> user = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+user_info = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+
+```
+
+> 附上字典用法
+> https://www.runoob.com/python/python-dictionary.html。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90Python%E3%80%91%20-ji-lu-yi-xie-hao-yong-de-dong-xi.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -311,7 +353,24 @@ Terminal=true
 Type=Application
 StartupNotify=true
 
-</code></pre></div>
+</code></pre>
+<h1>3. 字符串转字典的方法</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/u012206617/article/details/114326884" rel="nofollow">https://blog.csdn.net/u012206617/article/details/114326884</a></p>
+</blockquote>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-k">import</span> <span class="pl-s1">ast</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s">'{"name" : "john", "gender" : "male", "age": 28}'</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-en">literal_eval</span>(<span class="pl-s1">user</span>)
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span>
+{<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}
+<span class="pl-s1">user_info</span> <span class="pl-c1">=</span> <span class="pl-s">"{'name' : 'john', 'gender' : 'male', 'age': 28}"</span>
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-en">literal_eval</span>(<span class="pl-s1">user</span>)
+<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span>
+{<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}</pre></div>
+<blockquote>
+<p>附上字典用法<br>
+<a href="https://www.runoob.com/python/python-dictionary.html" rel="nofollow">https://www.runoob.com/python/python-dictionary.html</a></p>
+</blockquote></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

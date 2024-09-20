@@ -80,3 +80,24 @@ Type=Application
 StartupNotify=true
 
 ```
+
+# 3. 字符串转字典的方法
+
+> https://blog.csdn.net/u012206617/article/details/114326884
+
+```python
+
+>>> import ast
+>>> user = '{"name" : "john", "gender" : "male", "age": 28}'
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+user_info = "{'name' : 'john', 'gender' : 'male', 'age': 28}"
+>>> user_dict = ast.literal_eval(user)
+>>> user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+
+```
+
+> 附上字典用法
+> https://www.runoob.com/python/python-dictionary.html
