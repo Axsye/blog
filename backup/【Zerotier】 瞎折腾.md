@@ -18,7 +18,7 @@ docker run -d -v zerotier-app:/app -v zerotier-one:/var/lib/zerotier-one -p 9994
 Error retrieving list of networks on this controller: RequestError: connect ECONNREFUSED 127.0.0.1:9994
 ![image](https://github.com/user-attachments/assets/59d6c47f-0915-4f4b-b1ec-e2458cd9bfc1)
 
-这是后来从deploy.sh中截取的命令，猜测对应替换掉其中的地址可以避免上述报错，但是由于这个镜像不能解析域名，过于飞舞，域名解析有多个issue提议，但是甚至不在开发计划中，疑似作者想通过卖他自己的服务赚米，不想尝试了
+这是后来从deploy.sh中截取的命令，猜测对应替换掉其中的地址可以避免上述报错，但是由于这个镜像不能解析域名，整个项目都是为这个一键部署的脚本适配，自己通过docker命令，发现作者埋了一堆坑，根本发挥不出docker作用，属实过于飞舞。域名解析有多个issue提议，但是甚至不在开发计划中，疑似作者想通过卖他自己的服务赚米，不想尝试了
 
 ```powershell
 docker run -d \

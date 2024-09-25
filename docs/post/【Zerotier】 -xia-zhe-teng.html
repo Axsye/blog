@@ -100,7 +100,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 管理页面可以登陆但是进入网络配置就会报错<br>
 Error retrieving list of networks on this controller: RequestError: connect ECONNREFUSED 127.0.0.1:9994<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/59d6c47f-0915-4f4b-b1ec-e2458cd9bfc1"><img src="https://github.com/user-attachments/assets/59d6c47f-0915-4f4b-b1ec-e2458cd9bfc1" alt="image" style="max-width: 100%;"></a></p>
-<p>这是后来从deploy.sh中截取的命令，猜测对应替换掉其中的地址可以避免上述报错，但是由于这个镜像不能解析域名，过于飞舞，域名解析有多个issue提议，但是甚至不在开发计划中，疑似作者想通过卖他自己的服务赚米，不想尝试了</p>
+<p>这是后来从deploy.sh中截取的命令，猜测对应替换掉其中的地址可以避免上述报错，但是由于这个镜像不能解析域名，整个项目都是为这个一键部署的脚本适配，自己通过docker命令，发现作者埋了一堆坑，根本发挥不出docker作用，属实过于飞舞。域名解析有多个issue提议，但是甚至不在开发计划中，疑似作者想通过卖他自己的服务赚米，不想尝试了</p>
 <div class="highlight highlight-source-powershell"><pre class="notranslate">docker run <span class="pl-k">-</span>d \
         <span class="pl-k">--</span>name <span class="pl-smi">${CONTAINER_NAME}</span> \
         <span class="pl-k">-</span>p <span class="pl-smi">${ZT_PORT}</span>:<span class="pl-smi">${ZT_PORT}</span> \
