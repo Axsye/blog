@@ -112,7 +112,90 @@ user_info = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
 ```
 
 > 附上字典用法
-> https://www.runoob.com/python/python-dictionary.html。">
+> https://www.runoob.com/python/python-dictionary.html
+
+# 4. COBS编码
+
+> WIKI:
+> https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing
+
+> https://blog.mbedded.ninja/programming/serialization-formats/consistent-overhead-byte-stuffing-cobs/
+
+> https://www.armbbs.cn/forum.php?mod=viewthread&tid=115429#:~:text=%E6%83%B3%E5%88%B0%E4%BA%86%E4%B8%80%E7%A7%8D%E6%89%A9%E5%B1%95cob
+
+![image](https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9)
+![image](https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2)
+![image](https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18)
+
+```C
+#include <stddef.h>
+#include <stdint.h>
+#include <assert.h>
+
+/** COBS encode data to buffer
+	@param data Pointer to input data to encode
+	@param length Number of bytes to encode
+	@param buffer Pointer to encoded output buffer
+	@return Encoded buffer length in bytes
+	@note Does not output delimiter byte
+*/
+size_t cobsEncode(const void *data, size_t length, uint8_t *buffer)
+{
+	assert(data && buffer);
+
+	uint8_t *encode = buffer; // Encoded byte pointer
+	uint8_t *codep = encode++; // Output code pointer
+	uint8_t code = 1; // Code value
+
+	for (const uint8_t *byte = (const uint8_t *)data; length--; ++byte)
+	{
+		if (*byte) // Byte not zero, write it
+			*encode++ = *byte, ++code;
+
+		if (!*byte || code == 0xff) // Input is zero or block completed, restart
+		{
+			*codep = code, code = 1, codep = encode;
+			if (!*byte || length)
+				++encode;
+		}
+	}
+	*codep = code; // Write final code value
+
+	return (size_t)(encode - buffer);
+}
+
+/** COBS decode data from buffer
+	@param buffer Pointer to encoded input bytes
+	@param length Number of bytes to decode
+	@param data Pointer to decoded output data
+	@return Number of bytes successfully decoded
+	@note Stops decoding if delimiter byte is found
+*/
+size_t cobsDecode(const uint8_t *buffer, size_t length, void *data)
+{
+	assert(buffer && data);
+
+	const uint8_t *byte = buffer; // Encoded input byte pointer
+	uint8_t *decode = (uint8_t *)data; // Decoded output byte pointer
+
+	for (uint8_t code = 0xff, block = 0; byte < buffer + length; --block)
+	{
+		if (block) // Decode block byte
+			*decode++ = *byte++;
+		else
+		{
+			block = *byte++;             // Fetch the next block length
+			if (block && (code != 0xff)) // Encoded zero, write it unless it's delimiter.
+				*decode++ = 0;
+			code = block;
+			if (!code) // Delimiter code found
+				break;
+		}
+	}
+
+	return (size_t)(decode - (uint8_t *)data);
+}
+```。">
 <meta property="og:title" content="【Python】 记录一些好用的东西">
 <meta property="og:description" content="# 1.  logging
 
@@ -216,7 +299,90 @@ user_info = '{'name' : 'john', 'gender' : 'male', 'age': 28}'
 ```
 
 > 附上字典用法
-> https://www.runoob.com/python/python-dictionary.html。">
+> https://www.runoob.com/python/python-dictionary.html
+
+# 4. COBS编码
+
+> WIKI:
+> https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing
+
+> https://blog.mbedded.ninja/programming/serialization-formats/consistent-overhead-byte-stuffing-cobs/
+
+> https://www.armbbs.cn/forum.php?mod=viewthread&tid=115429#:~:text=%E6%83%B3%E5%88%B0%E4%BA%86%E4%B8%80%E7%A7%8D%E6%89%A9%E5%B1%95cob
+
+![image](https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9)
+![image](https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2)
+![image](https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18)
+
+```C
+#include <stddef.h>
+#include <stdint.h>
+#include <assert.h>
+
+/** COBS encode data to buffer
+	@param data Pointer to input data to encode
+	@param length Number of bytes to encode
+	@param buffer Pointer to encoded output buffer
+	@return Encoded buffer length in bytes
+	@note Does not output delimiter byte
+*/
+size_t cobsEncode(const void *data, size_t length, uint8_t *buffer)
+{
+	assert(data && buffer);
+
+	uint8_t *encode = buffer; // Encoded byte pointer
+	uint8_t *codep = encode++; // Output code pointer
+	uint8_t code = 1; // Code value
+
+	for (const uint8_t *byte = (const uint8_t *)data; length--; ++byte)
+	{
+		if (*byte) // Byte not zero, write it
+			*encode++ = *byte, ++code;
+
+		if (!*byte || code == 0xff) // Input is zero or block completed, restart
+		{
+			*codep = code, code = 1, codep = encode;
+			if (!*byte || length)
+				++encode;
+		}
+	}
+	*codep = code; // Write final code value
+
+	return (size_t)(encode - buffer);
+}
+
+/** COBS decode data from buffer
+	@param buffer Pointer to encoded input bytes
+	@param length Number of bytes to decode
+	@param data Pointer to decoded output data
+	@return Number of bytes successfully decoded
+	@note Stops decoding if delimiter byte is found
+*/
+size_t cobsDecode(const uint8_t *buffer, size_t length, void *data)
+{
+	assert(buffer && data);
+
+	const uint8_t *byte = buffer; // Encoded input byte pointer
+	uint8_t *decode = (uint8_t *)data; // Decoded output byte pointer
+
+	for (uint8_t code = 0xff, block = 0; byte < buffer + length; --block)
+	{
+		if (block) // Decode block byte
+			*decode++ = *byte++;
+		else
+		{
+			block = *byte++;             // Fetch the next block length
+			if (block && (code != 0xff)) // Encoded zero, write it unless it's delimiter.
+				*decode++ = 0;
+			code = block;
+			if (!code) // Delimiter code found
+				break;
+		}
+	}
+
+	return (size_t)(decode - (uint8_t *)data);
+}
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90Python%E3%80%91%20-ji-lu-yi-xie-hao-yong-de-dong-xi.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -370,7 +536,88 @@ StartupNotify=true
 <blockquote>
 <p>附上字典用法<br>
 <a href="https://www.runoob.com/python/python-dictionary.html" rel="nofollow">https://www.runoob.com/python/python-dictionary.html</a></p>
-</blockquote></div>
+</blockquote>
+<h1>4. COBS编码</h1>
+<blockquote>
+<p>WIKI:<br>
+<a href="https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing" rel="nofollow">https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://blog.mbedded.ninja/programming/serialization-formats/consistent-overhead-byte-stuffing-cobs/" rel="nofollow">https://blog.mbedded.ninja/programming/serialization-formats/consistent-overhead-byte-stuffing-cobs/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.armbbs.cn/forum.php?mod=viewthread&amp;tid=115429#:~:text=%E6%83%B3%E5%88%B0%E4%BA%86%E4%B8%80%E7%A7%8D%E6%89%A9%E5%B1%95cob" rel="nofollow">https://www.armbbs.cn/forum.php?mod=viewthread&amp;tid=115429#:~:text=%E6%83%B3%E5%88%B0%E4%BA%86%E4%B8%80%E7%A7%8D%E6%89%A9%E5%B1%95cob</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9"><img src="https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2"><img src="https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2" alt="image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18"><img src="https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18" alt="image" style="max-width: 100%;"></a></p>
+<div class="highlight highlight-source-c"><pre class="notranslate"><span class="pl-k">#include</span> <span class="pl-s">&lt;stddef.h&gt;</span>
+<span class="pl-k">#include</span> <span class="pl-s">&lt;stdint.h&gt;</span>
+<span class="pl-k">#include</span> <span class="pl-s">&lt;assert.h&gt;</span>
+
+<span class="pl-c">/** COBS encode data to buffer</span>
+<span class="pl-c">	@param data Pointer to input data to encode</span>
+<span class="pl-c">	@param length Number of bytes to encode</span>
+<span class="pl-c">	@param buffer Pointer to encoded output buffer</span>
+<span class="pl-c">	@return Encoded buffer length in bytes</span>
+<span class="pl-c">	@note Does not output delimiter byte</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">size_t</span> <span class="pl-en">cobsEncode</span>(<span class="pl-k">const</span> <span class="pl-smi">void</span> <span class="pl-c1">*</span><span class="pl-s1">data</span>, <span class="pl-smi">size_t</span> <span class="pl-s1">length</span>, <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">buffer</span>)
+{
+	<span class="pl-en">assert</span>(<span class="pl-s1">data</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">buffer</span>);
+
+	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">encode</span> <span class="pl-c1">=</span> <span class="pl-s1">buffer</span>; <span class="pl-c">// Encoded byte pointer</span>
+	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">encode</span><span class="pl-c1">++</span>; <span class="pl-c">// Output code pointer</span>
+	<span class="pl-smi">uint8_t</span> <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>; <span class="pl-c">// Code value</span>
+
+	<span class="pl-k">for</span> (<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">=</span> (<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>; <span class="pl-s1">length</span><span class="pl-c1">--</span>; <span class="pl-c1">++</span><span class="pl-s1">byte</span>)
+	{
+		<span class="pl-k">if</span> (<span class="pl-c1">*</span><span class="pl-s1">byte</span>) <span class="pl-c">// Byte not zero, write it</span>
+			<span class="pl-c1">*</span><span class="pl-s1">encode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span>, <span class="pl-c1">++</span><span class="pl-s1">code</span>;
+
+		<span class="pl-k">if</span> (!<span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">||</span> <span class="pl-s1">code</span> <span class="pl-c1">==</span> <span class="pl-c1">0xff</span>) <span class="pl-c">// Input is zero or block completed, restart</span>
+		{
+			<span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">code</span>, <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>, <span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">encode</span>;
+			<span class="pl-k">if</span> (!<span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">||</span> <span class="pl-s1">length</span>)
+				<span class="pl-c1">++</span><span class="pl-s1">encode</span>;
+		}
+	}
+	<span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">code</span>; <span class="pl-c">// Write final code value</span>
+
+	<span class="pl-k">return</span> (<span class="pl-smi">size_t</span>)(<span class="pl-s1">encode</span> <span class="pl-c1">-</span> <span class="pl-s1">buffer</span>);
+}
+
+<span class="pl-c">/** COBS decode data from buffer</span>
+<span class="pl-c">	@param buffer Pointer to encoded input bytes</span>
+<span class="pl-c">	@param length Number of bytes to decode</span>
+<span class="pl-c">	@param data Pointer to decoded output data</span>
+<span class="pl-c">	@return Number of bytes successfully decoded</span>
+<span class="pl-c">	@note Stops decoding if delimiter byte is found</span>
+<span class="pl-c">*/</span>
+<span class="pl-smi">size_t</span> <span class="pl-en">cobsDecode</span>(<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">buffer</span>, <span class="pl-smi">size_t</span> <span class="pl-s1">length</span>, <span class="pl-smi">void</span> <span class="pl-c1">*</span><span class="pl-s1">data</span>)
+{
+	<span class="pl-en">assert</span>(<span class="pl-s1">buffer</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">data</span>);
+
+	<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">=</span> <span class="pl-s1">buffer</span>; <span class="pl-c">// Encoded input byte pointer</span>
+	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">decode</span> <span class="pl-c1">=</span> (<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>; <span class="pl-c">// Decoded output byte pointer</span>
+
+	<span class="pl-k">for</span> (<span class="pl-smi">uint8_t</span> <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">0xff</span>, <span class="pl-s1">block</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>; <span class="pl-s1">byte</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">buffer</span> <span class="pl-c1">+</span> <span class="pl-s1">length</span>; <span class="pl-c1">--</span><span class="pl-s1">block</span>)
+	{
+		<span class="pl-k">if</span> (<span class="pl-s1">block</span>) <span class="pl-c">// Decode block byte</span>
+			<span class="pl-c1">*</span><span class="pl-s1">decode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span><span class="pl-c1">++</span>;
+		<span class="pl-k">else</span>
+		{
+			<span class="pl-s1">block</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span><span class="pl-c1">++</span>;             <span class="pl-c">// Fetch the next block length</span>
+			<span class="pl-k">if</span> (<span class="pl-s1">block</span> <span class="pl-c1">&amp;&amp;</span> (<span class="pl-s1">code</span> <span class="pl-c1">!=</span> <span class="pl-c1">0xff</span>)) <span class="pl-c">// Encoded zero, write it unless it's delimiter.</span>
+				<span class="pl-c1">*</span><span class="pl-s1">decode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>;
+			<span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-s1">block</span>;
+			<span class="pl-k">if</span> (!<span class="pl-s1">code</span>) <span class="pl-c">// Delimiter code found</span>
+				<span class="pl-k">break</span>;
+		}
+	}
+
+	<span class="pl-k">return</span> (<span class="pl-smi">size_t</span>)(<span class="pl-s1">decode</span> <span class="pl-c1">-</span> (<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>);
+}</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
