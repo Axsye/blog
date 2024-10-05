@@ -26,4 +26,7 @@
 [rdf0473-zcu111-restoring-flash-c-2018-3.zip](https://github.com/user-attachments/files/17266453/rdf0473-zcu111-restoring-flash-c-2018-3.zip)
 
 重新烧录后还是亮红灯，需要手动按一下SW3来重启，重启后INIT_B正常，VADJ FMC正常，电源 DS40 PS_DDR4_VTEAM有时启动后亮有时不亮（怀疑这里还是有问题）
+至少自检是能过了
+![IMG_20241005_220339](https://github.com/user-attachments/assets/b9f54689-7944-47c6-8b70-e9e63ea98acb)
+
 
