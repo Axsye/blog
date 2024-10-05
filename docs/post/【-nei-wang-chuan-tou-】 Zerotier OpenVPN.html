@@ -10,9 +10,19 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。">
+<meta name="description" content="# 1. Zerotier
+
+优点：使用最简单，能建立P2P的情况下延迟低，速度快
+缺点：实测能建立P2P的情况很少，中转模式下以来国外的Planet根服务器，延迟极高速度极慢不稳定
+
+总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。">
 <meta property="og:title" content="【内网穿透】 Zerotier OpenVPN">
-<meta property="og:description" content="总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。">
+<meta property="og:description" content="# 1. Zerotier
+
+优点：使用最简单，能建立P2P的情况下延迟低，速度快
+缺点：实测能建立P2P的情况很少，中转模式下以来国外的Planet根服务器，延迟极高速度极慢不稳定
+
+总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90-nei-wang-chuan-tou-%E3%80%91%20Zerotier%20OpenVPN.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -83,7 +93,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。自建moon中转效果不明显，可能是需要换个docker镜像。根本解决办法是自建planet。</p>
+<div class="markdown-body" id="postBody"><h1>1. Zerotier</h1>
+<p>优点：使用最简单，能建立P2P的情况下延迟低，速度快<br>
+缺点：实测能建立P2P的情况很少，中转模式下以来国外的Planet根服务器，延迟极高速度极慢不稳定</p>
+<p>总结之前的经验来看，只有少数情况下zt可以建立点对点，基本上还是靠中转。自建moon中转效果不明显，可能是需要换个docker镜像。根本解决办法是自建planet。</p>
 <blockquote>
 <p>使用docker自建planet教程<br>
 <a href="https://blog.csdn.net/u012153104/article/details/131829837?type=blog&amp;rId=131829837&amp;refer=APP&amp;source=koude11" rel="nofollow">https://blog.csdn.net/u012153104/article/details/131829837?type=blog&amp;rId=131829837&amp;refer=APP&amp;source=koude11</a></p>
@@ -117,7 +130,237 @@ Error retrieving list of networks on this controller: RequestError: connect ECON
         <span class="pl-k">-</span>v <span class="pl-smi">${ZEROTIER_PATH}</span><span class="pl-k">/</span>one:<span class="pl-k">/</span><span class="pl-k">var</span><span class="pl-k">/</span>lib<span class="pl-k">/</span>zerotier<span class="pl-k">-</span>one \
         <span class="pl-k">-</span>v <span class="pl-smi">${CONFIG_PATH}</span>:<span class="pl-k">/</span>app<span class="pl-k">/</span>config \
         <span class="pl-k">--</span>restart unless<span class="pl-k">-</span>stopped \
-        <span class="pl-smi">${DOCKER_IMAGE}</span></pre></div></div>
+        <span class="pl-smi">${DOCKER_IMAGE}</span></pre></div>
+<h1>2. OpenVPN</h1>
+<p>优点：全部流量都走转发，在国内有公网服务器的情况下非常稳定，且支持域名解析<br>
+缺点：延迟比P2P大，带宽收到服务器的限制，服务端配置麻烦，客户端需要证书授权麻烦</p>
+<blockquote>
+<p>Windows Server下搭建：<br>
+<a href="https://www.cnblogs.com/simonlee-hello/articles/15830715.html#:~:text=%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E5%AE%89%E8%A3%85Open" rel="nofollow">https://www.cnblogs.com/simonlee-hello/articles/15830715.html#:~:text=%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E5%AE%89%E8%A3%85Open</a></p>
+</blockquote>
+<p>原网站防丢存档：</p>
+
+
+<h2><a id="user-content-cb_post_title_url" href="https://www.cnblogs.com/simonlee-hello/articles/15830715.html" title="发布于 2022-01-21 16:20" rel="nofollow"><span>Windows server 2012、2016、2019上搭建openV（亲测成功）</span></a></h2><div><div id="user-content-cnblogs_post_body"><h3 id="user-content-blogtitle0">步骤一：安装OpenVPN服务</h3><p>下载最新版本的OpenVPN服务端，可以从这个地址下载：</p><p><a href="https://openvpn.net/community-downloads/" rel="nofollow">Community Downloads | OpenVPN</a></p><p>下载的文件名为：OpenVPN-2.5.5-I602-amd64.msi</p><p>双击安装，选择“Customize”</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3ee5e159008f5791b59b96539aac8663ce91da6e369130a90c5f05dfa9e4661f/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f254536253838254141254535254231253846323032322d30312d3230253230254534254238253842254535253844253838352e34312e31362e706e67"><img src="https://camo.githubusercontent.com/3ee5e159008f5791b59b96539aac8663ce91da6e369130a90c5f05dfa9e4661f/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f254536253838254141254535254231253846323032322d30312d3230253230254534254238253842254535253844253838352e34312e31362e706e67" alt="截屏2022-01-20 下午5.41.16" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/%E6%88%AA%E5%B1%8F2022-01-20%20%E4%B8%8B%E5%8D%885.41.16.png" style="max-width: 100%;"></a></p><p>默认情况下不会安装的两个特性，我们需要在安装过程中进行选择。</p><ul><li>OpenVPN Service</li><li>OpenSSL Utilities</li></ul><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ce335d3f88a6f38fe75d42c80943899e7f411c705692db6745c1fe05d9607ceb/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f254536253838254141254535254231253846323032322d30312d3230253230254534254238253842254535253844253838352e34342e32302e706e67"><img src="https://camo.githubusercontent.com/ce335d3f88a6f38fe75d42c80943899e7f411c705692db6745c1fe05d9607ceb/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f254536253838254141254535254231253846323032322d30312d3230253230254534254238253842254535253844253838352e34342e32302e706e67" alt="截屏2022-01-20 下午5.44.20" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/%E6%88%AA%E5%B1%8F2022-01-20%20%E4%B8%8B%E5%8D%885.44.20.png" style="max-width: 100%;"></a></p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e0c4779a96cf349b061604afeb031c1ae87f3f0584693d700f2350a30244143/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303137343635383437382e706e67"><img src="https://camo.githubusercontent.com/7e0c4779a96cf349b061604afeb031c1ae87f3f0584693d700f2350a30244143/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303137343635383437382e706e67" alt="image-20220120174658478" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120174658478.png" style="max-width: 100%;"></a></p><p>点击install now</p><p>安装完成后，点击close。</p><p>这时会弹出一个提醒框，提示没有找到可连接的配置文件，现在不用管它，点击ok即可。</p><p>我们打开网络和共享中心，点击更改适配器设置，可以看到多了两个网络连接</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7347e0dff6078b5174bdffbd73739075ed719024a36a103767438f1d35936984/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303137353233363130372e706e67"><img src="https://camo.githubusercontent.com/7347e0dff6078b5174bdffbd73739075ed719024a36a103767438f1d35936984/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303137353233363130372e706e67" alt="image-20220120175236107" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120175236107.png" style="max-width: 100%;"></a></p><h3 id="user-content-blogtitle1">步骤二：设置CA证书、生成服务端和客户端的证书和私钥等</h3><p>找到目录“C:\Program Files\OpenVPN\easy-rsa”，将文件vars.example复制一份改名为vars，“vars”文件包含内置的Easy-RSA配置设置。可以保持默认设置，也可以自定义更改。</p><div>
+属性 | 默认值 | 作用
+-- | -- | --
+set_var EASYRSA | C:\Program Files\OpenVPN\easy-rsa | Defines the folder location of easy-rsa scripts
+set_var EASYRSA_OPENSSL | C:\Program Files\OpenVPN\bin\openssl.exe | Defines the OpenSSL binary path
+set_var EASYRSA_PKI | C:\Program Files\OpenVPN\easy-rsa\pki | The folder location of SSL/TLS file exists after creation
+set_var EASYRSA_DN | cn_only | This is used to adjust what elements are included in the Subject field as the DN
+set_var EASYRSA_REQ_COUNTRY | “US” | Our Organisation Country
+set_var EASYRSA_REQ_PROVINCE | “California” | Our Organisation Province
+set_var EASYRSA_REQ_CITY | “San Francisco” | Our Organisation City
+set_var EASYRSA_REQ_ORG | “Copyleft Certificate Co” | Our Organisation Name
+set_var EASYRSA_REQ_EMAIL | “me@example.net” | Our Organisation contact email
+set_var EASYRSA_REQ_OU | “My Organizational Unit” | Our Organisation Unit name
+set_var EASYRSA_KEY_SIZE | 2048 | Define the key pair size in bits
+set_var EASYRSA_ALGO | rsa | The default crypt mode
+set_var EASYRSA_CA_EXPIRE | 3650 | The CA key expire days
+set_var EASYRSA_CERT_EXPIRE | 825 | The Server certificate key expire days
+set_var EASYRSA_NS_SUPPORT | “no” | Support deprecated Netscape extension
+set_var EASYRSA_NS_COMMENT | “HAKASE-LABS CERTIFICATE AUTHORITY” | Defines NS comment
+set_var EASYRSA_EXT_DIR | "$EASYRSA/x509-types" | Defines the x509 extension directory
+set_var EASYRSA_SSL_CONF | "$EASYRSA/openssl-easyrsa.cnf" | Defines the openssl config file location
+set_var EASYRSA_DIGEST | "sha256" | Defines the cryptographic digest to use
+</div><h3 id="user-content-blogtitle2">步骤三：配置ip转发和网络共享</h3><p>打开注册表，win+R，输入regedit.exe，依次找到：<strong>HKEY LOCAL MACHINESYSTEM\CurrentControlSet\Services\Tcpip\Parameters</strong>将IPEableRouter值改为1，如下图</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7c25514aa6b1b7a40d6c91ceb2ae5db59f76d47916663a6ca454c3d0b07cf9e8/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343133353933352e706e67"><img src="https://camo.githubusercontent.com/7c25514aa6b1b7a40d6c91ceb2ae5db59f76d47916663a6ca454c3d0b07cf9e8/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343133353933352e706e67" alt="image-20220120184135935" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120184135935.png" style="max-width: 100%;"></a></p><p>然后打开控制面板，找到“控制面板\网络和 Internet\网络连接”，右键点击“以太网”，点击“属性”，在“共享”中钩上“允许其他网络用户通过此计算机的internet连接来连接”，并选择“OpenVPN TAP-Windows6”，点击确定。</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9bc895dbb0dedf543d341e820d781d80987b9aa7afeb98baf3cae4c5d0d56078/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343432343438392e706e67"><img src="https://camo.githubusercontent.com/9bc895dbb0dedf543d341e820d781d80987b9aa7afeb98baf3cae4c5d0d56078/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343432343438392e706e67" alt="image-20220120184424489" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120184424489.png" style="max-width: 100%;"></a></p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/435e97d50d60d23a5d79cf4a37eaa72bb271a6b4af6d057498c20b324b2c4851/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343532373639372e706e67"><img src="https://camo.githubusercontent.com/435e97d50d60d23a5d79cf4a37eaa72bb271a6b4af6d057498c20b324b2c4851/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138343532373639372e706e67" alt="image-20220120184527697" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120184527697.png" style="max-width: 100%;"></a></p><h3 id="user-content-blogtitle3">步骤四：创建服务端配置文件</h3><p>首先打开Windows资源管理器，进入C:\Program Files\OpenVPN\sample-config文件夹，将server.ovpn文件复制一份到C:\Program Files\OpenVPN\config目录下。</p><p>同时将以下文件一并复制到C:\Program Files\OpenVPN\config目录下</p><ul><li>ca.crt</li><li>dh.pem</li><li>SERVER.crt</li><li>SERVER.key</li><li>tls-auth.key</li></ul><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ff33b76b550fd0d84947bd0b0d8e5b777118de7ca2411af93d7bd5141df0c777/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138353330353239302e706e67"><img src="https://camo.githubusercontent.com/ff33b76b550fd0d84947bd0b0d8e5b777118de7ca2411af93d7bd5141df0c777/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303138353330353239302e706e67" alt="image-20220120185305290" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120185305290.png" style="max-width: 100%;"></a></p><p>编辑server.ovpn文件，修改以下地方，其他保持默认即可</p><pre class="notranslate"><code class="notranslate"><span>local</span> x.x.x.x  <span># 这个是服务器的内网IP地址，或者保持默认</span>
+ca ca.crt
+cert SERVER.crt
+key SERVER.key
+dh dh.pem
+<span>push</span> <span>"redirect-gateway def1 bypass-dhcp"</span>
+<span>push</span> <span>"dhcp-option DNS 114.114.114.114"</span> <span># 可以改成其他的DNS服务器</span>
+<span>push</span> <span>"dhcp-option DNS 8.8.8.8"</span>
+tls-auth tls-auth.key <span>0</span> <span># This file is secret</span>
+cipher AES-<span>256</span>-GCM
+</code></pre><p>点击连接，图标变绿就正常。</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61b343a6e204c490197990d3d75cca68292fc6fbde5aa554650a240cd0f427ee/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139303432333037362e706e67"><img src="https://camo.githubusercontent.com/61b343a6e204c490197990d3d75cca68292fc6fbde5aa554650a240cd0f427ee/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139303432333037362e706e67" alt="image-20220120190423076" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120190423076.png" style="max-width: 100%;"></a></p><h3 id="user-content-blogtitle4">配置客户端</h3><p>复制以下文件到你的客户端，并且在同一目录下</p><ul><li>ca.crt</li><li>CLIENT.crt</li><li>CLIENT.key</li><li>tls-auth.key</li><li>client.ovpn（“C:\Program Files\OpenVPN\sample-config”）</li></ul><p>编辑client.ovpn，修改以下参数，其他保持默认</p><pre class="notranslate"><code class="notranslate">remote *.*.*.* <span>1194</span> # 服务器公网IP地址
+ca ca.crt
+cert CLIENT.crt
+<span>key</span> CLIENT.<span>key</span>
+tls-auth tls-auth.<span>key</span> <span>1</span>
+cipher AES-<span>256</span>-GCM
+</code></pre><p>下载对应系统的客户端</p><p><a href="https://openvpn.net/vpn-client/" rel="nofollow">OpenVPN Connect Client | Our Official VPN Client | OpenVPN</a></p><p>如windows系统，将client.ovpn文件拖入客户端界面即可，如下</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/225c4b638ada188e684c49b4de74cee6637ce52b48c7eb5d2b97ffe854539cdf/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313335323132382e706e67"><img src="https://camo.githubusercontent.com/225c4b638ada188e684c49b4de74cee6637ce52b48c7eb5d2b97ffe854539cdf/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313335323132382e706e67" alt="image-20220120191352128" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120191352128.png" style="max-width: 100%;"></a></p><p>随后点击连接，出现如下界面则表示连接成功</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/23a751e406f15aba5551d6439bafa392e8722ce09d750a76a8a11d5dbdfdebd2/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313635303732312e706e67"><img src="https://camo.githubusercontent.com/23a751e406f15aba5551d6439bafa392e8722ce09d750a76a8a11d5dbdfdebd2/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313635303732312e706e67" alt="image-20220120191650721" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120191650721.png" style="max-width: 100%;"></a></p><p>这时ping一下10.8.0.1测试是否连通，ping下百度测试DNS是否正常。</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/23e896d762d2131d23a01236a3ca6a0f3acc42d1de3c6198a93b1b9234769305/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313735363434372e706e67"><img src="https://camo.githubusercontent.com/23e896d762d2131d23a01236a3ca6a0f3acc42d1de3c6198a93b1b9234769305/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139313735363434372e706e67" alt="image-20220120191756447" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120191756447.png" style="max-width: 100%;"></a></p><p>这就成功了。</p><h3 id="user-content-blogtitle5">吊销客户端证书</h3><p>当我们创建了多个用户使用，然后某些原因，个别用户需要禁用的时候，我们就可以使用吊销证书的方式来处理。</p><p>首先在你的OpenVPN服务器上，打开cmd管理员权限窗口，进入目录“C:\Program Files\OpenVPN\easy-rsa\”</p><pre class="notranslate"><code class="notranslate"><span>cd</span> <span>"C:\Program Files\OpenVPN\easy-rsa"</span>
+EasyRSA-Start.bat
+</code></pre><p>进入easyrsa的shell界面</p><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e460bbb14a37716a74ad040a7bf4797a51abf18efae6b7696352071e9b0eaa3d/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139323531383634332e706e67"><img src="https://camo.githubusercontent.com/e460bbb14a37716a74ad040a7bf4797a51abf18efae6b7696352071e9b0eaa3d/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139323531383634332e706e67" alt="image-20220120192518643" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120192518643.png" style="max-width: 100%;"></a></p><p>输入以下命令</p><pre class="notranslate"><code class="notranslate">./easyrsa revoke &lt;client&gt;  <span># 你要吊销的客户端名</span>
+./easyrsa gen-crl <span># 生成crl.pem文件，用来记录吊销的证书</span>
+</code></pre><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8d9fb0ad944dff1dc2e81c3b87a32ba9ed345275c4e6c9340d5f0d6104030be4/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139323834353034392e706e67"><img src="https://camo.githubusercontent.com/8d9fb0ad944dff1dc2e81c3b87a32ba9ed345275c4e6c9340d5f0d6104030be4/68747470733a2f2f70686f746f626564732e6f73732d636e2d7368616e676861692e616c6979756e63732e636f6d2f755069632f696d6167652d32303232303132303139323834353034392e706e67" alt="image-20220120192845049" data-canonical-src="https://photobeds.oss-cn-shanghai.aliyuncs.com/uPic/image-20220120192845049.png" style="max-width: 100%;"></a></p><p>编辑server.ovpn（“C:\Program Files\OpenVPN\config”下），在行尾加入一行</p><pre class="notranslate"><code class="notranslate">crl<span>-</span>verify <span>"C:<span>\\</span>Program Files<span>\\</span>OpenVPN<span>\\</span>easy-rsa<span>\\</span>pki<span>\\</span>crl.pem"</span> # 用来告知服务端有哪些证书是被吊销的
+</code></pre><p>这一步如果不做则不会生效，添加了这行之后，服务端重连一下即可。</p><p>参考：</p><p><a href="https://supporthost.in/how-to-setup-openvpn-on-windows-server-2019/" rel="nofollow">https://supporthost.in/how-to-setup-openvpn-on-windows-server-2019/</a></p><p><a href="https://www.shangmayuan.com/a/28de9b94188547acb8a48c10.html" rel="nofollow">https://www.shangmayuan.com/a/28de9b94188547acb8a48c10.html</a></p></div></div>
+
+[Windows server 2012、2016、2019上搭建openV（亲测成功）](https://www.cnblogs.com/simonlee-hello/articles/15830715.html)
+步骤一：安装OpenVPN服务
+下载最新版本的OpenVPN服务端，可以从这个地址下载：
+<p><a href="https://openvpn.net/community-downloads/" rel="nofollow">Community Downloads | OpenVPN</a></p>
+<p>下载的文件名为：OpenVPN-2.5.5-I602-amd64.msi</p>
+<p>双击安装，选择“Customize”</p>
+<p>截屏2022-01-20 下午5.41.16</p>
+<p>默认情况下不会安装的两个特性，我们需要在安装过程中进行选择。</p>
+<p>OpenVPN Service<br>
+OpenSSL Utilities<br>
+截屏2022-01-20 下午5.44.20</p>
+<p>image-20220120174658478</p>
+<p>点击install now</p>
+<p>安装完成后，点击close。</p>
+<p>这时会弹出一个提醒框，提示没有找到可连接的配置文件，现在不用管它，点击ok即可。</p>
+<p>我们打开网络和共享中心，点击更改适配器设置，可以看到多了两个网络连接</p>
+<p>image-20220120175236107</p>
+<p>步骤二：设置CA证书、生成服务端和客户端的证书和私钥等<br>
+找到目录“C:\Program Files\OpenVPN\easy-rsa”，将文件vars.example复制一份改名为vars，“vars”文件包含内置的Easy-RSA配置设置。可以保持默认设置，也可以自定义更改。</p>
+<p>属性	默认值	作用<br>
+set_var EASYRSA	C:\Program Files\OpenVPN\easy-rsa	Defines the folder location of easy-rsa scripts<br>
+set_var EASYRSA_OPENSSL	C:\Program Files\OpenVPN\bin\openssl.exe	Defines the OpenSSL binary path<br>
+set_var EASYRSA_PKI	C:\Program Files\OpenVPN\easy-rsa\pki	The folder location of SSL/TLS file exists after creation<br>
+set_var EASYRSA_DN	cn_only	This is used to adjust what elements are included in the Subject field as the DN<br>
+set_var EASYRSA_REQ_COUNTRY	“US”	Our Organisation Country<br>
+set_var EASYRSA_REQ_PROVINCE	“California”	Our Organisation Province<br>
+set_var EASYRSA_REQ_CITY	“San Francisco”	Our Organisation City<br>
+set_var EASYRSA_REQ_ORG	“Copyleft Certificate Co”	Our Organisation Name<br>
+set_var EASYRSA_REQ_EMAIL	“<a href="mailto:me@example.net">me@example.net</a>”	Our Organisation contact email<br>
+set_var EASYRSA_REQ_OU	“My Organizational Unit”	Our Organisation Unit name<br>
+set_var EASYRSA_KEY_SIZE	2048	Define the key pair size in bits<br>
+set_var EASYRSA_ALGO	rsa	The default crypt mode<br>
+set_var EASYRSA_CA_EXPIRE	3650	The CA key expire days<br>
+set_var EASYRSA_CERT_EXPIRE	825	The Server certificate key expire days<br>
+set_var EASYRSA_NS_SUPPORT	“no”	Support deprecated Netscape extension<br>
+set_var EASYRSA_NS_COMMENT	“HAKASE-LABS CERTIFICATE AUTHORITY”	Defines NS comment<br>
+set_var EASYRSA_EXT_DIR	"$EASYRSA/x509-types"	Defines the x509 extension directory<br>
+set_var EASYRSA_SSL_CONF	"$EASYRSA/openssl-easyrsa.cnf"	Defines the openssl config file location<br>
+set_var EASYRSA_DIGEST	"sha256"	Defines the cryptographic digest to use<br>
+如没有特殊要求，则vars文件保持默认即可。</p>
+<p>现在打开cmd（管理员权限），切换到“C:\Program Files\OpenVPN\easy-rsa”目录下</p>
+<p>cd C:\Program Files\OpenVPN\easy-rsa<br>
+EasyRSA-Start.bat<br>
+输入EasyRSA-Start.bat回车后，我们会进入到easy-rsa3的shell会话</p>
+<p>image-20220120180519240</p>
+<p>执行init-pki来创建pki目录</p>
+<p>./easyrsa init-pki<br>
+image-20220120180713529</p>
+<p>现在，使用下面的命令构建证书颁发机构(CA)密钥。这个CA根证书文件稍后将用于签署其他证书和密钥。我们使用的“nopass”选项用于禁用密码。</p>
+<p>./easyrsa build-ca nopass<br>
+命令将被要求输入通用名称。这里我输入的VPN服务器主机名是OPENVPNSERVER，这是一种常见的做法。在这里，我们可以自由使用任何名称或值。同时创建的CA证书将被保存到文件夹“C:\Program Files\OpenVPN\easy-rsa\pki”，文件名为“ca .crt”。请参考下面的截图。</p>
+<p>image-20220120181013212</p>
+<p>现在使用下面的命令构建一个服务器证书和密钥。这里将&lt; SERVER &gt;替换为您自己的服务器名。我还使用Option nopass来禁用密码。</p>
+<p>./easyrsa build-server-full  nopass<br>
+颁发的服务器证书将在“C:\Program Files\OpenVPN\easy-rsa\pki\issued”文件夹中，文件名为SERVER .crt。</p>
+<p>image-20220120181413354</p>
+<p>这里可以使用以下命令进行验证，返回ok就没问题</p>
+<p>openssl verify -CAfile pki/ca.crt pki/issued/SERVER.crt<br>
+现在，使用下面的命令构建客户端证书和密钥。将&lt; CLIENT &gt;替换为您的客户端名称。也使用选项nopass来禁用密码。</p>
+<p>./easyrsa build-client-full  nopass<br>
+颁发的客户端证书也会被保存到“C:\Program Files\OpenVPN\easy-rsa\pki\issued”文件夹中，文件名为“CLIENT.crt”。</p>
+<p>image-20220120181729642</p>
+<p>同样这里可以使用以下命令进行验证，返回ok就没问题</p>
+<p>openssl verify -CAfile pki/ca.crt pki/issued/CLIENT.crt<br>
+到这里就完成了CA证书，服务器和客户端证书的生成和密钥。这些密钥将用于OpenVPN服务器和客户端之间的身份验证。</p>
+<p>现在生成一个用于标准RSA证书/密钥之外的共享密钥。文件名为tls-auth.key。</p>
+<p>使用这个密钥，我们启用TLS -auth指令，它添加一个额外的HMAC签名到所有SSL/TLS握手包的完整性验证。任何不带有正确HMAC签名的UDP包可以被丢弃而无需进一步处理。</p>
+<p>启用tls-auth可以保护我们免受：</p>
+<p>OpenVPN UDP端口上的DoS攻击或端口泛洪。<br>
+端口扫描，以确定哪些服务器UDP端口处于侦听状态。<br>
+SSL/TLS实现中的缓冲区溢出漏洞。<br>
+从未经授权的机器发起SSL/TLS握手。<br>
+首先使用GitHub链接<a href="https://github.com/TinCanTech/easy-tls%E4%B8%8B%E8%BD%BDEasy-TLS%E3%80%82%E5%AE%83%E6%98%AF%E4%B8%80%E4%B8%AAEasy-RSA%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%88%91%E4%BB%AC%E6%AD%A3%E5%9C%A8%E4%BD%BF%E7%94%A8%E5%AE%83%E6%9D%A5%E7%94%9F%E6%88%90tls-auth%E5%AF%86%E9%92%A5%E3%80%82">https://github.com/TinCanTech/easy-tls下载Easy-TLS。它是一个Easy-RSA扩展工具，我们正在使用它来生成tls-auth密钥。</a></p>
+<p>单击code选项卡下的Download zip选项。请参考下面的截图。</p>
+<p>image-20220120182209404</p>
+<p>然后解压“easy-tls-master”文件夹，将“easytls”和“easytls-openssl.cnf”文件拷贝到“C:\Program files \OpenVPN\easy-rsa”目录下。查看下面的截图作为参考。</p>
+<p>image-20220120182324122</p>
+<p>现在回到EasyRSA shell提示符并输入下面的命令。初始化easy-tls脚本程序。</p>
+<p>./easytls init-tls<br>
+现在，使用下面的命令生成tls-auth密钥。</p>
+<p>./easytls build-tls-auth<br>
+该命令将生成名为“tls-auth”的密钥文件。在“C:\Program Files\OpenVPN\easy-rsa\pki\easytls”文件夹下。请参考下面的截图。</p>
+<p>image-20220120182604157</p>
+<p>现在我们需要生成Diffie Hellman参数</p>
+<p>OpenVPN服务器必须要生成Diffie Hellman参数</p>
+<p>这些参数定义了OpenSSL如何执行Diffie-Hellman (DH)密钥交换。Diffie-Hellman密钥交换是一种通过公共信道安全地交换密码密钥的方法</p>
+<p>发出下面的命令，从EasyRSA shell生成Diffie Hellman参数(这个过程可能需要1分钟左右时间)</p>
+<p>./easyrsa gen-dh<br>
+该命令将在“C:\Program Files\OpenVPN\easy-rsa\pki”文件夹下创建dh文件，文件名为“dh .pem”。请参考下面的截图。</p>
+<p>image-20220120182929454</p>
+<p>这就完成了OpenVPN服务所需的SSL/TLS密钥文件的生成。我们将能够在下面的文件夹中找到创建的文件。</p>
+<p>目录	内容<br>
+C:\Program Files\OpenVPN\easy-rsa\pki	CA file, DH file and other OpenSSL related files like config file<br>
+C:\Program Files\OpenVPN\easy-rsa\pki\private	Include the private key files of CA, Server and Client certificates<br>
+C:\Program Files\OpenVPN\easy-rsa\pki\easytls	Contains the tls-auth key<br>
+C:\Program Files\OpenVPN\easy-rsa\pki\issued	Contains issued Server and Client certificates<br>
+image-20220120183320753</p>
+<p>下面是有关文件的简短说明</p>
+<p>Filename	Needed By	Purpose	Secret<br>
+ca.crt	server + all clients	Root CA certificate	No<br>
+ca.key	Server Only	Root CA key	YES<br>
+dh.pem	server only	Diffie Hellman parameters	No<br>
+SERVER.crt	server only	Server Certificate	No<br>
+SERVER.key	server only	Server Key	Yes<br>
+CLIENT.crt	Client only	Client Certificate	No<br>
+CLIENT.key	Client only	Client Key	Yes<br>
+tls-auth.key	server + all clients	Used for tls-auth directive	No<br>
+步骤三：配置ip转发和网络共享<br>
+打开注册表，win+R，输入regedit.exe，依次找到：HKEY LOCAL MACHINESYSTEM\CurrentControlSet\Services\Tcpip\Parameters将IPEableRouter值改为1，如下图</p>
+<p>image-20220120184135935</p>
+<p>然后打开控制面板，找到“控制面板\网络和 Internet\网络连接”，右键点击“以太网”，点击“属性”，在“共享”中钩上“允许其他网络用户通过此计算机的internet连接来连接”，并选择“OpenVPN TAP-Windows6”，点击确定。</p>
+<p>image-20220120184424489</p>
+<p>image-20220120184527697</p>
+<p>步骤四：创建服务端配置文件<br>
+首先打开Windows资源管理器，进入C:\Program Files\OpenVPN\sample-config文件夹，将server.ovpn文件复制一份到C:\Program Files\OpenVPN\config目录下。</p>
+<p>同时将以下文件一并复制到C:\Program Files\OpenVPN\config目录下</p>
+<p>ca.crt<br>
+dh.pem<br>
+SERVER.crt<br>
+SERVER.key<br>
+tls-auth.key<br>
+image-20220120185305290</p>
+<p>编辑server.ovpn文件，修改以下地方，其他保持默认即可</p>
+<p>local x.x.x.x  # 这个是服务器的内网IP地址，或者保持默认<br>
+ca ca.crt<br>
+cert SERVER.crt<br>
+key SERVER.key<br>
+dh dh.pem<br>
+push "redirect-gateway def1 bypass-dhcp"<br>
+push "dhcp-option DNS 114.114.114.114" # 可以改成其他的DNS服务器<br>
+push "dhcp-option DNS 8.8.8.8"<br>
+tls-auth tls-auth.key 0 # This file is secret<br>
+cipher AES-256-GCM<br>
+点击连接，图标变绿就正常。</p>
+<p>image-20220120190423076</p>
+<p>配置客户端<br>
+复制以下文件到你的客户端，并且在同一目录下</p>
+<p>ca.crt<br>
+CLIENT.crt<br>
+CLIENT.key<br>
+tls-auth.key<br>
+client.ovpn（“C:\Program Files\OpenVPN\sample-config”）<br>
+编辑client.ovpn，修改以下参数，其他保持默认</p>
+<p>remote <em>.</em>.<em>.</em> 1194 # 服务器公网IP地址<br>
+ca ca.crt<br>
+cert CLIENT.crt<br>
+key CLIENT.key<br>
+tls-auth tls-auth.key 1<br>
+cipher AES-256-GCM<br>
+下载对应系统的客户端</p>
+<p><a href="https://openvpn.net/vpn-client/" rel="nofollow">OpenVPN Connect Client | Our Official VPN Client | OpenVPN</a></p>
+<p>如windows系统，将client.ovpn文件拖入客户端界面即可，如下</p>
+<p>image-20220120191352128</p>
+<p>随后点击连接，出现如下界面则表示连接成功</p>
+<p>image-20220120191650721</p>
+<p>这时ping一下10.8.0.1测试是否连通，ping下百度测试DNS是否正常。</p>
+<p>image-20220120191756447</p>
+<p>这就成功了。</p>
+<p>吊销客户端证书<br>
+当我们创建了多个用户使用，然后某些原因，个别用户需要禁用的时候，我们就可以使用吊销证书的方式来处理。</p>
+<p>首先在你的OpenVPN服务器上，打开cmd管理员权限窗口，进入目录“C:\Program Files\OpenVPN\easy-rsa\”</p>
+<p>cd "C:\Program Files\OpenVPN\easy-rsa"<br>
+EasyRSA-Start.bat<br>
+进入easyrsa的shell界面</p>
+<p>image-20220120192518643</p>
+<p>输入以下命令</p>
+<p>./easyrsa revoke   # 你要吊销的客户端名<br>
+./easyrsa gen-crl # 生成crl.pem文件，用来记录吊销的证书<br>
+image-20220120192845049</p>
+<p>编辑server.ovpn（“C:\Program Files\OpenVPN\config”下），在行尾加入一行</p>
+<p>crl-verify "C:\Program Files\OpenVPN\easy-rsa\pki\crl.pem" # 用来告知服务端有哪些证书是被吊销的<br>
+这一步如果不做则不会生效，添加了这行之后，服务端重连一下即可。</p>
+<p>参考：</p>
+<p><a href="https://supporthost.in/how-to-setup-openvpn-on-windows-server-2019/" rel="nofollow">https://supporthost.in/how-to-setup-openvpn-on-windows-server-2019/</a></p>
+<p><a href="https://www.shangmayuan.com/a/28de9b94188547acb8a48c10.html" rel="nofollow">https://www.shangmayuan.com/a/28de9b94188547acb8a48c10.html</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
