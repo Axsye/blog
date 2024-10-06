@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Sun, 06 Oct 2024 06:19:38 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【ZCU111】 一些折腾记录（坑）</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</link><description># 1. boot模式按钮&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Sun, 06 Oct 2024 07:27:23 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【ZCU111】 一些折腾记录（坑）</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</link><description># 1. boot模式按钮&#13;
 &#13;
 根据文档UG1271，描述的开关状态&#13;
 &#13;
@@ -9,7 +9,16 @@
 &#13;
 ![image](https://github.com/user-attachments/assets/a4c04210-a545-4468-bf25-68fd56a1b7f2)&#13;
 ![image](https://github.com/user-attachments/assets/0c6782c6-3326-4ee0-92cc-5c9e7fa0df8a)&#13;
-。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</guid><pubDate>Sun, 06 Oct 2024 06:11:46 +0000</pubDate></item><item><title>【ZCU111】重新烧录QSPI，运行BIST</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91-zhong-xin-shao-lu-QSPI%EF%BC%8C-yun-xing-BIST.html</link><description>拿到板子之后，按照Quick Start Guide启动BIST发现INIT_B始终为红色，BoardUI连上没反应，FMC卡插上后VADJ FMC不亮&#13;
+&#13;
+# 2. 运行PetaLinux&#13;
+&#13;
+&gt; YouTube 教程&#13;
+&gt; 1: https://youtu.be/k03r2Ud42jY?si=i08_mJ-B5VjpQMES&#13;
+&gt; 2: https://youtu.be/PaQBQkDZaks?si=9iv_k0U3LMCztJMs&#13;
+&#13;
+官网PetaLinux下载链接&#13;
+https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html&#13;
+ZCU111的BSP貌似已经不更新了。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</guid><pubDate>Sun, 06 Oct 2024 06:11:46 +0000</pubDate></item><item><title>【ZCU111】重新烧录QSPI，运行BIST</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91-zhong-xin-shao-lu-QSPI%EF%BC%8C-yun-xing-BIST.html</link><description>拿到板子之后，按照Quick Start Guide启动BIST发现INIT_B始终为红色，BoardUI连上没反应，FMC卡插上后VADJ FMC不亮&#13;
 于是看油管上别人的BIST视频&#13;
 &#13;
 &gt; https://www.youtube.com/watch?v=u-6CQBHGNG8&amp;list=PL6G4uDwVg2cljE07uKgnMy16SJH97KMYV&amp;index=4&#13;
