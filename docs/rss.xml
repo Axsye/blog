@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Sun, 06 Oct 2024 07:31:46 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【ZCU111】 一些折腾记录（坑）</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</link><description># 1. boot模式按钮&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Mon, 28 Oct 2024 15:28:18 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【ZCU111】 一些折腾记录（坑）</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</link><description># 1. boot模式按钮&#13;
 &#13;
 根据文档UG1271，描述的开关状态&#13;
 &#13;
@@ -91,7 +91,7 @@ import logging&#13;
 logging.basicConfig(level=logging.DEBUG,&#13;
                     format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',&#13;
                     handlers=[&#13;
-                        logging.FileHandler(f'{time.ctime()}raspberry_control.log', mode='a'),&#13;
+                        logging.FileHandler(f'log/{time.ctime()}raspberry_control.log', mode='a'),&#13;
                         logging.StreamHandler()&#13;
                     ])&#13;
 &#13;

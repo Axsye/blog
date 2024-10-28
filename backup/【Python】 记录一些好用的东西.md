@@ -32,7 +32,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',
                     handlers=[
-                        logging.FileHandler(f'{time.ctime()}raspberry_control.log', mode='a'),
+                        logging.FileHandler(f'log/{time.ctime()}raspberry_control.log', mode='a'),
                         logging.StreamHandler()
                     ])
 
