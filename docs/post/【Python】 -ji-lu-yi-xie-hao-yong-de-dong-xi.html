@@ -459,30 +459,30 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-c"># 配置日志</span>
 <span class="pl-c"># 配置日志记录</span>
-<span class="pl-s1">logging</span>.<span class="pl-en">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-v">DEBUG</span>,
+<span class="pl-s1">logging</span>.<span class="pl-c1">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-c1">DEBUG</span>,
                     <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'[%(asctime)s] %(name)s [%(levelname)s]: %(message)s'</span>,
                     <span class="pl-s1">handlers</span><span class="pl-c1">=</span>[
-                        <span class="pl-s1">logging</span>.<span class="pl-v">FileHandler</span>(<span class="pl-s">'raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
-                        <span class="pl-s1">logging</span>.<span class="pl-v">StreamHandler</span>()
+                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">'raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
+                        <span class="pl-s1">logging</span>.<span class="pl-c1">StreamHandler</span>()
                     ])
 
 <span class="pl-c"># 创建一个logger</span>
-<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-en">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
+<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-c1">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
 <p>如果想要每次运行记录一个不同的log文件</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">time</span>
 <span class="pl-k">import</span> <span class="pl-s1">logging</span>
 
 <span class="pl-c"># 配置日志</span>
 <span class="pl-c"># 配置日志记录</span>
-<span class="pl-s1">logging</span>.<span class="pl-en">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-v">DEBUG</span>,
+<span class="pl-s1">logging</span>.<span class="pl-c1">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-c1">DEBUG</span>,
                     <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'[%(asctime)s] %(name)s [%(levelname)s]: %(message)s'</span>,
                     <span class="pl-s1">handlers</span><span class="pl-c1">=</span>[
-                        <span class="pl-s1">logging</span>.<span class="pl-v">FileHandler</span>(<span class="pl-s">f'log/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time</span>.<span class="pl-en">ctime</span>()<span class="pl-kos">}</span></span>raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
-                        <span class="pl-s1">logging</span>.<span class="pl-v">StreamHandler</span>()
+                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">f'log/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time</span>.<span class="pl-c1">ctime</span>()<span class="pl-kos">}</span></span>raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
+                        <span class="pl-s1">logging</span>.<span class="pl-c1">StreamHandler</span>()
                     ])
 
 <span class="pl-c"># 创建一个logger</span>
-<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-en">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
+<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-c1">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
 <h1>2. 树莓派开机启动脚本</h1>
 <blockquote>
 <p>网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致<br>
@@ -524,14 +524,14 @@ StartupNotify=true
 <blockquote>
 <p><a href="https://blog.csdn.net/u012206617/article/details/114326884" rel="nofollow">https://blog.csdn.net/u012206617/article/details/114326884</a></p>
 </blockquote>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-k">import</span> <span class="pl-s1">ast</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s">'{"name" : "john", "gender" : "male", "age": 28}'</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-en">literal_eval</span>(<span class="pl-s1">user</span>)
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-k">import</span> <span class="pl-s1">ast</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s">'{"name" : "john", "gender" : "male", "age": 28}'</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-c1">literal_eval</span>(<span class="pl-s1">user</span>)
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span>
 {<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}
 <span class="pl-s1">user_info</span> <span class="pl-c1">=</span> <span class="pl-s">"{'name' : 'john', 'gender' : 'male', 'age': 28}"</span>
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-en">literal_eval</span>(<span class="pl-s1">user</span>)
-<span class="pl-c1">&gt;&gt;</span><span class="pl-c1">&gt;</span> <span class="pl-s1">user_dict</span>
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-c1">literal_eval</span>(<span class="pl-s1">user</span>)
+<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span>
 {<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}</pre></div>
 <blockquote>
 <p>附上字典用法<br>

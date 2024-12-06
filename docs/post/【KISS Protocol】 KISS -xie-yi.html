@@ -236,9 +236,9 @@ KISS The KISS protocol was originally designed to interface a computer with a TN
 
 <span class="pl-k">def</span> <span class="pl-en">p</span>(<span class="pl-s1">x</span>): <span class="pl-en">print</span>(<span class="pl-s1">x</span>)  <span class="pl-c"># prints whatever is passed in.</span>
 
-<span class="pl-s1">k</span> <span class="pl-c1">=</span> <span class="pl-s1">kiss</span>.<span class="pl-v">SerialKISS</span>(<span class="pl-s">'/dev/ttyUSB0'</span>, <span class="pl-c1">1200</span>)
-<span class="pl-s1">k</span>.<span class="pl-en">start</span>()  <span class="pl-c"># inits the TNC, optionally passes KISS config flags.</span>
-<span class="pl-s1">k</span>.<span class="pl-en">read</span>(<span class="pl-s1">callback</span><span class="pl-c1">=</span><span class="pl-s1">p</span>)  <span class="pl-c"># reads frames and passes them to `p`.</span></pre></div>
+<span class="pl-s1">k</span> <span class="pl-c1">=</span> <span class="pl-s1">kiss</span>.<span class="pl-c1">SerialKISS</span>(<span class="pl-s">'/dev/ttyUSB0'</span>, <span class="pl-c1">1200</span>)
+<span class="pl-s1">k</span>.<span class="pl-c1">start</span>()  <span class="pl-c"># inits the TNC, optionally passes KISS config flags.</span>
+<span class="pl-s1">k</span>.<span class="pl-c1">read</span>(<span class="pl-s1">callback</span><span class="pl-c1">=</span><span class="pl-s1">p</span>)  <span class="pl-c"># reads frames and passes them to `p`.</span></pre></div>
 <p>See also: examples/ directory.</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
