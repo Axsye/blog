@@ -1,8 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 10 Jan 2025 14:50:52 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【WEB】 简单地通过docker部署node.js开发的网页</title><link>https://Axsye.github.io/blog/post/%E3%80%90WEB%E3%80%91%20-jian-dan-di-tong-guo-docker-bu-shu-node.js-kai-fa-de-wang-ye.html</link><description>## 以随便做的一个demo项目为例&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Fri, 10 Jan 2025 15:05:15 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【WEB】 简单地通过docker部署node.js开发的网页</title><link>https://Axsye.github.io/blog/post/%E3%80%90WEB%E3%80%91%20-jian-dan-di-tong-guo-docker-bu-shu-node.js-kai-fa-de-wang-ye.html</link><description>## 以随便做的一个demo项目为例&#13;
+&#13;
 # 1. 文件结构以及dockerfile编写&#13;
+&#13;
 ## 1.1. 项目根目录下的文件结构如图&#13;
+&#13;
 ![image](https://github.com/user-attachments/assets/c4238a97-d708-48b4-b350-70282169a445)&#13;
+&#13;
 这个项目里的npm指令是直接在根目录运行的，故指令生成的`package.json` `package-lock.json`都在根目录。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90WEB%E3%80%91%20-jian-dan-di-tong-guo-docker-bu-shu-node.js-kai-fa-de-wang-ye.html</guid><pubDate>Fri, 10 Jan 2025 14:50:28 +0000</pubDate></item><item><title>【ZCU111】 一些折腾记录（坑）</title><link>https://Axsye.github.io/blog/post/%E3%80%90ZCU111%E3%80%91%20-yi-xie-zhe-teng-ji-lu-%EF%BC%88-keng-%EF%BC%89.html</link><description># 1. boot模式按钮&#13;
 &#13;
 根据文档UG1271，描述的开关状态&#13;
