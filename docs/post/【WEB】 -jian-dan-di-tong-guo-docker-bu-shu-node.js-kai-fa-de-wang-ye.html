@@ -128,9 +128,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 运行<code class="notranslate">docker build -t orbit-display:test .</code>指令前，需要注意的是dockerfile里的<code class="notranslate">RUN npm install</code>命令。复制的目录（<code class="notranslate">/src</code>）下必须要有<code class="notranslate">package.json</code> <code class="notranslate">package-lock.json</code>文件，因此对于前后端分离成两个docker的情况下，npm命令可能需要在<code class="notranslate">frontend</code>和<code class="notranslate">backend</code>两个文件中分别运行（？</p>
 <h2>1.3. 前后端分离成两个docker是更好的方法</h2>
 <hr>
-<blockquote>
-<p>AI</p>
-</blockquote>
 <ul>
 <li>前端用nginx，后端用node.js来分别创建docker镜像，此时后端可以不用配置静态文件服务来把前端的文件推出去</li>
 <li>相当于其实前后端没什么联系，只是通过约定好的API交互。</li>
@@ -138,6 +135,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>如果 <code class="notranslate">package.json</code> 文件不在 Dockerfile 中定义的工作目录<code class="notranslate">（WORKDIR /app）</code>下，也会导致错误。</li>
 <li>这种部署方法需要在一开始就考虑，在运行npm安装依赖的时候需要在前端和后端目录里分别运行，如果像这个项目一样是在项目根目录运行的npm会导致package.json在根目录不在复制的文件里，因此没有复制到Dockerfile定义的工作目录下，从而无法编译。</li>
 </ul>
+<blockquote>
+<p>AI</p>
+</blockquote>
 <p>使用 Docker 来部署你的前后端应用非常方便，它可以将应用及其依赖环境封装在容器中，确保一致性和易管理性。</p>
 <h3><strong>1. 准备环境</strong></h3>
 <ol>
