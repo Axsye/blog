@@ -44,7 +44,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',
                     handlers=[
-                        logging.FileHandler(f'log/{time.ctime()}raspberry_control.log', mode='a'),
+                        logging.FileHandler(f'log/{time.strftime('%Y-%m-%d_%H-%M-%S')} raspberry_control.log', mode='a'),
                         logging.StreamHandler()
                     ])
 
@@ -231,7 +231,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',
                     handlers=[
-                        logging.FileHandler(f'log/{time.ctime()}raspberry_control.log', mode='a'),
+                        logging.FileHandler(f'log/{time.strftime('%Y-%m-%d_%H-%M-%S')} raspberry_control.log', mode='a'),
                         logging.StreamHandler()
                     ])
 
@@ -477,7 +477,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">logging</span>.<span class="pl-c1">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-c1">DEBUG</span>,
                     <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'[%(asctime)s] %(name)s [%(levelname)s]: %(message)s'</span>,
                     <span class="pl-s1">handlers</span><span class="pl-c1">=</span>[
-                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">f'log/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time</span>.<span class="pl-c1">ctime</span>()<span class="pl-kos">}</span></span>raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
+                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">f'log/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time</span>.<span class="pl-c1">strftime</span>(<span class="pl-s">"%Y-%m-%d_%H-%M-%S"</span>)<span class="pl-kos">}</span></span> raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
                         <span class="pl-s1">logging</span>.<span class="pl-c1">StreamHandler</span>()
                     ])
 
