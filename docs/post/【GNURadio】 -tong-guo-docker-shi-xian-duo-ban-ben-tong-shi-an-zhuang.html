@@ -44,7 +44,7 @@ The host's USB should be accessible from the docker too, meaning you should be a
 其中第四步运行容器时我使用了`sudo sudo .......`才成功运行
 原文中第四步创建容器时没有指定容器名字，可以添加-name参数
 ```bash
-docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
+docker run --name=gnuradio-310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
 ```
 
 >  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
@@ -85,7 +85,7 @@ The host's USB should be accessible from the docker too, meaning you should be a
 其中第四步运行容器时我使用了`sudo sudo .......`才成功运行
 原文中第四步创建容器时没有指定容器名字，可以添加-name参数
 ```bash
-docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
+docker run --name=gnuradio-310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
 ```
 
 >  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
@@ -185,7 +185,7 @@ If you want the release version of GNU Radio (currently 3.10):</p>
 <p>实测所有docker命令前需要sudo<br>
 其中第四步运行容器时我使用了<code class="notranslate">sudo sudo .......</code>才成功运行<br>
 原文中第四步创建容器时没有指定容器名字，可以添加-name参数</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker run --name=gnuradio310 --net=host --env=<span class="pl-s"><span class="pl-pds">"</span>DISPLAY<span class="pl-pds">"</span></span> --volume=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.Xauthority:/root/.Xauthority:rw<span class="pl-pds">"</span></span> --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash</pre></div>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker run --name=gnuradio-310 --net=host --env=<span class="pl-s"><span class="pl-pds">"</span>DISPLAY<span class="pl-pds">"</span></span> --volume=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.Xauthority:/root/.Xauthority:rw<span class="pl-pds">"</span></span> --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash</pre></div>
 <blockquote>
 <p>这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像</p>
 </blockquote>
