@@ -12,13 +12,13 @@
     </script>
 <meta name="description" content="> 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
 
-# 1.获取docker镜像
 
-# 1.1.乌拉圭的老哥做的dockerfile
+# 1.乌拉圭的老哥做的dockerfile
 
 Github仓库：
 https://github.com/git-artes/docker-gnuradio
 
+这个仓库里有3.7 3.8 3.9 3.10的dockerfile，每个文件对应不同的容器，可以同时运行多个不同版本的容器
 以3.10版本安装为例
 
 ---
@@ -53,13 +53,13 @@ docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xautho
 <meta property="og:title" content="【GNURadio】 通过docker实现多版本同时安装">
 <meta property="og:description" content="> 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
 
-# 1.获取docker镜像
 
-# 1.1.乌拉圭的老哥做的dockerfile
+# 1.乌拉圭的老哥做的dockerfile
 
 Github仓库：
 https://github.com/git-artes/docker-gnuradio
 
+这个仓库里有3.7 3.8 3.9 3.10的dockerfile，每个文件对应不同的容器，可以同时运行多个不同版本的容器
 以3.10版本安装为例
 
 ---
@@ -164,11 +164,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="markdown-body" id="postBody"><blockquote>
 <p>通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本</p>
 </blockquote>
-<h1>1.获取docker镜像</h1>
-<h1>1.1.乌拉圭的老哥做的dockerfile</h1>
+<h1>1.乌拉圭的老哥做的dockerfile</h1>
 <p>Github仓库：<br>
 <a href="https://github.com/git-artes/docker-gnuradio">https://github.com/git-artes/docker-gnuradio</a></p>
-<p>以3.10版本安装为例</p>
+<p>这个仓库里有3.7 3.8 3.9 3.10的dockerfile，每个文件对应不同的容器，可以同时运行多个不同版本的容器<br>
+以3.10版本安装为例</p>
 <hr>
 <p>原文：<br>
 If you want the release version of GNU Radio (currently 3.10):</p>
@@ -190,17 +190,36 @@ If you want the release version of GNU Radio (currently 3.10):</p>
 <p>这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像</p>
 </blockquote>
 <p>启动容器后，当前终端会立刻变成容器的终端，容器的用户名和密码都是gnuradio，之后就可以在容器中通过<code class="notranslate">gnuradio-companion</code>启动grc3.10了。</p>
-<p>后续操作：</p>
+<h2>后续操作：</h2>
+<ol>
+<li>
 <p>每次重新启动主机，都需要启动一下容器<code class="notranslate">sudo docker start gnuradio-310</code>，然后使用<code class="notranslate">sudo docker exec -it gnuradio-310 /bin/bash</code>来进入容器的终端。</p>
+</li>
+<li>
+<p>可以通过<code class="notranslate">docker stats gnuradio-310</code>来查看容器资源占用</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dfadafa4-349b-4fec-a5b0-d6ad23640efb"><img src="https://github.com/user-attachments/assets/dfadafa4-349b-4fec-a5b0-d6ad23640efb" alt="Image" style="max-width: 100%;"></a></p>
+<ol start="3">
+<li>
 <p>容器的volume永久文件保存在主机的<code class="notranslate">/var/lib/docker/volumes/persistent/_data</code>，在容器里是<code class="notranslate">/home/gnuradio/persistent</code>，容器的永久文件只能保存在这里，其他位置重启后会丢失，可以从主机进行读写。</p>
+</li>
+<li>
 <p>容器里默认没有装alsa，grc的audio sink无法工作，可以通过apt安装alsa，然后通过<code class="notranslate">arecord -l</code>来列出容器的声卡，例如我的输出是</p>
+</li>
+</ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">gnuradio@hp-elitebook:<span class="pl-k">~</span>$ arecord -l
 <span class="pl-k">****</span> List of CAPTURE Hardware Devices <span class="pl-k">****</span>
 card 1: Generic_1 [HD-Audio Generic], device 0: ALC245 Analog [ALC245 Analog]
   Subdevices: 1/1
   Subdevice <span class="pl-c"><span class="pl-c">#</span>0: subdevice #0</span></pre></div>
 <p>这里是card 1 device 0, 那么我在audio sink里应该这么配置：</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3"><img src="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3" alt="Image" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3"><img src="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3" alt="Image" style="max-width: 100%;"></a></p>
+<ol start="5">
+<li>在容器内可以正常安装libiio，但是我尝试使用<code class="notranslate">iio_info -s</code>来搜索PlutoSDR时无法搜索到设备，这个问题目前无法解决，在容器内就是无法使用<code class="notranslate">iio_info -s</code>搜索设备。但是可以在主机上安装libiio然后搜索pluto，得到ip后填到容器内grc的PlutoSDR Source里，可以正常运行。参考（与我遇到的情况完全相同）：<a href="https://ez.analog.com/linux-software-drivers/f/q-a/562936/iio_info-does-not-work-in-docker-container-scanning-for-iio-contexts-failed-text-file-busy" rel="nofollow">https://ez.analog.com/linux-software-drivers/f/q-a/562936/iio_info-does-not-work-in-docker-container-scanning-for-iio-contexts-failed-text-file-busy</a></li>
+</ol>
+<h2>最后效果</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268"><img src="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
