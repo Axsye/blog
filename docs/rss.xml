@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Mon, 03 Mar 2025 07:54:29 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【GNURadio】 通过docker实现多版本同时安装</title><link>https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</link><description>&gt; 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Mon, 03 Mar 2025 08:10:48 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>【GNURadio】 通过docker实现多版本同时安装</title><link>https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</link><description>&gt; 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
 
 # 1.获取docker镜像
 
@@ -11,6 +11,7 @@ https://github.com/git-artes/docker-gnuradio
 以3.10版本安装为例
 
 ---
+
  原文：
 If you want the release version of GNU Radio (currently 3.10): 
 
@@ -25,6 +26,7 @@ docker run --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthor
 You will then be in a comand line logged as user *gnuradio* who is a sudoer (password: *gnuradio*). The folder *persistent* in its home directory will persist even after you exit the container. **Remember**: everything else is erased after you exit the container. This means for instance that if you compile and install an OOT you will have to do that again every time you run the container (unless for instance you compile in the *persistent* folder). You may modify Dockerfile to avoid this. 
 
 The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.
+
 ---
 
 实测所有docker命令前需要sudo
@@ -34,7 +36,9 @@ The host's USB should be accessible from the docker too, meaning you should be a
 docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
 ```
 
-&gt;  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</guid><pubDate>Mon, 03 Mar 2025 07:36:56 +0000</pubDate></item><item><title>【COBS】 COBS协议规范</title><link>https://Axsye.github.io/blog/post/%E3%80%90COBS%E3%80%91%20COBS-xie-yi-gui-fan.html</link><description># COBS编码规范
+&gt;  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
+
+启动容器后，当前终端会立刻变成容器的终端，容器的用户名和密码都是gnuradio，之后就可以在容器中通过`gnuradio-companion`启动grc3.10了。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</guid><pubDate>Mon, 03 Mar 2025 07:36:56 +0000</pubDate></item><item><title>【COBS】 COBS协议规范</title><link>https://Axsye.github.io/blog/post/%E3%80%90COBS%E3%80%91%20COBS-xie-yi-gui-fan.html</link><description># COBS编码规范
 
 &gt; 仅仅做一个存档的作用
 

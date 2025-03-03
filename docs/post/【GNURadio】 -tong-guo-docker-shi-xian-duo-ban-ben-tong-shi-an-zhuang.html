@@ -22,6 +22,7 @@ https://github.com/git-artes/docker-gnuradio
 以3.10版本安装为例
 
 ---
+
  原文：
 If you want the release version of GNU Radio (currently 3.10): 
 
@@ -36,6 +37,7 @@ docker run --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthor
 You will then be in a comand line logged as user *gnuradio* who is a sudoer (password: *gnuradio*). The folder *persistent* in its home directory will persist even after you exit the container. **Remember**: everything else is erased after you exit the container. This means for instance that if you compile and install an OOT you will have to do that again every time you run the container (unless for instance you compile in the *persistent* folder). You may modify Dockerfile to avoid this. 
 
 The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.
+
 ---
 
 实测所有docker命令前需要sudo
@@ -45,7 +47,9 @@ The host's USB should be accessible from the docker too, meaning you should be a
 docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
 ```
 
->  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像。">
+>  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
+
+启动容器后，当前终端会立刻变成容器的终端，容器的用户名和密码都是gnuradio，之后就可以在容器中通过`gnuradio-companion`启动grc3.10了。">
 <meta property="og:title" content="【GNURadio】 通过docker实现多版本同时安装">
 <meta property="og:description" content="> 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
 
@@ -59,6 +63,7 @@ https://github.com/git-artes/docker-gnuradio
 以3.10版本安装为例
 
 ---
+
  原文：
 If you want the release version of GNU Radio (currently 3.10): 
 
@@ -73,6 +78,7 @@ docker run --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthor
 You will then be in a comand line logged as user *gnuradio* who is a sudoer (password: *gnuradio*). The folder *persistent* in its home directory will persist even after you exit the container. **Remember**: everything else is erased after you exit the container. This means for instance that if you compile and install an OOT you will have to do that again every time you run the container (unless for instance you compile in the *persistent* folder). You may modify Dockerfile to avoid this. 
 
 The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.
+
 ---
 
 实测所有docker命令前需要sudo
@@ -82,7 +88,9 @@ The host's USB should be accessible from the docker too, meaning you should be a
 docker run --name=gnuradio310 --net=host --env='DISPLAY' --volume='$HOME/.Xauthority:/root/.Xauthority:rw' --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
 ```
 
->  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像。">
+>  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
+
+启动容器后，当前终端会立刻变成容器的终端，容器的用户名和密码都是gnuradio，之后就可以在容器中通过`gnuradio-companion`启动grc3.10了。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -172,14 +180,27 @@ If you want the release version of GNU Radio (currently 3.10):</p>
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">docker run --net=host --env=<span class="pl-s"><span class="pl-pds">"</span>DISPLAY<span class="pl-pds">"</span></span> --volume=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.Xauthority:/root/.Xauthority:rw<span class="pl-pds">"</span></span> --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash</pre></div>
 <p>You will then be in a comand line logged as user <em>gnuradio</em> who is a sudoer (password: <em>gnuradio</em>). The folder <em>persistent</em> in its home directory will persist even after you exit the container. <strong>Remember</strong>: everything else is erased after you exit the container. This means for instance that if you compile and install an OOT you will have to do that again every time you run the container (unless for instance you compile in the <em>persistent</em> folder). You may modify Dockerfile to avoid this.</p>
-<h2>The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.</h2>
+<p>The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.</p>
+<hr>
 <p>实测所有docker命令前需要sudo<br>
 其中第四步运行容器时我使用了<code class="notranslate">sudo sudo .......</code>才成功运行<br>
 原文中第四步创建容器时没有指定容器名字，可以添加-name参数</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">docker run --name=gnuradio310 --net=host --env=<span class="pl-s"><span class="pl-pds">"</span>DISPLAY<span class="pl-pds">"</span></span> --volume=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$HOME</span>/.Xauthority:/root/.Xauthority:rw<span class="pl-pds">"</span></span> --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash</pre></div>
 <blockquote>
 <p>这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像</p>
-</blockquote></div>
+</blockquote>
+<p>启动容器后，当前终端会立刻变成容器的终端，容器的用户名和密码都是gnuradio，之后就可以在容器中通过<code class="notranslate">gnuradio-companion</code>启动grc3.10了。</p>
+<p>后续操作：</p>
+<p>每次重新启动主机，都需要启动一下容器<code class="notranslate">sudo docker start gnuradio-310</code>，然后使用<code class="notranslate">sudo docker exec -it gnuradio-310 /bin/bash</code>来进入容器的终端。</p>
+<p>容器的volume永久文件保存在主机的<code class="notranslate">/var/lib/docker/volumes/persistent/_data</code>，在容器里是<code class="notranslate">/home/gnuradio/persistent</code>，容器的永久文件只能保存在这里，其他位置重启后会丢失，可以从主机进行读写。</p>
+<p>容器里默认没有装alsa，grc的audio sink无法工作，可以通过apt安装alsa，然后通过<code class="notranslate">arecord -l</code>来列出容器的声卡，例如我的输出是</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">gnuradio@hp-elitebook:<span class="pl-k">~</span>$ arecord -l
+<span class="pl-k">****</span> List of CAPTURE Hardware Devices <span class="pl-k">****</span>
+card 1: Generic_1 [HD-Audio Generic], device 0: ALC245 Analog [ALC245 Analog]
+  Subdevices: 1/1
+  Subdevice <span class="pl-c"><span class="pl-c">#</span>0: subdevice #0</span></pre></div>
+<p>这里是card 1 device 0, 那么我在audio sink里应该这么配置：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3"><img src="https://github.com/user-attachments/assets/8ea7b9ee-261b-4a4e-89b4-c07da3e8d4e3" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
