@@ -26,4 +26,11 @@ You will then be in a comand line logged as user *gnuradio* who is a sudoer (pas
 The host's USB should be accessible from the docker too, meaning you should be able to use any SDR hardware you plug into the PC.
 ---
 
-其中`docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash`
+实测所有docker命令前需要sudo
+其中第四步运行容器时我使用了`sudo sudo .......`才成功运行
+原文中第四步创建容器时没有指定容器名字，可以添加-name参数
+```bash
+docker run --name=gnuradio310 --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --device /dev/snd -v persistent:/home/gnuradio/persistent --device /dev/dri -v /dev/bus/usb/:/dev/bus/usb/ --privileged --group-add=audio -it ubuntu:gnuradio-releases bash
+```
+
+>  这步指定了网络使用主机网络、显示使用主机显示器、声音用主机的声音、设定了一个卷persistent用于永久储存容器里的数据、映射了主机的usb、给予了高权限、最后用了刚刚编译好的镜像
