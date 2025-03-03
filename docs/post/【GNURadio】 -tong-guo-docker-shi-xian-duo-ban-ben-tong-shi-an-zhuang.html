@@ -219,7 +219,11 @@ card 1: Generic_1 [HD-Audio Generic], device 0: ALC245 Analog [ALC245 Analog]
 <li>在容器内可以正常安装libiio，但是我尝试使用<code class="notranslate">iio_info -s</code>来搜索PlutoSDR时无法搜索到设备，这个问题目前无法解决，在容器内就是无法使用<code class="notranslate">iio_info -s</code>搜索设备。但是可以在主机上安装libiio然后搜索pluto，得到ip后填到容器内grc的PlutoSDR Source里，可以正常运行。参考（与我遇到的情况完全相同）：<a href="https://ez.analog.com/linux-software-drivers/f/q-a/562936/iio_info-does-not-work-in-docker-container-scanning-for-iio-contexts-failed-text-file-busy" rel="nofollow">https://ez.analog.com/linux-software-drivers/f/q-a/562936/iio_info-does-not-work-in-docker-container-scanning-for-iio-contexts-failed-text-file-busy</a></li>
 </ol>
 <h2>最后效果</h2>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268"><img src="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268" alt="Image" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268"><img src="https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268" alt="Image" style="max-width: 100%;"></a></p>
+<h1>2. dockerHub上的镜像</h1>
+<p>在dockerhub上也有gnuradio镜像，但是似乎不是为了在本地使用而创建的，没有仔细研究<br>
+<a href="https://hub.docker.com/r/gnuradio/ci/tags" rel="nofollow">https://hub.docker.com/r/gnuradio/ci/tags</a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a5548dcb-9ab0-440b-9549-61bb79bcb930"><img src="https://github.com/user-attachments/assets/a5548dcb-9ab0-440b-9549-61bb79bcb930" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

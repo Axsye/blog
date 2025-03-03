@@ -66,3 +66,10 @@ card 1: Generic_1 [HD-Audio Generic], device 0: ALC245 Analog [ALC245 Analog]
 ## 最后效果
 
 ![Image](https://github.com/user-attachments/assets/91177c57-0db3-4f1a-9cf5-dca0dad28268)
+
+# 2. dockerHub上的镜像
+
+在dockerhub上也有gnuradio镜像，但是似乎不是为了在本地使用而创建的，没有仔细研究
+https://hub.docker.com/r/gnuradio/ci/tags
+
+![Image](https://github.com/user-attachments/assets/a5548dcb-9ab0-440b-9549-61bb79bcb930)
