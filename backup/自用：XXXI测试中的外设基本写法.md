@@ -43,3 +43,21 @@
 ![Image](https://github.com/user-attachments/assets/a402f7da-ac4e-4473-a776-c70e214a2d84)
 
 然后删除生成的多余文件，实测tilayer里面，inc有两个、src有三个
+
+然后添加以下内容
+
+![Image](https://github.com/user-attachments/assets/57b590da-0374-4b41-b5b9-31632e466bd1)
+
+记得修改回调函数
+
+![Image](https://github.com/user-attachments/assets/d4fe7378-3aa6-4c5a-9149-65d351273f2f)
+
+然后修改遥测，记得结尾加0xCB
+
+![Image](https://github.com/user-attachments/assets/ef909775-9136-4b6e-9c18-a1c572b03233)
+
+此时就能正常发出遥测了
+
+![Image](https://github.com/user-attachments/assets/097976b4-8c88-4927-ac6a-13e4dca9d77b)
+
+解析必须配置好，包结尾必须正确，才能正常解析
