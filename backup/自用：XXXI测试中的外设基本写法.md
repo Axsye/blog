@@ -38,7 +38,7 @@
 
 # 3、遥测部分代码添加
 
-首先需要在haicogen里配置msgbox，重点是activate、txrx、id、enable int
+首先需要在halcogen里配置msgbox，重点是activate、txrx、id、enable int
 
 ![Image](https://github.com/user-attachments/assets/a402f7da-ac4e-4473-a776-c70e214a2d84)
 
