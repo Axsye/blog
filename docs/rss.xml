@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Wed, 19 Mar 2025 10:38:59 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>自用：MCMI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AMCMI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Wed, 19 Mar 2025 13:52:27 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>自用：MCMI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AMCMI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
 
 首先是添加对应的文件，在其中实现具体协议内容
 
@@ -7,21 +7,37 @@
 
 ![Image](https://github.com/user-attachments/assets/adbb7862-4322-40a5-8550-0da78ae6aaed)
 
-**最后需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+在这里添加MCMI的下位机接收ID
+
+![Image](https://github.com/user-attachments/assets/324e87cc-7abd-426a-9d54-d84d38610303)
+
+![Image](https://github.com/user-attachments/assets/3e13c42a-44fd-4936-8383-33a3b28827d8)
+
+**需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+
+![Image](https://github.com/user-attachments/assets/b2897fad-cd34-4d8e-a463-bec2253d0eee)
 
 # 2、遥控部分代码添加
 
 先在这里添加
+
 ![Image](https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2)
 
 ![Image](https://github.com/user-attachments/assets/a1cce5fb-5f73-4ef7-a518-4f92dc917f61)
 
 这里有两处需要添加
+
 ![Image](https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b)
 
 ![Image](https://github.com/user-attachments/assets/46858ca3-0dbe-4c4e-b5d0-17c99a53d4af)
 
-![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AMCMI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</guid><pubDate>Wed, 19 Mar 2025 10:38:36 +0000</pubDate></item><item><title>【GNURadio】 通过docker实现多版本同时安装</title><link>https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</link><description>&gt; 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
+![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)
+
+可以临时通过修改指令来测试
+
+![Image](https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a)
+
+# 3、遥测部分代码添加。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AMCMI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</guid><pubDate>Wed, 19 Mar 2025 10:38:36 +0000</pubDate></item><item><title>【GNURadio】 通过docker实现多版本同时安装</title><link>https://Axsye.github.io/blog/post/%E3%80%90GNURadio%E3%80%91%20-tong-guo-docker-shi-xian-duo-ban-ben-tong-shi-an-zhuang.html</link><description>&gt; 通过docker安装目前已经测试3.10版本连接PlutoSDR，理论上也可以正常安装3.8和3.9版本
 
 
 # 1.乌拉圭的老哥做的dockerfile

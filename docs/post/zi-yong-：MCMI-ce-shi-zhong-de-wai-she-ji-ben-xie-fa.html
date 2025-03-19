@@ -18,21 +18,37 @@
 
 ![Image](https://github.com/user-attachments/assets/adbb7862-4322-40a5-8550-0da78ae6aaed)
 
-**最后需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+在这里添加MCMI的下位机接收ID
+
+![Image](https://github.com/user-attachments/assets/324e87cc-7abd-426a-9d54-d84d38610303)
+
+![Image](https://github.com/user-attachments/assets/3e13c42a-44fd-4936-8383-33a3b28827d8)
+
+**需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+
+![Image](https://github.com/user-attachments/assets/b2897fad-cd34-4d8e-a463-bec2253d0eee)
 
 # 2、遥控部分代码添加
 
 先在这里添加
+
 ![Image](https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2)
 
 ![Image](https://github.com/user-attachments/assets/a1cce5fb-5f73-4ef7-a518-4f92dc917f61)
 
 这里有两处需要添加
+
 ![Image](https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b)
 
 ![Image](https://github.com/user-attachments/assets/46858ca3-0dbe-4c4e-b5d0-17c99a53d4af)
 
-![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)。">
+![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)
+
+可以临时通过修改指令来测试
+
+![Image](https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a)
+
+# 3、遥测部分代码添加。">
 <meta property="og:title" content="自用：MCMI测试中的外设基本写法">
 <meta property="og:description" content="# 1、协议编写
 
@@ -42,21 +58,37 @@
 
 ![Image](https://github.com/user-attachments/assets/adbb7862-4322-40a5-8550-0da78ae6aaed)
 
-**最后需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+在这里添加MCMI的下位机接收ID
+
+![Image](https://github.com/user-attachments/assets/324e87cc-7abd-426a-9d54-d84d38610303)
+
+![Image](https://github.com/user-attachments/assets/3e13c42a-44fd-4936-8383-33a3b28827d8)
+
+**需要在`LOS_SYS.h`中添加新增的头文件！！**，否则不会编译新增内容
+
+![Image](https://github.com/user-attachments/assets/b2897fad-cd34-4d8e-a463-bec2253d0eee)
 
 # 2、遥控部分代码添加
 
 先在这里添加
+
 ![Image](https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2)
 
 ![Image](https://github.com/user-attachments/assets/a1cce5fb-5f73-4ef7-a518-4f92dc917f61)
 
 这里有两处需要添加
+
 ![Image](https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b)
 
 ![Image](https://github.com/user-attachments/assets/46858ca3-0dbe-4c4e-b5d0-17c99a53d4af)
 
-![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)。">
+![Image](https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed)
+
+可以临时通过修改指令来测试
+
+![Image](https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a)
+
+# 3、遥测部分代码添加。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AMCMI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -121,15 +153,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>首先是添加对应的文件，在其中实现具体协议内容</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dbad9609-1388-4afd-b8ef-83f3968511d8"><img src="https://github.com/user-attachments/assets/dbad9609-1388-4afd-b8ef-83f3968511d8" alt="Image" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/adbb7862-4322-40a5-8550-0da78ae6aaed"><img src="https://github.com/user-attachments/assets/adbb7862-4322-40a5-8550-0da78ae6aaed" alt="Image" style="max-width: 100%;"></a></p>
-<p><strong>最后需要在<code class="notranslate">LOS_SYS.h</code>中添加新增的头文件！！</strong>，否则不会编译新增内容</p>
+<p>在这里添加MCMI的下位机接收ID</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/324e87cc-7abd-426a-9d54-d84d38610303"><img src="https://github.com/user-attachments/assets/324e87cc-7abd-426a-9d54-d84d38610303" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3e13c42a-44fd-4936-8383-33a3b28827d8"><img src="https://github.com/user-attachments/assets/3e13c42a-44fd-4936-8383-33a3b28827d8" alt="Image" style="max-width: 100%;"></a></p>
+<p><strong>需要在<code class="notranslate">LOS_SYS.h</code>中添加新增的头文件！！</strong>，否则不会编译新增内容</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b2897fad-cd34-4d8e-a463-bec2253d0eee"><img src="https://github.com/user-attachments/assets/b2897fad-cd34-4d8e-a463-bec2253d0eee" alt="Image" style="max-width: 100%;"></a></p>
 <h1>2、遥控部分代码添加</h1>
-<p>先在这里添加<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2"><img src="https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2" alt="Image" style="max-width: 100%;"></a></p>
+<p>先在这里添加</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2"><img src="https://github.com/user-attachments/assets/2b3bab93-3405-4ee5-94f5-f659738003f2" alt="Image" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a1cce5fb-5f73-4ef7-a518-4f92dc917f61"><img src="https://github.com/user-attachments/assets/a1cce5fb-5f73-4ef7-a518-4f92dc917f61" alt="Image" style="max-width: 100%;"></a></p>
-<p>这里有两处需要添加<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b"><img src="https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b" alt="Image" style="max-width: 100%;"></a></p>
+<p>这里有两处需要添加</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b"><img src="https://github.com/user-attachments/assets/89d8d793-9e16-4d37-94f2-25d80c42ed6b" alt="Image" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/46858ca3-0dbe-4c4e-b5d0-17c99a53d4af"><img src="https://github.com/user-attachments/assets/46858ca3-0dbe-4c4e-b5d0-17c99a53d4af" alt="Image" style="max-width: 100%;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed"><img src="https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed" alt="Image" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed"><img src="https://github.com/user-attachments/assets/065f9737-e7f0-4aa2-b08e-7a3f82827fed" alt="Image" style="max-width: 100%;"></a></p>
+<p>可以临时通过修改指令来测试</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a"><img src="https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a" alt="Image" style="max-width: 100%;"></a></p>
+<h1>3、遥测部分代码添加</h1></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
