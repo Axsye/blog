@@ -37,3 +37,9 @@
 ![Image](https://github.com/user-attachments/assets/abcd410a-b9c9-4812-8810-aa2241507c0a)
 
 # 3、遥测部分代码添加
+
+首先需要在haicogen里配置msgbox，重点是activate、txrx、id、enable int
+
+![Image](https://github.com/user-attachments/assets/a402f7da-ac4e-4473-a776-c70e214a2d84)
+
+然后删除生成的多余文件，实测tilayer里面，inc有两个、src有三个
