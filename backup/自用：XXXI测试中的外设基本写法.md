@@ -58,6 +58,8 @@
 
 然后修改遥测，记得结尾加0xCB
 
+![Image](https://github.com/user-attachments/assets/9614cfe9-9330-4b0c-9db9-5e15db4bc1b1)
+
 ![Image](https://github.com/user-attachments/assets/d4fe7378-3aa6-4c5a-9149-65d351273f2f)
 
 此时就能正常发出遥测了
