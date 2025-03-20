@@ -44,6 +44,10 @@
 
 然后删除生成的多余文件，实测tilayer里面，inc有两个、src有三个
 
+![Image](https://github.com/user-attachments/assets/685d15f3-7cea-45a5-848a-3606fb2979e9)
+
+![Image](https://github.com/user-attachments/assets/4ef0bb18-7d95-4fad-9553-7c2cef3fbebc)
+
 然后添加以下内容
 
 ![Image](https://github.com/user-attachments/assets/57b590da-0374-4b41-b5b9-31632e466bd1)
