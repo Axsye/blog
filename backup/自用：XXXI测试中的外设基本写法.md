@@ -54,11 +54,11 @@
 
 记得修改回调函数
 
-![Image](https://github.com/user-attachments/assets/d4fe7378-3aa6-4c5a-9149-65d351273f2f)
+![Image](https://github.com/user-attachments/assets/ef909775-9136-4b6e-9c18-a1c572b03233)
 
 然后修改遥测，记得结尾加0xCB
 
-![Image](https://github.com/user-attachments/assets/ef909775-9136-4b6e-9c18-a1c572b03233)
+![Image](https://github.com/user-attachments/assets/d4fe7378-3aa6-4c5a-9149-65d351273f2f)
 
 此时就能正常发出遥测了
 
