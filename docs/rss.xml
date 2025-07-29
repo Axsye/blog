@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 29 Jul 2025 09:14:45 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>单Ubuntu电脑卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 29 Jul 2025 09:40:47 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>单Ubuntu电脑卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
 
 # 1. 硬件配置
 
@@ -30,10 +30,91 @@ https://1drv.ms/f/c/a7c3226f3f26758d/Eu6cZ-zqR9pOll54FyFmgX4BcsO14ehxuyQgCw6y0rB
 3. 电台的多普勒，gpredict通过usb转civ控制
 4. 旋转器，gpredict通过usb控制
 
+## 3.1. GNURadio相关配置
+
 9700接上USB，选择IF OUT，电脑上用arecord -l显示声卡
 card 1，device 0 则gnuradio中设置hw:1,0
 
-。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
+&lt;img width='218' height='99' alt='Image' src='https://github.com/user-attachments/assets/8898cf93-f299-439f-b8e9-5f30c5175b5d' /&gt;
+
+&lt;img width='231' height='117' alt='Image' src='https://github.com/user-attachments/assets/9ab29c1a-7b29-4885-a1f7-da812341e1b0' /&gt;
+
+记得开电脑声音……
+
+PTT要选择9700 ptt对应的端口
+
+&lt;img width='266' height='120' alt='Image' src='https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03' /&gt;
+
+## 3.2. Gpredict相关配置
+
+livecd中自带了gpredict和hamlib，gpredict对旋转器和电台的控制均通过hamlib实现
+
+首先需要配置hamlib
+
+### 3.2.1 旋转器配置
+
+首先通过`rotctl -l`列出所有支持的旋转器
+
+&lt;img width='529' height='348' alt='Image' src='https://github.com/user-attachments/assets/132e8b6c-2807-497a-9e4b-84013038644b' /&gt;
+
+可以看到GS-232B是603
+
+&gt; 居然还支持一些赤道仪
+&gt; &lt;img width='532' height='341' alt='Image' src='https://github.com/user-attachments/assets/9b22b554-f66e-405e-8127-8f824420f765' /&gt;
+
+然后运行命令
+
+```bash
+rotctld -m 603 -r /dev/ttyUSB2
+```
+
+&gt; -m 设备代号 -r 地址 -s 波特率（缺省自动选择设备支持的最大）
+
+启动旋转器控制的监听，将会自动监听gpredict的输出给旋转器
+
+然后配置gpredict
+
+&lt;img width='1138' height='907' alt='Image' src='https://github.com/user-attachments/assets/41b56c37-3e6a-4a18-b7d9-dd9939810655' /&gt;
+
+&gt; locakhost和4533是hamlib默认的
+
+&lt;img width='794' height='444' alt='Image' src='https://github.com/user-attachments/assets/937cb2f2-f2ad-4578-b489-39f328ca1cd6' /&gt;
+
+&lt;img width='1193' height='525' alt='Image' src='https://github.com/user-attachments/assets/bdbd3645-5cff-4e79-8c01-0b455659b578' /&gt;
+
+选择Engage，过一段时间不会自动跳掉即表明配置成功
+
+### 3.2.2 电台配置
+
+通过`rigctl -l`显示支持的电台
+
+&lt;img width='532' height='372' alt='Image' src='https://github.com/user-attachments/assets/c4e35127-e20e-4026-b923-fb0815ef2a7f' /&gt;
+
+可以看到9700是3081
+
+然后运行一下指令
+
+```bash
+rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3
+```
+
+&gt; -m 设备代号 -s 波特率 -c CIV地址 -r 端口
+&gt; 由于用usb转CIV所以波特率的9600，CIV地址需要看9700电台设置是什么，比如此时地址是A2H，指令参数就是十进制162
+&gt; 测试发现最好把-r /dev/ttyUSB3放到最后，否则有时候报非法参数
+
+这样就启动了hamlib控制电台的监听，自动监听gpredict的控制
+
+然后配置gpredict
+
+&lt;img width='1138' height='908' alt='Image' src='https://github.com/user-attachments/assets/2526a99b-e8aa-4eb0-abce-ecb8ee9625cd' /&gt;
+
+localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
+
+&lt;img width='794' height='444' alt='Image' src='https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751' /&gt;
+
+&lt;img width='1257' height='642' alt='Image' src='https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b' /&gt;
+
+点击engage，过一段时间发现不会自动跳掉即配置成功。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
 
 首先是添加对应的文件，在其中实现具体协议内容
 
