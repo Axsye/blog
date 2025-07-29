@@ -19,3 +19,16 @@ https://1drv.ms/f/c/a7c3226f3f26758d/Eu6cZ-zqR9pOll54FyFmgX4BcsO14ehxuyQgCw6y0rB
 
 进入系统后桌面图标显示不能直接运行，这个自行搜索解决办法
 
+正常登录vpn，启动gnuradio，与常规阿斯图livecd操作没区别
+
+# 3. 地面站软件配置
+
+如果要用一台电脑实现地面站，需要同时接通：
+1. 电台的中频输入输出，gnuradio控制
+2. 电台的PTT控制，gnuradio通过9700的USB控制
+3. 电台的多普勒，gpredict通过usb转civ控制
+4. 旋转器，gpredict通过usb控制
+
+9700接上USB，选择IF OUT，电脑上用arecord -l显示声卡
+card 1，device 0 则gnuradio中设置hw:1,0
+
