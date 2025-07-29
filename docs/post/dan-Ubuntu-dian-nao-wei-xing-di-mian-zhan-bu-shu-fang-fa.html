@@ -109,7 +109,7 @@ rotctld -m 603 -r /dev/ttyUSB2
 rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3
 ```
 
-> -m 设备代号 -s 波特率 -c CIV地址 -r 端口
+> -m 设备代号 -s 波特率 -c CIV地址(十进制) -r 端口
 > 由于用usb转CIV所以波特率的9600，CIV地址需要看9700电台设置是什么，比如此时地址是A2H，指令参数就是十进制162
 > 测试发现最好把-r /dev/ttyUSB3放到最后，否则有时候报非法参数
 
@@ -125,7 +125,10 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 
 <img width='1257' height='642' alt='Image' src='https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b' />
 
-点击engage，过一段时间发现不会自动跳掉即配置成功。">
+点击engage，过一段时间发现不会自动跳掉即配置成功
+
+# 4. PS
+善用hamlib的 -h 可以解决不少问题。">
 <meta property="og:title" content="单Ubuntu电脑卫星地面站部署方法">
 <meta property="og:description" content="<img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' />
 
@@ -226,7 +229,7 @@ rotctld -m 603 -r /dev/ttyUSB2
 rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3
 ```
 
-> -m 设备代号 -s 波特率 -c CIV地址 -r 端口
+> -m 设备代号 -s 波特率 -c CIV地址(十进制) -r 端口
 > 由于用usb转CIV所以波特率的9600，CIV地址需要看9700电台设置是什么，比如此时地址是A2H，指令参数就是十进制162
 > 测试发现最好把-r /dev/ttyUSB3放到最后，否则有时候报非法参数
 
@@ -242,7 +245,10 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 
 <img width='1257' height='642' alt='Image' src='https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b' />
 
-点击engage，过一段时间发现不会自动跳掉即配置成功。">
+点击engage，过一段时间发现不会自动跳掉即配置成功
+
+# 4. PS
+善用hamlib的 -h 可以解决不少问题。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -377,7 +383,7 @@ card 1，device 0 则gnuradio中设置hw:1,0</p>
 <p>然后运行一下指令</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3</pre></div>
 <blockquote>
-<p>-m 设备代号 -s 波特率 -c CIV地址 -r 端口<br>
+<p>-m 设备代号 -s 波特率 -c CIV地址(十进制) -r 端口<br>
 由于用usb转CIV所以波特率的9600，CIV地址需要看9700电台设置是什么，比如此时地址是A2H，指令参数就是十进制162<br>
 测试发现最好把-r /dev/ttyUSB3放到最后，否则有时候报非法参数</p>
 </blockquote>
@@ -387,7 +393,9 @@ card 1，device 0 则gnuradio中设置hw:1,0</p>
 <p>localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751"><img width="794" height="444" alt="Image" src="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751" style="max-width: 100%; height: auto; max-height: 444px;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b"><img width="1257" height="642" alt="Image" src="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b" style="max-width: 100%; height: auto; max-height: 642px;"></a></p>
-<p>点击engage，过一段时间发现不会自动跳掉即配置成功</p></div>
+<p>点击engage，过一段时间发现不会自动跳掉即配置成功</p>
+<h1>4. PS</h1>
+<p>善用hamlib的 -h 可以解决不少问题</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

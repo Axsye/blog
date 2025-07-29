@@ -97,7 +97,7 @@ rotctld -m 603 -r /dev/ttyUSB2
 rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3
 ```
 
-> -m 设备代号 -s 波特率 -c CIV地址 -r 端口
+> -m 设备代号 -s 波特率 -c CIV地址(十进制) -r 端口
 > 由于用usb转CIV所以波特率的9600，CIV地址需要看9700电台设置是什么，比如此时地址是A2H，指令参数就是十进制162
 > 测试发现最好把-r /dev/ttyUSB3放到最后，否则有时候报非法参数
 
@@ -114,3 +114,6 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 <img width="1257" height="642" alt="Image" src="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b" />
 
 点击engage，过一段时间发现不会自动跳掉即配置成功
+
+# 4. PS
+善用hamlib的 -h 可以解决不少问题
