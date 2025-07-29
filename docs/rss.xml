@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 29 Jul 2025 09:46:31 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>[ASRTU-1/AO-123] 单Ubuntu电脑卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 29 Jul 2025 10:27:34 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>[ASRTU-1/AO-123] 单Ubuntu电脑全开源软件卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
 
 # 1. 硬件配置
 
@@ -117,7 +117,7 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 点击engage，过一段时间发现不会自动跳掉即配置成功
 
 # 4. PS
-善用hamlib的 -h 可以解决不少问题。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
+善用hamlib的 -h 可以解决不少问题。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
 
 首先是添加对应的文件，在其中实现具体协议内容
 
