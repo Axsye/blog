@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Thu, 20 Mar 2025 14:01:08 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 29 Jul 2025 09:08:29 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>单Ubuntu电脑卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
+
+# 1. 硬件配置
+
+电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口
+旋转器：G5500 控制接口 GS-2320B 通过USB连接到电脑
+电脑配置：i3-5015U 8GB RAM 128GB SSD
+
+# 2. 系统配置
+
+&gt; ASRTU-1网盘链接：
+https://1drv.ms/f/c/a7c3226f3f26758d/Eu6cZ-zqR9pOll54FyFmgX4BcsO14ehxuyQgCw6y0rBLwA
+&gt;
+&gt;包括linux livecd、windows解调软件、图像校正软件、离线解析软件、信号录音等，动态更新
+
+将livecd通过rufus制作u盘启动盘，确保u盘没有坏块且≥16GB
+通过U盘启动后选择Try or install Ubuntu
+然后直接选择install _**注意install过程中用户名必须选ubuntu**_
+
+进入系统后桌面图标显示不能直接运行，这个自行搜索解决办法
+
+。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/dan-Ubuntu-dian-nao-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
 
 首先是添加对应的文件，在其中实现具体协议内容
 
