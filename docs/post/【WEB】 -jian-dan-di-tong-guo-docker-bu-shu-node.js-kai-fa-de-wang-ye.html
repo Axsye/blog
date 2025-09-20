@@ -254,9 +254,9 @@ sudo systemctl start docker</pre></div>
 <li>
 <p><strong>Nginx 反向代理</strong>：<br>
 可以在 <code class="notranslate">frontend</code> 容器内的 Nginx 配置中添加反向代理，将后端 API 转发到 <code class="notranslate">backend</code> 容器：</p>
-<div class="highlight highlight-source-nginx"><pre class="notranslate"><span class="pl-k">location</span> <span class="pl-en">/api/ </span>{
-    <span class="pl-k">proxy_pass</span> http://backend:3000/;
-}</pre></div>
+<div class="highlight highlight-source-nginx"><pre class="notranslate"><span class="pl-c1">location</span> /api/ <span class="pl-c1">{</span>
+    <span class="pl-c1">proxy_pass</span> <span class="pl-c1">http</span>://backend:<span class="pl-c1">3000</span>/<span class="pl-c1">;</span>
+<span class="pl-c1">}</span></pre></div>
 <p>修改 <code class="notranslate">OrbitDisplay.html</code> 中的请求路径为 <code class="notranslate">/api/orbit</code>。</p>
 </li>
 <li>
