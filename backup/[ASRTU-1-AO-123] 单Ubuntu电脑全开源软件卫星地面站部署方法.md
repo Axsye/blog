@@ -40,6 +40,8 @@ card 1，device 0 则gnuradio中设置hw:1,0
 
 记得开电脑声音……
 
+如果遇到声卡占用，可以`sudo asla force-reload`
+
 PTT要选择9700 ptt对应的端口
 
 <img width="266" height="120" alt="Image" src="https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03" />
