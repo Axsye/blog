@@ -17,7 +17,7 @@ https://1drv.ms/f/c/a7c3226f3f26758d/Eu6cZ-zqR9pOll54FyFmgX4BcsO14ehxuyQgCw6y0rB
 通过U盘启动后选择Try or install Ubuntu
 然后直接选择install _**注意install过程中用户名必须选ubuntu**_
 
-进入系统后桌面图标显示不能直接运行，这个自行搜索解决办法
+进入系统后桌面图标显示不能直接运行，用这个`chmod -R 775 ~/Desktop`
 
 正常登录vpn，启动gnuradio，与常规阿斯图livecd操作没区别
 
