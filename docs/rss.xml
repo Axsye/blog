@@ -1,10 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Wed, 29 Oct 2025 11:02:00 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1.无人机SAR
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Mon, 17 Nov 2025 11:32:58 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1.无人机SAR
 https://hforsten.com/homemade-polarimetric-synthetic-aperture-radar-drone.html
 
 &lt;img width='1494' height='883' alt='Image' src='https://github.com/user-attachments/assets/2fadc016-e999-4156-a7fc-f60eea5d00f2' /&gt;
 
-&lt;img width='721' height='705' alt='Image' src='https://github.com/user-attachments/assets/5b27e026-47e0-42ff-adc2-8c595edb8d89' /&gt;。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</guid><pubDate>Tue, 29 Jul 2025 10:37:45 +0000</pubDate></item><item><title>[ASRTU-1/AO-123] 单Ubuntu电脑全开源软件卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
+&lt;img width='721' height='705' alt='Image' src='https://github.com/user-attachments/assets/5b27e026-47e0-42ff-adc2-8c595edb8d89' /&gt;
+
+# 2.线阵CCD扫描相机32亿像素
+
+https://www.youtube.com/watch?v=KSvjJGbFCws
+该项目记录了从头开始构建高分辨率线性扫描相机的过程。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</guid><pubDate>Tue, 29 Jul 2025 10:37:45 +0000</pubDate></item><item><title>[ASRTU-1/AO-123] 单Ubuntu电脑全开源软件卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
 
 # 1. 硬件配置
 
