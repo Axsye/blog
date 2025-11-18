@@ -42,18 +42,12 @@ jobs:
           # lastTag=$(git describe --tags `git rev-list --tags --max-count=1`)
           # if [ $GMEEK_VERSION == 'last' ]; then git checkout $lastTag; else git checkout $GMEEK_VERSION; fi;
           
-          if git rev-list --tags --max-count=1 >/dev/null 2>&1; then
-            lastTag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          else
-            lastTag="main"
-            echo "Warning: No tags found, using default branch: $lastTag"
-          fi
-
-          if [ "$GMEEK_VERSION" == 'last' ]; then 
-              git checkout $lastTag; 
+          if [ $GMEEK_VERSION == 'last' ]; then 
+            # 放弃标签查找，直接切换到主分支的最新提交
+            git checkout main
           else 
-              git checkout $GMEEK_VERSION; 
-          fi
+            git checkout $GMEEK_VERSION; 
+          fi;
 
       - name: Install dependencies
         run: |
