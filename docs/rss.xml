@@ -1,10 +1,35 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Mon, 17 Nov 2025 11:32:58 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1.无人机SAR
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 18 Nov 2025 03:36:32 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1. Henrik Forstén佬的nb项目
+## 1.1. 无人机SAR
+
 https://hforsten.com/homemade-polarimetric-synthetic-aperture-radar-drone.html
+后续更新https://hforsten.com/synthetic-aperture-radar-autofocus-and-calibration.html
+
+参考的无人机SAR文章
+
+[Final_Version_TGRS.pdf](https://github.com/user-attachments/files/23596549/Final_Version_TGRS.pdf)
 
 &lt;img width='1494' height='883' alt='Image' src='https://github.com/user-attachments/assets/2fadc016-e999-4156-a7fc-f60eea5d00f2' /&gt;
 
 &lt;img width='721' height='705' alt='Image' src='https://github.com/user-attachments/assets/5b27e026-47e0-42ff-adc2-8c595edb8d89' /&gt;
+
+&lt;img width='681' height='865' alt='Image' src='https://github.com/user-attachments/assets/0a3515c8-446a-4c04-9d69-41f8067ef41d' /&gt;
+
+## 1.2. 6GHz脉冲压缩雷达
+https://hforsten.com/homemade-6-ghz-pulse-compression-radar.html
+
+&lt;img width='1600' height='957' alt='Image' src='https://github.com/user-attachments/assets/4383f849-197c-4f4b-bc70-cc19d60e580a' /&gt;
+
+## 1.3. 地面SAR雷达
+https://hforsten.com/synthetic-aperture-radar-imaging.html
+
+&lt;img width='1600' height='879' alt='Image' src='https://github.com/user-attachments/assets/5afb08d1-c3b8-42c4-8f64-3f798039037c' /&gt;
+
+后续更新
+
+https://hforsten.com/backprojection-backpropagation.html
+
+&lt;img width='2152' height='862' alt='Image' src='https://github.com/user-attachments/assets/21e292b6-4d0c-472e-9bba-3145b9f74a93' /&gt;
 
 # 2.线阵CCD扫描相机32亿像素
 
