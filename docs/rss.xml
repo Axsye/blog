@@ -1,9 +1,69 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Thu, 20 Nov 2025 12:45:23 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>阿波菲斯任务研究</title><link>https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</link><description>&lt;img width='1471' height='802' alt='Image' src='https://github.com/user-attachments/assets/1d3d12ac-c408-4dc8-b245-2979e85d2e91' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Thu, 20 Nov 2025 13:53:19 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>阿波菲斯任务研究</title><link>https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</link><description>&lt;img width='1471' height='802' alt='Image' src='https://github.com/user-attachments/assets/1d3d12ac-c408-4dc8-b245-2979e85d2e91' /&gt;
 
 &lt;img width='848' height='538' alt='Image' src='https://github.com/user-attachments/assets/ae726243-6aeb-4fe0-860a-6670446ec4ae' /&gt;
 
-&lt;img width='1024' height='819' alt='Image' src='https://github.com/user-attachments/assets/3214984e-e138-498d-bb0a-8bc54646018a' /&gt;。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</guid><pubDate>Thu, 20 Nov 2025 12:44:52 +0000</pubDate></item><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1. Henrik Forstén佬的nb项目
+&lt;img width='1024' height='819' alt='Image' src='https://github.com/user-attachments/assets/3214984e-e138-498d-bb0a-8bc54646018a' /&gt;
+
+paper：NEOMIR: A SPACE-BASED INFRARED MISSION FOR NEO DETECTION,
+CHARACTERISATION AND EARLY WARNING
+
+extension://bfdogplmndidlpjfhoijckpakkdjkkil/pdf/viewer.html?file=https%3A%2F%2Fconference.sdo.esoc.esa.int%2Fproceedings%2Fneosst2%2Fpaper%2F116%2FNEOSST2-paper116.pdf
+
+说明了9um对应的300K温度波段是最佳的，辐射最大，且没有背景恒星干扰，但是测轨不便，于是同时加入了5um波段
+
+&gt; On the other hand, every asteroid will have an intrinsic
+temperature that mostly depends on its distance from the
+Sun. The surface temperature of an NEO will typically
+be in the range 200-400 K: a black-body of 300 K has
+its peak thermal emission at 9 μm, i.e. in the so-called
+thermal infrared wavelength spectrum.
+Another advantage of observing in this domain is that
+most stars will not be visible, hence sensibly reducing
+the confusion between asteroids and field stars. How-
+ever, the absence of stars complicates the determination
+of accurate astrometry. This can be solved by having a
+second IR channel observing the same field-of-view as
+the 9 μm channel but at shorter wavelengths, e.g. 5 μm,
+where stars are still visible and available catalogues can
+be used to improve the pointing knowledge.
+
+这是TESS的不是NEO Surveyer
+paper: Optical Design of the Camera for Transiting Exoplanet Survey
+Satellite (TESS)
+extension://bfdogplmndidlpjfhoijckpakkdjkkil/pdf/viewer.html?file=https%3A%2F%2Fntrs.nasa.gov%2Fapi%2Fcitations%2F20150018419%2Fdownloads%2F20150018419.pdf
+
+说明了相机的参数，以及杂散光指标要达到约10-7
+
+&lt;img width='1919' height='1253' alt='Image' src='https://github.com/user-attachments/assets/88114392-2f3d-4099-bea7-51f8d823e8d0' /&gt;
+
+&lt;img width='2582' height='1288' alt='Image' src='https://github.com/user-attachments/assets/1ddaaa16-d69a-4797-beeb-aef07d260502' /&gt;
+
+&lt;img width='1867' height='766' alt='Image' src='https://github.com/user-attachments/assets/8cc2a6d6-cb4f-4e22-9135-76bf9e3d948b' /&gt;
+
+这是NEO的
+extension://bfdogplmndidlpjfhoijckpakkdjkkil/pdf/viewer.html?file=https%3A%2F%2Fwww2.boulder.swri.edu%2F~bottke%2FReprints%2FMainzer_2023_Planet._Sci._J._4_224_NEO_Surveyor.pdf
+
+&gt; The telescope optical system consists of a three-mirror
+anastigmat design that provides a field of view of 1°. 68 × 7°.08
+with no central obscuration, thus maximizing sensitivity and
+eliminating diffraction spikes due to the secondary mirror
+support structure. There is no focus mechanism; focus is set
+through a series of measurements made on the ground at the
+operating temperature that account for the deformation of the
+optical system as it cools down. The same field of view is
+imaged simultaneously by the two channels using a germanium
+beamsplitter, with NC1 being reflected and NC2 transmitted
+through the beamsplitter. Both channels utilize transmission
+filters to define their bandpasses.
+Each focal plane consists of a 4 × 1 array of 2048 × 2048
+pixel HgCdTe detectors that are closely packed together to
+minimize the gaps between individual arrays that can cause a
+loss of moving-object detections and thus break links between
+detections. The gap spacing between arrays is 2.4 mm for both
+channels, with a plate scale of ∼3′′ per 18 μm pixel.
+
+望远镜光学系统采用三镜消像散设计，提供1°.68 × 7°.08的视场角，无中心遮光，从而最大限度地提高灵敏度并消除由于次镜支撑结构而产生的衍射尖峰。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</guid><pubDate>Thu, 20 Nov 2025 12:44:52 +0000</pubDate></item><item><title>记录一些好玩的开源项目</title><link>https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</link><description># 1. Henrik Forstén佬的nb项目
 ## 1.1. 无人机SAR
 
 https://hforsten.com/homemade-polarimetric-synthetic-aperture-radar-drone.html
