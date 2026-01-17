@@ -1,5 +1,82 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Thu, 20 Nov 2025 13:53:19 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>阿波菲斯任务研究</title><link>https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</link><description>&lt;img width='1471' height='802' alt='Image' src='https://github.com/user-attachments/assets/1d3d12ac-c408-4dc8-b245-2979e85d2e91' /&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Sat, 17 Jan 2026 16:42:46 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>Zotero插件pdf2zh 自己研究了个部署方式</title><link>https://Axsye.github.io/blog/post/Zotero-cha-jian-pdf2zh%20-zi-ji-yan-jiu-le-ge-bu-shu-fang-shi.html</link><description>原始项目
+https://github.com/guaguastandup/zotero-pdf2zh?tab=readme-ov-file
+
+起因是不想要每台电脑都部署一遍后端，想着服务器用docker部署就完事了，结果花了一晚上，比一台一台部署浪费时间多多了（悲）
+
+官方README下的docker部署方案不知道为什么总是有奇奇怪怪的问题，且有些更新不及时，有些只支持arm64，导致各种失败
+
+直接上文件
+&gt; 最好在build前先pull一下python:3.12-slim
+
+Dockerfile
+
+```Dockerfile
+# 使用 Python 3.12 官方镜像
+FROM python:3.12-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 1. 安装系统依赖 (添加了 libgl1 和 libglib2.0-0 以支持 OpenCV)
+RUN apt-get update &amp;&amp; apt-get install -y \
+    wget \
+    unzip \
+    git \
+    curl \
+    libgl1 \
+    libglib2.0-0 \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# 2. 使用国内镜像安装 uv
+RUN pip install uv -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 3. 下载项目文件
+RUN wget https://ghproxy.net/https://raw.githubusercontent.com/guaguastandup/zotero-pdf2zh/refs/heads/main/server.zip \
+    &amp;&amp; unzip server.zip \
+    &amp;&amp; rm server.zip
+
+# 进入 server 目录
+WORKDIR /app/server
+
+# 4. 安装基础依赖
+RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 暴露端口
+EXPOSE 8890
+
+# 5. 启动命令
+CMD ['python', 'server.py', '--env_tool=uv', '--port=8890', '--mirror_source=https://pypi.tuna.tsinghua.edu.cn/simple/']
+```
+
+docker-compose.yaml
+
+```docker-compose
+services:
+  zotero-pdf2zh:
+    build: .
+    container_name: zotero-pdf2zh
+    ports:
+      - '8890:8890'
+    volumes:
+      # 持久化存储：避免容器重启后重新下载翻译引擎
+      - ./data:/app/server/.venv
+      - ./engines:/root/.cache/uv  # 如果使用 uv，缓存环境加速启动
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+```
+
+两个文件放到一个文件夹下
+
+构建并启动服务：
+
+```Bash
+
+docker compose up -d
+```
+
+&gt; 注：第一次启动时，容器内会执行依赖安装和引擎下载，可能需要几分钟。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/Zotero-cha-jian-pdf2zh%20-zi-ji-yan-jiu-le-ge-bu-shu-fang-shi.html</guid><pubDate>Sat, 17 Jan 2026 16:42:22 +0000</pubDate></item><item><title>阿波菲斯任务研究</title><link>https://Axsye.github.io/blog/post/a-bo-fei-si-ren-wu-yan-jiu.html</link><description>&lt;img width='1471' height='802' alt='Image' src='https://github.com/user-attachments/assets/1d3d12ac-c408-4dc8-b245-2979e85d2e91' /&gt;
 
 &lt;img width='848' height='538' alt='Image' src='https://github.com/user-attachments/assets/ae726243-6aeb-4fe0-860a-6670446ec4ae' /&gt;
 
