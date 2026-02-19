@@ -33,7 +33,7 @@
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90WEB%E3%80%91%20-jian-dan-di-tong-guo-docker-bu-shu-node.js-kai-fa-de-wang-ye.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
 <title>【WEB】 简单地通过docker部署node.js开发的网页</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -106,23 +106,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>这个项目里的npm指令是直接在根目录运行的，故指令生成的<code class="notranslate">package.json</code> <code class="notranslate">package-lock.json</code>都在根目录。<br>
 前后端只在文件里有区分，实际的耦合还是偏多，部署时只用了一个docker镜像，没有分离成两个镜像，只能用于小项目。</p>
 <h2>1.2. dockerfile</h2>
-<div class="highlight highlight-source-dockerfile"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 使用 Node.js 基础镜像</span>
-<span class="pl-k">FROM</span> node:lts-alpine3.21
+<pre lang="dockerfile" class="notranslate"><code class="notranslate"># 使用 Node.js 基础镜像
+FROM node:lts-alpine3.21
 
-<span class="pl-c"><span class="pl-c">#</span> 设置工作目录</span>
-<span class="pl-k">WORKDIR</span> /app
+# 设置工作目录
+WORKDIR /app
 
-<span class="pl-c"><span class="pl-c">#</span> 复制代码</span>
-<span class="pl-k">COPY</span> src .
+# 复制代码
+COPY src .
 
-<span class="pl-c"><span class="pl-c">#</span> 安装后端依赖</span>
-<span class="pl-k">RUN</span> npm install
+# 安装后端依赖
+RUN npm install
 
-<span class="pl-c"><span class="pl-c">#</span> 暴露后端端口</span>
-<span class="pl-k">EXPOSE</span> 3000
+# 暴露后端端口
+EXPOSE 3000
 
-<span class="pl-c"><span class="pl-c">#</span> 启动服务</span>
-<span class="pl-k">CMD</span> [<span class="pl-s">"node"</span>, <span class="pl-s">"backend/tle2orbit.js"</span>]</pre></div>
+# 启动服务
+CMD ["node", "backend/tle2orbit.js"]
+</code></pre>
 <p>这里的dockerfile是最基本的，也没用docker-compose。为了减少不必要的文件，只把src目录下的前后端文件复制到/app。<br>
 基础镜像的选择实际是比较复杂的，为了体积小传的快因此用的<code class="notranslate">node:lts-alpine3.21</code><br>
 运行<code class="notranslate">docker build -t orbit-display:test .</code>指令前，需要注意的是dockerfile里的<code class="notranslate">RUN npm install</code>命令。复制的目录（<code class="notranslate">/src</code>）下必须要有<code class="notranslate">package.json</code> <code class="notranslate">package-lock.json</code>文件，因此对于前后端分离成两个docker的情况下，npm命令可能需要在<code class="notranslate">frontend</code>和<code class="notranslate">backend</code>两个文件中分别运行（？</p>
@@ -142,12 +143,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3><strong>1. 准备环境</strong></h3>
 <ol>
 <li>确保云服务器已安装 Docker 和 Docker Compose：
-<div class="highlight highlight-source-shell"><pre class="notranslate">sudo apt update
-sudo apt install docker.io docker-compose -y</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">sudo apt update
+sudo apt install docker.io docker-compose -y
+</code></pre>
 </li>
 <li>启用 Docker 服务：
-<div class="highlight highlight-source-shell"><pre class="notranslate">sudo systemctl <span class="pl-c1">enable</span> docker
-sudo systemctl start docker</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">sudo systemctl enable docker
+sudo systemctl start docker
+</code></pre>
 </li>
 </ol>
 <h3><strong>2. 创建项目结构</strong></h3>
@@ -166,71 +169,77 @@ sudo systemctl start docker</pre></div>
 </code></pre>
 <h3><strong>3. 前端 Dockerfile</strong></h3>
 <p>在 <code class="notranslate">frontend/</code> 目录下创建 <code class="notranslate">Dockerfile</code>：</p>
-<div class="highlight highlight-source-dockerfile"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 基于 Nginx 作为 Web 服务器</span>
-<span class="pl-k">FROM</span> nginx:latest
+<pre lang="dockerfile" class="notranslate"><code class="notranslate"># 基于 Nginx 作为 Web 服务器
+FROM nginx:latest
 
-<span class="pl-c"><span class="pl-c">#</span> 将前端代码复制到 Nginx 默认的静态文件目录</span>
-<span class="pl-k">COPY</span> . /usr/share/nginx/html
+# 将前端代码复制到 Nginx 默认的静态文件目录
+COPY . /usr/share/nginx/html
 
-<span class="pl-c"><span class="pl-c">#</span> 暴露 Nginx 默认端口</span>
-<span class="pl-k">EXPOSE</span> 80
+# 暴露 Nginx 默认端口
+EXPOSE 80
 
-<span class="pl-c"><span class="pl-c">#</span> 启动 Nginx</span>
-<span class="pl-k">CMD</span> [<span class="pl-s">"nginx"</span>, <span class="pl-s">"-g"</span>, <span class="pl-s">"daemon off;"</span>]</pre></div>
+# 启动 Nginx
+CMD ["nginx", "-g", "daemon off;"]
+</code></pre>
 <h3><strong>4. 后端 Dockerfile</strong></h3>
 <p>在 <code class="notranslate">backend/</code> 目录下创建 <code class="notranslate">Dockerfile</code>：</p>
-<div class="highlight highlight-source-dockerfile"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 使用 Node.js 基础镜像</span>
-<span class="pl-k">FROM</span> node:16
+<pre lang="dockerfile" class="notranslate"><code class="notranslate"># 使用 Node.js 基础镜像
+FROM node:16
 
-<span class="pl-c"><span class="pl-c">#</span> 设置工作目录</span>
-<span class="pl-k">WORKDIR</span> /app
+# 设置工作目录
+WORKDIR /app
 
-<span class="pl-c"><span class="pl-c">#</span> 复制后端代码到容器</span>
-<span class="pl-k">COPY</span> . .
+# 复制后端代码到容器
+COPY . .
 
-<span class="pl-c"><span class="pl-c">#</span> 安装后端依赖</span>
-<span class="pl-k">RUN</span> npm install
+# 安装后端依赖
+RUN npm install
 
-<span class="pl-c"><span class="pl-c">#</span> 暴露后端端口</span>
-<span class="pl-k">EXPOSE</span> 3000
+# 暴露后端端口
+EXPOSE 3000
 
-<span class="pl-c"><span class="pl-c">#</span> 启动后端服务</span>
-<span class="pl-k">CMD</span> [<span class="pl-s">"node"</span>, <span class="pl-s">"server.js"</span>]</pre></div>
+# 启动后端服务
+CMD ["node", "server.js"]
+</code></pre>
 <h3><strong>5. Docker Compose 配置</strong></h3>
 <p>在项目根目录创建 <code class="notranslate">docker-compose.yml</code> 文件：</p>
-<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">'</span>3.8<span class="pl-pds">'</span></span>
+<pre lang="yaml" class="notranslate"><code class="notranslate">version: '3.8'
 
-<span class="pl-ent">services</span>:
-  <span class="pl-ent">frontend</span>:
-    <span class="pl-ent">build</span>:
-      <span class="pl-ent">context</span>: <span class="pl-s">./frontend</span>
-    <span class="pl-ent">ports</span>:
-      - <span class="pl-s"><span class="pl-pds">"</span>80:80<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> 将容器的 80 端口映射到主机的 80 端口</span>
-    <span class="pl-ent">volumes</span>:
-      - <span class="pl-s">./frontend:/usr/share/nginx/html </span><span class="pl-c"><span class="pl-c">#</span> 便于本地开发时实时同步</span>
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80" # 将容器的 80 端口映射到主机的 80 端口
+    volumes:
+      - ./frontend:/usr/share/nginx/html # 便于本地开发时实时同步
 
-  <span class="pl-ent">backend</span>:
-    <span class="pl-ent">build</span>:
-      <span class="pl-ent">context</span>: <span class="pl-s">./backend</span>
-    <span class="pl-ent">ports</span>:
-      - <span class="pl-s"><span class="pl-pds">"</span>3000:3000<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> 将容器的 3000 端口映射到主机的 3000 端口</span>
-    <span class="pl-ent">volumes</span>:
-      - <span class="pl-s">./backend:/app </span><span class="pl-c"><span class="pl-c">#</span> 便于本地开发时实时同步</span>
-    <span class="pl-ent">depends_on</span>:
-      - <span class="pl-s">frontend</span></pre></div>
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000" # 将容器的 3000 端口映射到主机的 3000 端口
+    volumes:
+      - ./backend:/app # 便于本地开发时实时同步
+    depends_on:
+      - frontend
+</code></pre>
 <h3><strong>6. 构建和运行容器</strong></h3>
 <ol>
 <li>
 <p>在项目根目录下运行以下命令构建镜像：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose build</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker-compose build
+</code></pre>
 </li>
 <li>
 <p>启动服务：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker-compose up -d
+</code></pre>
 </li>
 <li>
 <p>查看运行中的容器：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker ps</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker ps
+</code></pre>
 </li>
 </ol>
 <h3><strong>7. 测试部署</strong></h3>
@@ -254,16 +263,18 @@ sudo systemctl start docker</pre></div>
 <li>
 <p><strong>Nginx 反向代理</strong>：<br>
 可以在 <code class="notranslate">frontend</code> 容器内的 Nginx 配置中添加反向代理，将后端 API 转发到 <code class="notranslate">backend</code> 容器：</p>
-<div class="highlight highlight-source-nginx"><pre class="notranslate"><span class="pl-c1">location</span> /api/ <span class="pl-c1">{</span>
-    <span class="pl-c1">proxy_pass</span> <span class="pl-c1">http</span>://backend:<span class="pl-c1">3000</span>/<span class="pl-c1">;</span>
-<span class="pl-c1">}</span></pre></div>
+<pre lang="nginx" class="notranslate"><code class="notranslate">location /api/ {
+    proxy_pass http://backend:3000/;
+}
+</code></pre>
 <p>修改 <code class="notranslate">OrbitDisplay.html</code> 中的请求路径为 <code class="notranslate">/api/orbit</code>。</p>
 </li>
 <li>
 <p><strong>持久化存储</strong>：<br>
 将数据（如日志、上传文件）挂载到主机：</p>
-<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">volumes</span>:
-  - <span class="pl-s">./backend-data:/data</span></pre></div>
+<pre lang="yaml" class="notranslate"><code class="notranslate">volumes:
+  - ./backend-data:/data
+</code></pre>
 </li>
 <li>
 <p><strong>环境变量</strong>：<br>
@@ -288,7 +299,8 @@ sudo systemctl start docker</pre></div>
 <hr>
 <h1>2. docker镜像的编译</h1>
 <p>对于没有用docker-compose的项目，项目根目录下运行即可</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker build -t orbit-display:test <span class="pl-c1">.</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker build -t orbit-display:test .
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/873abe7e-3885-4308-8298-aaed5ec3e1a8"><img src="https://github.com/user-attachments/assets/873abe7e-3885-4308-8298-aaed5ec3e1a8" alt="image" style="max-width: 100%;"></a></p>
 <p>计算机上没有基础镜像的会自动先下载基础镜像，因此可以提前下载基础镜像把步骤分开来。<br>
 如果使用了docker desktop则需要开着它编译。</p>
@@ -296,23 +308,30 @@ sudo systemctl start docker</pre></div>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9e332252-7b89-457a-beca-2b7816fc766e"><img src="https://github.com/user-attachments/assets/9e332252-7b89-457a-beca-2b7816fc766e" alt="image" style="max-width: 100%;"></a></p>
 <h1>3. docker镜像的部署</h1>
 <h2>3.1. 最简单的方法是直接复制镜像文件</h2>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker save -o <span class="pl-k">&lt;</span>镜像文件名<span class="pl-k">&gt;</span>.tar <span class="pl-k">&lt;</span>镜像名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker save -o Orbirt-Display.tar orbit-display:test</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker save -o &lt;镜像文件名&gt;.tar &lt;镜像名&gt;:&lt;标签&gt;
+</code></pre>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker save -o Orbirt-Display.tar orbit-display:test
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ef60e14e-8480-4f11-a95d-a6b2d078dbf4"><img src="https://github.com/user-attachments/assets/ef60e14e-8480-4f11-a95d-a6b2d078dbf4" alt="image" style="max-width: 100%;"></a></p>
 <p>这会直接把镜像.tar文件保存到你运行指令的目录下，复制到服务器上，运行</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker load -i <span class="pl-k">&lt;</span>文件名<span class="pl-k">&gt;</span>.tar</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker load -i &lt;文件名&gt;.tar
+</code></pre>
 <p>无需解压就能加载镜像</p>
 <p>加载完成后可以通过以下命令验证：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker images</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker images
+</code></pre>
 <p>然后通过这个镜像创建容器</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker run -d --name orbit-display-http -p 80:3000 orbit-display:test</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker run -d --name orbit-display-http -p 80:3000 orbit-display:test
+</code></pre>
 <p>这样就在http的默认80端口创建了名字是orbit-display-http的容器</p>
 <p>运行</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker start orbit-display-http</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker start orbit-display-http
+</code></pre>
 <p>就能启动容器</p>
 <p>可以使用以下指令查看运行状态等</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker stats orbit-display-http 
-docker inspect orbit-display-http </pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker stats orbit-display-http 
+docker inspect orbit-display-http 
+</code></pre>
 <h2>3.2. 使用Docker Hub——更加常用的方法</h2>
 <hr>
 <blockquote>
@@ -324,7 +343,8 @@ docker inspect orbit-display-http </pre></div>
 <ul>
 <li>注册 Docker Hub 账号：<a href="https://hub.docker.com" rel="nofollow">Docker Hub</a></li>
 <li>登录 Docker Hub：
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker login</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker login
+</code></pre>
 输入用户名和密码登录。</li>
 </ul>
 <h5><strong>推送镜像到 Docker Hub</strong></h5>
@@ -332,31 +352,40 @@ docker inspect orbit-display-http </pre></div>
 <ol>
 <li>
 <p>给镜像打标签：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker tag <span class="pl-k">&lt;</span>本地镜像名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span> <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker tag &lt;本地镜像名&gt;:&lt;标签&gt; &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 <p>示例：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker tag my-app:latest myusername/my-app:1.0.0</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker tag my-app:latest myusername/my-app:1.0.0
+</code></pre>
 </li>
 <li>
 <p>推送到 Docker Hub：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker push <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker push &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 <p>示例：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker push myusername/my-app:1.0.0</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker push myusername/my-app:1.0.0
+</code></pre>
 </li>
 </ol>
 <h4><strong>2. 在服务器上部署镜像</strong></h4>
 <h5><strong>登录 Docker Hub</strong></h5>
 <p>在服务器上登录 Docker Hub：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker login</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker login
+</code></pre>
 <h5><strong>拉取镜像</strong></h5>
 <p>从 Docker Hub 拉取镜像：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker pull <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker pull &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 <p>示例：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker pull myusername/my-app:1.0.0</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker pull myusername/my-app:1.0.0
+</code></pre>
 <h5><strong>运行容器</strong></h5>
 <p>使用拉取的镜像运行容器：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker run -d --name <span class="pl-k">&lt;</span>容器名<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>宿主机端口<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>容器端口<span class="pl-k">&gt;</span> <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker run -d --name &lt;容器名&gt; -p &lt;宿主机端口&gt;:&lt;容器端口&gt; &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 <p>示例：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker run -d --name my-app-container -p 8080:3000 myusername/my-app:1.0.0</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker run -d --name my-app-container -p 8080:3000 myusername/my-app:1.0.0
+</code></pre>
 <ul>
 <li><code class="notranslate">-d</code>：以守护模式运行容器（后台运行）。</li>
 <li><code class="notranslate">--name</code>：指定容器名称。</li>
@@ -364,7 +393,8 @@ docker inspect orbit-display-http </pre></div>
 </ul>
 <h4><strong>3. 检查部署状态</strong></h4>
 <h5><strong>查看运行中的容器</strong></h5>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker ps</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker ps
+</code></pre>
 <p>输出示例：</p>
 <pre lang="plaintext" class="notranslate"><code class="notranslate">CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                    NAMES
 abc12345xyz    myusername/my-app:1.0.0  "npm start"             5 seconds ago    Up 5 seconds    0.0.0.0:8080-&gt;3000/tcp   my-app-container
@@ -373,23 +403,26 @@ abc12345xyz    myusername/my-app:1.0.0  "npm start"             5 seconds ago   
 <ul>
 <li>如果服务器有公网 IP：在浏览器中访问 <code class="notranslate">http://&lt;服务器IP&gt;:8080</code>。</li>
 <li>如果服务器仅内网可用，可以在本地使用 <code class="notranslate">curl</code> 测试：
-<div class="highlight highlight-source-shell"><pre class="notranslate">curl http://localhost:8080</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">curl http://localhost:8080
+</code></pre>
 </li>
 </ul>
 <h4><strong>4. 自动化部署（可选）</strong></h4>
 <p>为了简化未来更新，可以创建自动化流程。</p>
 <h5><strong>使用 Docker Compose</strong></h5>
 <p>编写一个 <code class="notranslate">docker-compose.yml</code> 文件：</p>
-<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">version</span>: <span class="pl-s"><span class="pl-pds">'</span>3<span class="pl-pds">'</span></span>
-<span class="pl-ent">services</span>:
-  <span class="pl-ent">my-app</span>:
-    <span class="pl-ent">image</span>: <span class="pl-s">myusername/my-app:1.0.0</span>
-    <span class="pl-ent">container_name</span>: <span class="pl-s">my-app-container</span>
-    <span class="pl-ent">ports</span>:
-      - <span class="pl-s"><span class="pl-pds">"</span>8080:3000<span class="pl-pds">"</span></span>
-    <span class="pl-ent">restart</span>: <span class="pl-s">always</span></pre></div>
+<pre lang="yaml" class="notranslate"><code class="notranslate">version: '3'
+services:
+  my-app:
+    image: myusername/my-app:1.0.0
+    container_name: my-app-container
+    ports:
+      - "8080:3000"
+    restart: always
+</code></pre>
 <p>启动服务：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker-compose up -d
+</code></pre>
 <h5><strong>持续更新镜像</strong></h5>
 <p>可以通过配置 Webhook 或使用 CI/CD 工具（如 GitHub Actions）自动将最新镜像推送到 Docker Hub并更新服务器。</p>
 <h4><strong>5. 定期更新镜像</strong></h4>
@@ -397,16 +430,19 @@ abc12345xyz    myusername/my-app:1.0.0  "npm start"             5 seconds ago   
 <ol>
 <li>
 <p>拉取最新镜像：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker pull <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker pull &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 </li>
 <li>
 <p>停止旧容器并删除：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker stop <span class="pl-k">&lt;</span>容器名<span class="pl-k">&gt;</span>
-docker rm <span class="pl-k">&lt;</span>容器名<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker stop &lt;容器名&gt;
+docker rm &lt;容器名&gt;
+</code></pre>
 </li>
 <li>
 <p>使用新镜像重新运行容器：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker run -d --name <span class="pl-k">&lt;</span>容器名<span class="pl-k">&gt;</span> -p <span class="pl-k">&lt;</span>宿主机端口<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>容器端口<span class="pl-k">&gt;</span> <span class="pl-k">&lt;</span>DockerHub用户名<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>仓库名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker run -d --name &lt;容器名&gt; -p &lt;宿主机端口&gt;:&lt;容器端口&gt; &lt;DockerHub用户名&gt;/&lt;仓库名&gt;:&lt;标签&gt;
+</code></pre>
 </li>
 </ol>
 <hr>
@@ -419,19 +455,25 @@ docker rm <span class="pl-k">&lt;</span>容器名<span class="pl-k">&gt;</span><
 <p>如果需要将镜像上传到阿里云容器镜像服务（ACR），请按照以下步骤操作：</p>
 <h4><strong>1 登录阿里云容器镜像服务</strong></h4>
 <p>在本地或服务器上使用 <code class="notranslate">docker login</code> 登录阿里云 ACR：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker login --username=<span class="pl-k">&lt;</span>阿里云账号或子账号<span class="pl-k">&gt;</span> registry.cn-<span class="pl-k">&lt;</span>地域<span class="pl-k">&gt;</span>.aliyuncs.com</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker login --username=&lt;阿里云账号或子账号&gt; registry.cn-&lt;地域&gt;.aliyuncs.com
+</code></pre>
 <p>例如：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker login --username=myusername registry.cn-shanghai.aliyuncs.com</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker login --username=myusername registry.cn-shanghai.aliyuncs.com
+</code></pre>
 <h4><strong>2 给镜像打标签</strong></h4>
 <p>为镜像添加阿里云 ACR 的标签：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker tag <span class="pl-k">&lt;</span>镜像名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span> <span class="pl-k">&lt;</span>阿里云镜像仓库地址<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>命名空间<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>镜像名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker tag &lt;镜像名&gt;:&lt;标签&gt; &lt;阿里云镜像仓库地址&gt;/&lt;命名空间&gt;/&lt;镜像名&gt;:&lt;标签&gt;
+</code></pre>
 <p>例如：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker tag my_image:latest registry.cn-shanghai.aliyuncs.com/my_namespace/my_image:latest</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker tag my_image:latest registry.cn-shanghai.aliyuncs.com/my_namespace/my_image:latest
+</code></pre>
 <h4><strong>3 推送镜像到 ACR</strong></h4>
 <p>推送镜像到阿里云 ACR：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker push <span class="pl-k">&lt;</span>阿里云镜像仓库地址<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>命名空间<span class="pl-k">&gt;</span>/<span class="pl-k">&lt;</span>镜像名<span class="pl-k">&gt;</span>:<span class="pl-k">&lt;</span>标签<span class="pl-k">&gt;</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker push &lt;阿里云镜像仓库地址&gt;/&lt;命名空间&gt;/&lt;镜像名&gt;:&lt;标签&gt;
+</code></pre>
 <p>例如：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker push registry.cn-shanghai.aliyuncs.com/my_namespace/my_image:latest</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker push registry.cn-shanghai.aliyuncs.com/my_namespace/my_image:latest
+</code></pre>
 <hr></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
