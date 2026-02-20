@@ -387,7 +387,7 @@ size_t cobsDecode(const uint8_t *buffer, size_t length, void *data)
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90Python%E3%80%91%20-ji-lu-yi-xie-hao-yong-de-dong-xi.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
 <title>【Python】 记录一些好用的东西</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -455,34 +455,40 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><h1>1.  logging</h1>
 <p>如果想要log记录在同一个文件中，并且终端也能输出</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">logging</span>
+<pre lang="python" class="notranslate"><code class="notranslate">
+import logging
 
-<span class="pl-c"># 配置日志</span>
-<span class="pl-c"># 配置日志记录</span>
-<span class="pl-s1">logging</span>.<span class="pl-c1">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-c1">DEBUG</span>,
-                    <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'[%(asctime)s] %(name)s [%(levelname)s]: %(message)s'</span>,
-                    <span class="pl-s1">handlers</span><span class="pl-c1">=</span>[
-                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">'raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
-                        <span class="pl-s1">logging</span>.<span class="pl-c1">StreamHandler</span>()
+# 配置日志
+# 配置日志记录
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',
+                    handlers=[
+                        logging.FileHandler('raspberry_control.log', mode='a'),
+                        logging.StreamHandler()
                     ])
 
-<span class="pl-c"># 创建一个logger</span>
-<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-c1">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
+# 创建一个logger
+log = logging.getLogger(__name__)
+
+</code></pre>
 <p>如果想要每次运行记录一个不同的log文件</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">time</span>
-<span class="pl-k">import</span> <span class="pl-s1">logging</span>
+<pre lang="python" class="notranslate"><code class="notranslate">
+import time
+import logging
 
-<span class="pl-c"># 配置日志</span>
-<span class="pl-c"># 配置日志记录</span>
-<span class="pl-s1">logging</span>.<span class="pl-c1">basicConfig</span>(<span class="pl-s1">level</span><span class="pl-c1">=</span><span class="pl-s1">logging</span>.<span class="pl-c1">DEBUG</span>,
-                    <span class="pl-s1">format</span><span class="pl-c1">=</span><span class="pl-s">'[%(asctime)s] %(name)s [%(levelname)s]: %(message)s'</span>,
-                    <span class="pl-s1">handlers</span><span class="pl-c1">=</span>[
-                        <span class="pl-s1">logging</span>.<span class="pl-c1">FileHandler</span>(<span class="pl-s">f'log/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">time</span>.<span class="pl-c1">strftime</span>(<span class="pl-s">"%Y-%m-%d_%H-%M-%S"</span>)<span class="pl-kos">}</span></span> raspberry_control.log'</span>, <span class="pl-s1">mode</span><span class="pl-c1">=</span><span class="pl-s">'a'</span>),
-                        <span class="pl-s1">logging</span>.<span class="pl-c1">StreamHandler</span>()
+# 配置日志
+# 配置日志记录
+logging.basicConfig(level=logging.DEBUG,
+                    format='[%(asctime)s] %(name)s [%(levelname)s]: %(message)s',
+                    handlers=[
+                        logging.FileHandler(f'log/{time.strftime("%Y-%m-%d_%H-%M-%S")} raspberry_control.log', mode='a'),
+                        logging.StreamHandler()
                     ])
 
-<span class="pl-c"># 创建一个logger</span>
-<span class="pl-s1">log</span> <span class="pl-c1">=</span> <span class="pl-s1">logging</span>.<span class="pl-c1">getLogger</span>(<span class="pl-s1">__name__</span>)</pre></div>
+# 创建一个logger
+log = logging.getLogger(__name__)
+
+</code></pre>
 <h1>2. 树莓派开机启动脚本</h1>
 <blockquote>
 <p>网上有很多各种教程，只记录一个实测的可靠方法，和启动后手动通过终端打开效果基本一致<br>
@@ -524,15 +530,18 @@ StartupNotify=true
 <blockquote>
 <p><a href="https://blog.csdn.net/u012206617/article/details/114326884" rel="nofollow">https://blog.csdn.net/u012206617/article/details/114326884</a></p>
 </blockquote>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-k">import</span> <span class="pl-s1">ast</span>
-<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user</span> <span class="pl-c1">=</span> <span class="pl-s">'{"name" : "john", "gender" : "male", "age": 28}'</span>
-<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-c1">literal_eval</span>(<span class="pl-s1">user</span>)
-<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span>
-{<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}
-<span class="pl-s1">user_info</span> <span class="pl-c1">=</span> <span class="pl-s">"{'name' : 'john', 'gender' : 'male', 'age': 28}"</span>
-<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span> <span class="pl-c1">=</span> <span class="pl-s1">ast</span>.<span class="pl-c1">literal_eval</span>(<span class="pl-s1">user</span>)
-<span class="pl-c1">&gt;</span><span class="pl-c1">&gt;&gt;</span> <span class="pl-s1">user_dict</span>
-{<span class="pl-s">'gender'</span>: <span class="pl-s">'male'</span>, <span class="pl-s">'age'</span>: <span class="pl-c1">28</span>, <span class="pl-s">'name'</span>: <span class="pl-s">'john'</span>}</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">
+&gt;&gt;&gt; import ast
+&gt;&gt;&gt; user = '{"name" : "john", "gender" : "male", "age": 28}'
+&gt;&gt;&gt; user_dict = ast.literal_eval(user)
+&gt;&gt;&gt; user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+user_info = "{'name' : 'john', 'gender' : 'male', 'age': 28}"
+&gt;&gt;&gt; user_dict = ast.literal_eval(user)
+&gt;&gt;&gt; user_dict
+{'gender': 'male', 'age': 28, 'name': 'john'}
+
+</code></pre>
 <blockquote>
 <p>附上字典用法<br>
 <a href="https://www.runoob.com/python/python-dictionary.html" rel="nofollow">https://www.runoob.com/python/python-dictionary.html</a></p>
@@ -551,73 +560,74 @@ StartupNotify=true
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9"><img src="https://github.com/user-attachments/assets/88fac755-0db4-410f-87fe-8c552347ccb9" alt="image" style="max-width: 100%;"></a><br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2"><img src="https://github.com/user-attachments/assets/da179016-86c9-4aef-90dd-aeb10695e0f2" alt="image" style="max-width: 100%;"></a><br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18"><img src="https://github.com/user-attachments/assets/f82fc340-e2ec-461b-833c-9a1771d64b18" alt="image" style="max-width: 100%;"></a></p>
-<div class="highlight highlight-source-c"><pre class="notranslate"><span class="pl-k">#include</span> <span class="pl-s">&lt;stddef.h&gt;</span>
-<span class="pl-k">#include</span> <span class="pl-s">&lt;stdint.h&gt;</span>
-<span class="pl-k">#include</span> <span class="pl-s">&lt;assert.h&gt;</span>
+<pre lang="C" class="notranslate"><code class="notranslate">#include &lt;stddef.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;assert.h&gt;
 
-<span class="pl-c">/** COBS encode data to buffer</span>
-<span class="pl-c">	@param data Pointer to input data to encode</span>
-<span class="pl-c">	@param length Number of bytes to encode</span>
-<span class="pl-c">	@param buffer Pointer to encoded output buffer</span>
-<span class="pl-c">	@return Encoded buffer length in bytes</span>
-<span class="pl-c">	@note Does not output delimiter byte</span>
-<span class="pl-c">*/</span>
-<span class="pl-smi">size_t</span> <span class="pl-en">cobsEncode</span>(<span class="pl-k">const</span> <span class="pl-smi">void</span> <span class="pl-c1">*</span><span class="pl-s1">data</span>, <span class="pl-smi">size_t</span> <span class="pl-s1">length</span>, <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">buffer</span>)
+/** COBS encode data to buffer
+	@param data Pointer to input data to encode
+	@param length Number of bytes to encode
+	@param buffer Pointer to encoded output buffer
+	@return Encoded buffer length in bytes
+	@note Does not output delimiter byte
+*/
+size_t cobsEncode(const void *data, size_t length, uint8_t *buffer)
 {
-	<span class="pl-en">assert</span>(<span class="pl-s1">data</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">buffer</span>);
+	assert(data &amp;&amp; buffer);
 
-	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">encode</span> <span class="pl-c1">=</span> <span class="pl-s1">buffer</span>; <span class="pl-c">// Encoded byte pointer</span>
-	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">encode</span><span class="pl-c1">++</span>; <span class="pl-c">// Output code pointer</span>
-	<span class="pl-smi">uint8_t</span> <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>; <span class="pl-c">// Code value</span>
+	uint8_t *encode = buffer; // Encoded byte pointer
+	uint8_t *codep = encode++; // Output code pointer
+	uint8_t code = 1; // Code value
 
-	<span class="pl-k">for</span> (<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">=</span> (<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>; <span class="pl-s1">length</span><span class="pl-c1">--</span>; <span class="pl-c1">++</span><span class="pl-s1">byte</span>)
+	for (const uint8_t *byte = (const uint8_t *)data; length--; ++byte)
 	{
-		<span class="pl-k">if</span> (<span class="pl-c1">*</span><span class="pl-s1">byte</span>) <span class="pl-c">// Byte not zero, write it</span>
-			<span class="pl-c1">*</span><span class="pl-s1">encode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span>, <span class="pl-c1">++</span><span class="pl-s1">code</span>;
+		if (*byte) // Byte not zero, write it
+			*encode++ = *byte, ++code;
 
-		<span class="pl-k">if</span> (!<span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">||</span> <span class="pl-s1">code</span> <span class="pl-c1">==</span> <span class="pl-c1">0xff</span>) <span class="pl-c">// Input is zero or block completed, restart</span>
+		if (!*byte || code == 0xff) // Input is zero or block completed, restart
 		{
-			<span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">code</span>, <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>, <span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">encode</span>;
-			<span class="pl-k">if</span> (!<span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">||</span> <span class="pl-s1">length</span>)
-				<span class="pl-c1">++</span><span class="pl-s1">encode</span>;
+			*codep = code, code = 1, codep = encode;
+			if (!*byte || length)
+				++encode;
 		}
 	}
-	<span class="pl-c1">*</span><span class="pl-s1">codep</span> <span class="pl-c1">=</span> <span class="pl-s1">code</span>; <span class="pl-c">// Write final code value</span>
+	*codep = code; // Write final code value
 
-	<span class="pl-k">return</span> (<span class="pl-smi">size_t</span>)(<span class="pl-s1">encode</span> <span class="pl-c1">-</span> <span class="pl-s1">buffer</span>);
+	return (size_t)(encode - buffer);
 }
 
-<span class="pl-c">/** COBS decode data from buffer</span>
-<span class="pl-c">	@param buffer Pointer to encoded input bytes</span>
-<span class="pl-c">	@param length Number of bytes to decode</span>
-<span class="pl-c">	@param data Pointer to decoded output data</span>
-<span class="pl-c">	@return Number of bytes successfully decoded</span>
-<span class="pl-c">	@note Stops decoding if delimiter byte is found</span>
-<span class="pl-c">*/</span>
-<span class="pl-smi">size_t</span> <span class="pl-en">cobsDecode</span>(<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">buffer</span>, <span class="pl-smi">size_t</span> <span class="pl-s1">length</span>, <span class="pl-smi">void</span> <span class="pl-c1">*</span><span class="pl-s1">data</span>)
+/** COBS decode data from buffer
+	@param buffer Pointer to encoded input bytes
+	@param length Number of bytes to decode
+	@param data Pointer to decoded output data
+	@return Number of bytes successfully decoded
+	@note Stops decoding if delimiter byte is found
+*/
+size_t cobsDecode(const uint8_t *buffer, size_t length, void *data)
 {
-	<span class="pl-en">assert</span>(<span class="pl-s1">buffer</span> <span class="pl-c1">&amp;&amp;</span> <span class="pl-s1">data</span>);
+	assert(buffer &amp;&amp; data);
 
-	<span class="pl-k">const</span> <span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span> <span class="pl-c1">=</span> <span class="pl-s1">buffer</span>; <span class="pl-c">// Encoded input byte pointer</span>
-	<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span><span class="pl-s1">decode</span> <span class="pl-c1">=</span> (<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>; <span class="pl-c">// Decoded output byte pointer</span>
+	const uint8_t *byte = buffer; // Encoded input byte pointer
+	uint8_t *decode = (uint8_t *)data; // Decoded output byte pointer
 
-	<span class="pl-k">for</span> (<span class="pl-smi">uint8_t</span> <span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-c1">0xff</span>, <span class="pl-s1">block</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>; <span class="pl-s1">byte</span> <span class="pl-c1">&lt;</span> <span class="pl-s1">buffer</span> <span class="pl-c1">+</span> <span class="pl-s1">length</span>; <span class="pl-c1">--</span><span class="pl-s1">block</span>)
+	for (uint8_t code = 0xff, block = 0; byte &lt; buffer + length; --block)
 	{
-		<span class="pl-k">if</span> (<span class="pl-s1">block</span>) <span class="pl-c">// Decode block byte</span>
-			<span class="pl-c1">*</span><span class="pl-s1">decode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span><span class="pl-c1">++</span>;
-		<span class="pl-k">else</span>
+		if (block) // Decode block byte
+			*decode++ = *byte++;
+		else
 		{
-			<span class="pl-s1">block</span> <span class="pl-c1">=</span> <span class="pl-c1">*</span><span class="pl-s1">byte</span><span class="pl-c1">++</span>;             <span class="pl-c">// Fetch the next block length</span>
-			<span class="pl-k">if</span> (<span class="pl-s1">block</span> <span class="pl-c1">&amp;&amp;</span> (<span class="pl-s1">code</span> <span class="pl-c1">!=</span> <span class="pl-c1">0xff</span>)) <span class="pl-c">// Encoded zero, write it unless it's delimiter.</span>
-				<span class="pl-c1">*</span><span class="pl-s1">decode</span><span class="pl-c1">++</span> <span class="pl-c1">=</span> <span class="pl-c1">0</span>;
-			<span class="pl-s1">code</span> <span class="pl-c1">=</span> <span class="pl-s1">block</span>;
-			<span class="pl-k">if</span> (!<span class="pl-s1">code</span>) <span class="pl-c">// Delimiter code found</span>
-				<span class="pl-k">break</span>;
+			block = *byte++;             // Fetch the next block length
+			if (block &amp;&amp; (code != 0xff)) // Encoded zero, write it unless it's delimiter.
+				*decode++ = 0;
+			code = block;
+			if (!code) // Delimiter code found
+				break;
 		}
 	}
 
-	<span class="pl-k">return</span> (<span class="pl-smi">size_t</span>)(<span class="pl-s1">decode</span> <span class="pl-c1">-</span> (<span class="pl-smi">uint8_t</span> <span class="pl-c1">*</span>)<span class="pl-s1">data</span>);
-}</pre></div></div>
+	return (size_t)(decode - (uint8_t *)data);
+}
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
