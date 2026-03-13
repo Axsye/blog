@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%E3%80%90-nei-wang-chuan-tou-%E3%80%91%20Zerotier%20OpenVPN.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
 <title>【内网穿透】 Zerotier OpenVPN</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -114,24 +114,23 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 Error retrieving list of networks on this controller: RequestError: connect ECONNREFUSED 127.0.0.1:9994<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/59d6c47f-0915-4f4b-b1ec-e2458cd9bfc1"><img src="https://github.com/user-attachments/assets/59d6c47f-0915-4f4b-b1ec-e2458cd9bfc1" alt="image" style="max-width: 100%;"></a></p>
 <p>这是后来从deploy.sh中截取的命令，猜测对应替换掉其中的地址可以避免上述报错，但是由于这个镜像不能解析域名，整个项目都是为这个一键部署的脚本适配，自己通过docker命令，发现作者埋了一堆坑，根本发挥不出docker作用，属实过于飞舞。域名解析有多个issue提议，但是甚至不在开发计划中，疑似作者想通过卖他自己的服务赚米，不想尝试了</p>
-<pre lang="powershell" class="notranslate"><code class="notranslate">docker run -d \
-        --name ${CONTAINER_NAME} \
-        -p ${ZT_PORT}:${ZT_PORT} \
-        -p ${ZT_PORT}:${ZT_PORT}/udp \
-        -p ${API_PORT}:${API_PORT} \
-        -p ${FILE_PORT}:${FILE_PORT} \
-        -e IP_ADDR4=${ipv4} \
-        -e IP_ADDR6=${ipv6} \
-        -e ZT_PORT=${ZT_PORT} \
-        -e API_PORT=${API_PORT} \
-        -e FILE_SERVER_PORT=${FILE_PORT} \
-        -v ${DIST_PATH}:/app/dist \
-        -v ${ZTNCUI_PATH}:/app/ztncui \
-        -v ${ZEROTIER_PATH}/one:/var/lib/zerotier-one \
-        -v ${CONFIG_PATH}:/app/config \
-        --restart unless-stopped \
-        ${DOCKER_IMAGE}
-</code></pre>
+<div class="highlight highlight-source-powershell"><pre class="notranslate">docker run <span class="pl-k">-</span>d \
+        <span class="pl-k">--</span>name <span class="pl-smi">${CONTAINER_NAME}</span> \
+        <span class="pl-k">-</span>p <span class="pl-smi">${ZT_PORT}</span>:<span class="pl-smi">${ZT_PORT}</span> \
+        <span class="pl-k">-</span>p <span class="pl-smi">${ZT_PORT}</span>:<span class="pl-smi">${ZT_PORT}</span><span class="pl-k">/</span>udp \
+        <span class="pl-k">-</span>p <span class="pl-smi">${API_PORT}</span>:<span class="pl-smi">${API_PORT}</span> \
+        <span class="pl-k">-</span>p <span class="pl-smi">${FILE_PORT}</span>:<span class="pl-smi">${FILE_PORT}</span> \
+        <span class="pl-k">-</span>e IP_ADDR4<span class="pl-k">=</span><span class="pl-smi">${ipv4}</span> \
+        <span class="pl-k">-</span>e IP_ADDR6<span class="pl-k">=</span><span class="pl-smi">${ipv6}</span> \
+        <span class="pl-k">-</span>e ZT_PORT<span class="pl-k">=</span><span class="pl-smi">${ZT_PORT}</span> \
+        <span class="pl-k">-</span>e API_PORT<span class="pl-k">=</span><span class="pl-smi">${API_PORT}</span> \
+        <span class="pl-k">-</span>e FILE_SERVER_PORT<span class="pl-k">=</span><span class="pl-smi">${FILE_PORT}</span> \
+        <span class="pl-k">-</span>v <span class="pl-smi">${DIST_PATH}</span>:<span class="pl-k">/</span>app<span class="pl-k">/</span>dist \
+        <span class="pl-k">-</span>v <span class="pl-smi">${ZTNCUI_PATH}</span>:<span class="pl-k">/</span>app<span class="pl-k">/</span>ztncui \
+        <span class="pl-k">-</span>v <span class="pl-smi">${ZEROTIER_PATH}</span><span class="pl-k">/</span>one:<span class="pl-k">/</span><span class="pl-k">var</span><span class="pl-k">/</span>lib<span class="pl-k">/</span>zerotier<span class="pl-k">-</span>one \
+        <span class="pl-k">-</span>v <span class="pl-smi">${CONFIG_PATH}</span>:<span class="pl-k">/</span>app<span class="pl-k">/</span>config \
+        <span class="pl-k">--</span>restart unless<span class="pl-k">-</span>stopped \
+        <span class="pl-smi">${DOCKER_IMAGE}</span></pre></div>
 <h1>2. OpenVPN</h1>
 <p>优点：全部流量都走转发，在国内有公网服务器的情况下非常稳定，且支持域名解析<br>
 缺点：延迟比P2P大，带宽收到服务器的限制，服务端配置麻烦，客户端需要证书授权麻烦</p>
