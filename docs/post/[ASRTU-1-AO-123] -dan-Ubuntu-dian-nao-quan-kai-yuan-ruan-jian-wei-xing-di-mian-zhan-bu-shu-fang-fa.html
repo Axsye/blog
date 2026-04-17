@@ -323,7 +323,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589"><img width="2000" height="2000" alt="Image" src="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589" style="max-width: 100%; height: auto; max-height: 2000px;"></a></p>
+<div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589"><img width="2000" height="2000" alt="Image" src="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589" style="max-width: 100%; height: auto; max-height: 2000px;; aspect-ratio: 2000 / 2000; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h1>1. 硬件配置</h1>
 <p>电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口<br>
 旋转器：G5500 控制接口 GS-2320B 通过USB连接到电脑<br>
@@ -350,22 +350,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>3.1. GNURadio相关配置</h2>
 <p>9700接上USB，选择IF OUT，电脑上用arecord -l显示声卡<br>
 card 1，device 0 则gnuradio中设置hw:1,0</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8898cf93-f299-439f-b8e9-5f30c5175b5d"><img width="218" height="99" alt="Image" src="https://github.com/user-attachments/assets/8898cf93-f299-439f-b8e9-5f30c5175b5d" style="max-width: 100%; height: auto; max-height: 99px;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ab29c1a-7b29-4885-a1f7-da812341e1b0"><img width="231" height="117" alt="Image" src="https://github.com/user-attachments/assets/9ab29c1a-7b29-4885-a1f7-da812341e1b0" style="max-width: 100%; height: auto; max-height: 117px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8898cf93-f299-439f-b8e9-5f30c5175b5d"><img width="218" height="99" alt="Image" src="https://github.com/user-attachments/assets/8898cf93-f299-439f-b8e9-5f30c5175b5d" style="max-width: 100%; height: auto; max-height: 99px;; aspect-ratio: 218 / 99; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ab29c1a-7b29-4885-a1f7-da812341e1b0"><img width="231" height="117" alt="Image" src="https://github.com/user-attachments/assets/9ab29c1a-7b29-4885-a1f7-da812341e1b0" style="max-width: 100%; height: auto; max-height: 117px;; aspect-ratio: 231 / 117; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>记得开电脑声音……</p>
 <p>如果遇到声卡占用，可以<code class="notranslate">sudo asla force-reload</code></p>
 <p>PTT要选择9700 ptt对应的端口</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03"><img width="266" height="120" alt="Image" src="https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03" style="max-width: 100%; height: auto; max-height: 120px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03"><img width="266" height="120" alt="Image" src="https://github.com/user-attachments/assets/a8d4a52b-3b83-46af-8912-94e7fd7cdd03" style="max-width: 100%; height: auto; max-height: 120px;; aspect-ratio: 266 / 120; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h2>3.2. Gpredict相关配置</h2>
 <p>livecd中自带了gpredict和hamlib，gpredict对旋转器和电台的控制均通过hamlib实现</p>
 <p>首先需要配置hamlib</p>
 <h3>3.2.1 旋转器配置</h3>
 <p>首先通过<code class="notranslate">rotctl -l</code>列出所有支持的旋转器</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/132e8b6c-2807-497a-9e4b-84013038644b"><img width="529" height="348" alt="Image" src="https://github.com/user-attachments/assets/132e8b6c-2807-497a-9e4b-84013038644b" style="max-width: 100%; height: auto; max-height: 348px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/132e8b6c-2807-497a-9e4b-84013038644b"><img width="529" height="348" alt="Image" src="https://github.com/user-attachments/assets/132e8b6c-2807-497a-9e4b-84013038644b" style="max-width: 100%; height: auto; max-height: 348px;; aspect-ratio: 529 / 348; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>可以看到GS-232B是603</p>
 <blockquote>
 <p>居然还支持一些赤道仪<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9b22b554-f66e-405e-8127-8f824420f765"><img width="532" height="341" alt="Image" src="https://github.com/user-attachments/assets/9b22b554-f66e-405e-8127-8f824420f765" style="max-width: 100%; height: auto; max-height: 341px;"></a></p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9b22b554-f66e-405e-8127-8f824420f765"><img width="532" height="341" alt="Image" src="https://github.com/user-attachments/assets/9b22b554-f66e-405e-8127-8f824420f765" style="max-width: 100%; height: auto; max-height: 341px;; aspect-ratio: 532 / 341; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 </blockquote>
 <p>然后运行命令</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">rotctld -m 603 -r /dev/ttyUSB2</pre></div>
@@ -374,16 +374,16 @@ card 1，device 0 则gnuradio中设置hw:1,0</p>
 </blockquote>
 <p>启动旋转器控制的监听，将会自动监听gpredict的输出给旋转器</p>
 <p>然后配置gpredict</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/41b56c37-3e6a-4a18-b7d9-dd9939810655"><img width="1138" height="907" alt="Image" src="https://github.com/user-attachments/assets/41b56c37-3e6a-4a18-b7d9-dd9939810655" style="max-width: 100%; height: auto; max-height: 907px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/41b56c37-3e6a-4a18-b7d9-dd9939810655"><img width="1138" height="907" alt="Image" src="https://github.com/user-attachments/assets/41b56c37-3e6a-4a18-b7d9-dd9939810655" style="max-width: 100%; height: auto; max-height: 907px;; aspect-ratio: 1138 / 907; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <blockquote>
 <p>locakhost和4533是hamlib默认的</p>
 </blockquote>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/937cb2f2-f2ad-4578-b489-39f328ca1cd6"><img width="794" height="444" alt="Image" src="https://github.com/user-attachments/assets/937cb2f2-f2ad-4578-b489-39f328ca1cd6" style="max-width: 100%; height: auto; max-height: 444px;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bdbd3645-5cff-4e79-8c01-0b455659b578"><img width="1193" height="525" alt="Image" src="https://github.com/user-attachments/assets/bdbd3645-5cff-4e79-8c01-0b455659b578" style="max-width: 100%; height: auto; max-height: 525px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/937cb2f2-f2ad-4578-b489-39f328ca1cd6"><img width="794" height="444" alt="Image" src="https://github.com/user-attachments/assets/937cb2f2-f2ad-4578-b489-39f328ca1cd6" style="max-width: 100%; height: auto; max-height: 444px;; aspect-ratio: 794 / 444; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bdbd3645-5cff-4e79-8c01-0b455659b578"><img width="1193" height="525" alt="Image" src="https://github.com/user-attachments/assets/bdbd3645-5cff-4e79-8c01-0b455659b578" style="max-width: 100%; height: auto; max-height: 525px;; aspect-ratio: 1193 / 525; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>选择Engage，过一段时间不会自动跳掉即表明配置成功</p>
 <h3>3.2.2 电台配置</h3>
 <p>通过<code class="notranslate">rigctl -l</code>显示支持的电台</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c4e35127-e20e-4026-b923-fb0815ef2a7f"><img width="532" height="372" alt="Image" src="https://github.com/user-attachments/assets/c4e35127-e20e-4026-b923-fb0815ef2a7f" style="max-width: 100%; height: auto; max-height: 372px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c4e35127-e20e-4026-b923-fb0815ef2a7f"><img width="532" height="372" alt="Image" src="https://github.com/user-attachments/assets/c4e35127-e20e-4026-b923-fb0815ef2a7f" style="max-width: 100%; height: auto; max-height: 372px;; aspect-ratio: 532 / 372; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>可以看到9700是3081</p>
 <p>然后运行一下指令</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">rigctld -m 3081 -s 9600 -c 162 -r /dev/ttyUSB3</pre></div>
@@ -394,10 +394,10 @@ card 1，device 0 则gnuradio中设置hw:1,0</p>
 </blockquote>
 <p>这样就启动了hamlib控制电台的监听，自动监听gpredict的控制</p>
 <p>然后配置gpredict</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2526a99b-e8aa-4eb0-abce-ecb8ee9625cd"><img width="1138" height="908" alt="Image" src="https://github.com/user-attachments/assets/2526a99b-e8aa-4eb0-abce-ecb8ee9625cd" style="max-width: 100%; height: auto; max-height: 908px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2526a99b-e8aa-4eb0-abce-ecb8ee9625cd"><img width="1138" height="908" alt="Image" src="https://github.com/user-attachments/assets/2526a99b-e8aa-4eb0-abce-ecb8ee9625cd" style="max-width: 100%; height: auto; max-height: 908px;; aspect-ratio: 1138 / 908; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751"><img width="794" height="444" alt="Image" src="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751" style="max-width: 100%; height: auto; max-height: 444px;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b"><img width="1257" height="642" alt="Image" src="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b" style="max-width: 100%; height: auto; max-height: 642px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751"><img width="794" height="444" alt="Image" src="https://github.com/user-attachments/assets/c8418be7-5c98-41c8-a7bc-a508c4cf0751" style="max-width: 100%; height: auto; max-height: 444px;; aspect-ratio: 794 / 444; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b"><img width="1257" height="642" alt="Image" src="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b" style="max-width: 100%; height: auto; max-height: 642px;; aspect-ratio: 1257 / 642; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>点击engage，过一段时间发现不会自动跳掉即配置成功</p>
 <h1>4. PS</h1>
 <p>善用hamlib的 -h 可以解决不少问题</p></div>
