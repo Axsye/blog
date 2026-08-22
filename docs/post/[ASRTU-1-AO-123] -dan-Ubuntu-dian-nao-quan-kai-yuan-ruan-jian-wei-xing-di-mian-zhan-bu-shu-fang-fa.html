@@ -12,6 +12,8 @@
     </script>
 <meta name="description" content="<img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' />
 
+<img width='889' height='459' alt='Image' src='https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448' />
+
 # 1. 硬件配置
 
 电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口
@@ -130,10 +132,65 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 点击engage，过一段时间发现不会自动跳掉即配置成功
 
 # 4. PS
-善用hamlib的 -h 可以解决不少问题。">
+善用hamlib的 -h 可以解决不少问题
+
+# 5.其他的坑
+ 
+## 5.1设置完地面站地址之后，一定还要在configure里面加上
+
+<img width='380' height='358' alt='Image' src='https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc' />
+
+## 5.2 pulseaudio最好直接干掉
+
+```bash
+
+systemctl --user stop pulseaudio.socket
+systemctl --user stop pulseaudio.service
+
+systemctl --user disable pulseaudio.socket
+systemctl --user disable pulseaudio.service
+
+```
+
+## 5.3 .desktop问题
+
+修改目录所有者，然后给权限
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ sudo chown -R ubuntu:ubuntu ~/Desktop
+ubuntu@ubuntu-PC-MKM27CZG1:~$ ls -ld ~/Desktop
+drwxrwxrwx 3 ubuntu ubuntu 4096  8月  4 20:51 /home/ubuntu/Desktop
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ chmod 755 ~/Desktop
+
+```
+
+## 5.4 USB不确定可以用lsusb辅助
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 014: ID 08bb:2901 Texas Instruments PCM2901 Audio Codec
+Bus 001 Device 013: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 012: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 011: ID 0451:2046 Texas Instruments, Inc. TUSB2046 Hub
+Bus 001 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 016: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 015: ID 093a:2510 Pixart Imaging, Inc. Optical Mouse
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+```
+。">
 <meta property="og:title" content="[ASRTU-1/AO-123] 单Ubuntu电脑全开源软件卫星地面站部署方法">
 <meta property="og:description" content="<img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' />
 
+<img width='889' height='459' alt='Image' src='https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448' />
+
 # 1. 硬件配置
 
 电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口
@@ -252,7 +309,60 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 点击engage，过一段时间发现不会自动跳掉即配置成功
 
 # 4. PS
-善用hamlib的 -h 可以解决不少问题。">
+善用hamlib的 -h 可以解决不少问题
+
+# 5.其他的坑
+ 
+## 5.1设置完地面站地址之后，一定还要在configure里面加上
+
+<img width='380' height='358' alt='Image' src='https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc' />
+
+## 5.2 pulseaudio最好直接干掉
+
+```bash
+
+systemctl --user stop pulseaudio.socket
+systemctl --user stop pulseaudio.service
+
+systemctl --user disable pulseaudio.socket
+systemctl --user disable pulseaudio.service
+
+```
+
+## 5.3 .desktop问题
+
+修改目录所有者，然后给权限
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ sudo chown -R ubuntu:ubuntu ~/Desktop
+ubuntu@ubuntu-PC-MKM27CZG1:~$ ls -ld ~/Desktop
+drwxrwxrwx 3 ubuntu ubuntu 4096  8月  4 20:51 /home/ubuntu/Desktop
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ chmod 755 ~/Desktop
+
+```
+
+## 5.4 USB不确定可以用lsusb辅助
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 014: ID 08bb:2901 Texas Instruments PCM2901 Audio Codec
+Bus 001 Device 013: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 012: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 011: ID 0451:2046 Texas Instruments, Inc. TUSB2046 Hub
+Bus 001 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 016: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 015: ID 093a:2510 Pixart Imaging, Inc. Optical Mouse
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+```
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/64404224?s=400&u=98b0649d0de846e66310504be3905c6eaa0dd178&v=4">
@@ -324,6 +434,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589"><img width="2000" height="1102" alt="Image" src="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589" style="max-width: 100%; height: auto; max-height: 1102px;; aspect-ratio: 2000 / 1102; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448"><img width="889" height="459" alt="Image" src="https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448" style="max-width: 100%; height: auto; max-height: 459px;; aspect-ratio: 889 / 459; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <h1>1. 硬件配置</h1>
 <p>电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口<br>
 旋转器：G5500 控制接口 GS-2320B 通过USB连接到电脑<br>
@@ -400,7 +511,40 @@ card 1，device 0 则gnuradio中设置hw:1,0</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b"><img width="1257" height="642" alt="Image" src="https://github.com/user-attachments/assets/57d775dc-4b75-4726-a1ec-fe2bbadaf78b" style="max-width: 100%; height: auto; max-height: 642px;; aspect-ratio: 1257 / 642; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <p>点击engage，过一段时间发现不会自动跳掉即配置成功</p>
 <h1>4. PS</h1>
-<p>善用hamlib的 -h 可以解决不少问题</p></div>
+<p>善用hamlib的 -h 可以解决不少问题</p>
+<h1>5.其他的坑</h1>
+<h2>5.1设置完地面站地址之后，一定还要在configure里面加上</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc"><img width="380" height="358" alt="Image" src="https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc" style="max-width: 100%; height: auto; max-height: 358px;; aspect-ratio: 380 / 358; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
+<h2>5.2 pulseaudio最好直接干掉</h2>
+<div class="highlight highlight-source-shell"><pre class="notranslate">systemctl --user stop pulseaudio.socket
+systemctl --user stop pulseaudio.service
+
+systemctl --user disable pulseaudio.socket
+systemctl --user disable pulseaudio.service
+</pre></div>
+<h2>5.3 .desktop问题</h2>
+<p>修改目录所有者，然后给权限</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">ubuntu@ubuntu-PC-MKM27CZG1:<span class="pl-k">~</span>$ sudo chown -R ubuntu:ubuntu <span class="pl-k">~</span>/Desktop
+ubuntu@ubuntu-PC-MKM27CZG1:<span class="pl-k">~</span>$ ls -ld <span class="pl-k">~</span>/Desktop
+drwxrwxrwx 3 ubuntu ubuntu 4096  8月  4 20:51 /home/ubuntu/Desktop
+
+ubuntu@ubuntu-PC-MKM27CZG1:<span class="pl-k">~</span>$ chmod 755 <span class="pl-k">~</span>/Desktop
+</pre></div>
+<h2>5.4 USB不确定可以用lsusb辅助</h2>
+<div class="highlight highlight-source-shell"><pre class="notranslate">ubuntu@ubuntu-PC-MKM27CZG1:<span class="pl-k">~</span>$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 014: ID 08bb:2901 Texas Instruments PCM2901 Audio Codec
+Bus 001 Device 013: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 012: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 011: ID 0451:2046 Texas Instruments, Inc. TUSB2046 Hub
+Bus 001 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 016: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 015: ID 093a:2510 Pixart Imaging, Inc. Optical Mouse
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

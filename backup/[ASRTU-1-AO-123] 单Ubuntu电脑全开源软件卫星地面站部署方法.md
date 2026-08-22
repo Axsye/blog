@@ -1,5 +1,7 @@
 <img width="3634" height="2003" alt="Image" src="https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589" />
 
+<img width="889" height="459" alt="Image" src="https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448" />
+
 # 1. 硬件配置
 
 电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口
@@ -119,3 +121,55 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 
 # 4. PS
 善用hamlib的 -h 可以解决不少问题
+
+# 5.其他的坑
+ 
+## 5.1设置完地面站地址之后，一定还要在configure里面加上
+
+<img width="380" height="358" alt="Image" src="https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc" />
+
+## 5.2 pulseaudio最好直接干掉
+
+```bash
+
+systemctl --user stop pulseaudio.socket
+systemctl --user stop pulseaudio.service
+
+systemctl --user disable pulseaudio.socket
+systemctl --user disable pulseaudio.service
+
+```
+
+## 5.3 .desktop问题
+
+修改目录所有者，然后给权限
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ sudo chown -R ubuntu:ubuntu ~/Desktop
+ubuntu@ubuntu-PC-MKM27CZG1:~$ ls -ld ~/Desktop
+drwxrwxrwx 3 ubuntu ubuntu 4096  8月  4 20:51 /home/ubuntu/Desktop
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ chmod 755 ~/Desktop
+
+```
+
+## 5.4 USB不确定可以用lsusb辅助
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 014: ID 08bb:2901 Texas Instruments PCM2901 Audio Codec
+Bus 001 Device 013: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 012: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 011: ID 0451:2046 Texas Instruments, Inc. TUSB2046 Hub
+Bus 001 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 016: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 015: ID 093a:2510 Pixart Imaging, Inc. Optical Mouse
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+```

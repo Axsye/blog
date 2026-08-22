@@ -1,5 +1,64 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Tue, 28 Apr 2026 16:32:39 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>Zotero插件pdf2zh 自己研究了个部署方式</title><link>https://Axsye.github.io/blog/post/Zotero-cha-jian-pdf2zh%20-zi-ji-yan-jiu-le-ge-bu-shu-fang-shi.html</link><description>原始项目
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Koude's Blog</title><link>https://Axsye.github.io/blog</link><description>随便记录一些学习笔记</description><copyright>Koude's Blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/64404224?s=400&amp;u=98b0649d0de846e66310504be3905c6eaa0dd178&amp;v=4</url><title>avatar</title><link>https://Axsye.github.io/blog</link></image><lastBuildDate>Sat, 22 Aug 2026 15:31:40 +0000</lastBuildDate><managingEditor>Koude's Blog</managingEditor><ttl>60</ttl><webMaster>Koude's Blog</webMaster><item><title>常用内容速查-Process进程基础</title><link>https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha--Process-jin-cheng-ji-chu.html</link><description># Linux 学习记录 — Process（进程）
+
+&gt; 本节范围：Linux 进程基础、进程状态、父子进程、`fork/exec/wait`、退出状态、信号、前后台任务、systemd 服务管理、进程权限，以及 File Descriptor 与进程之间的衔接。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha--Process-jin-cheng-ji-chu.html</guid><pubDate>Sat, 22 Aug 2026 15:28:06 +0000</pubDate></item><item><title>常用内容速查-目录结构、设备模型、挂载与文件系统</title><link>https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha---mu-lu-jie-gou-%E3%80%81-she-bei-mo-xing-%E3%80%81-gua-zai-yu-wen-jian-xi-tong.html</link><description># Linux 学习记录：Process 之前总结回顾
+
+&gt; 学习目标：Ubuntu 22.04 主开发环境 + 嵌入式 Linux（Zynq / PolarFire SoC）
+&gt;
+&gt; 本文覆盖范围：从 Linux 文件/权限基础，到目录结构、设备模型、启动流程、rootfs、软件部署、动态库、挂载与文件系统；**不包含 Process（进程）章节之后的内容**。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha---mu-lu-jie-gou-%E3%80%81-she-bei-mo-xing-%E3%80%81-gua-zai-yu-wen-jian-xi-tong.html</guid><pubDate>Sat, 22 Aug 2026 13:42:42 +0000</pubDate></item><item><title>常用内容速查-基础命令部分</title><link>https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha---ji-chu-ming-ling-bu-fen.html</link><description># Linux 基础速查笔记
+
+&gt; 目标：Ubuntu 22.04 开发环境 + 嵌入式 Linux（Zynq / PolarFire SoC）  
+&gt; 标记说明：
+&gt;
+&gt; - **【必记】**：应形成条件反射
+&gt; - **【理解】**：重点掌握原理，不建议死背
+&gt; - **【记忆方法】**：英文全称、缩写或联想
+&gt; - **【嵌入式关联】**：与后续 Zynq / PolarFire SoC 开发相关
+
+---
+
+# 1. `ls -l` 权限字符串
+
+示例：
+
+```text
+-rwxr-xr-x
+```
+
+一共 10 个字符：
+
+```text
+- | rwx | r-x | r-x
+↑    ↑      ↑      ↑
+类型 user  group  others
+```
+
+## 1.1 文件类型
+
+**【必记】**
+
+| 字符 | 英文 | 含义 |
+|---|---|---|
+| `-` | regular file | 普通文件 |
+| `d` | directory | 目录 |
+| `l` | symbolic link | 符号链接 |
+| `c` | character device | 字符设备 |
+| `b` | block device | 块设备 |
+| `p` | pipe / named pipe | 管道 / 命名管道 |
+| `s` | socket | 套接字 |
+
+**【记忆方法】**
+
+```text
+d → directory
+l → link
+c → character
+b → block
+p → pipe
+s → socket
+```
+
+除 `-` 外，基本都来自英文关键词首字母。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/chang-yong-nei-rong-su-cha---ji-chu-ming-ling-bu-fen.html</guid><pubDate>Sat, 22 Aug 2026 09:21:30 +0000</pubDate></item><item><title>Zotero插件pdf2zh 自己研究了个部署方式</title><link>https://Axsye.github.io/blog/post/Zotero-cha-jian-pdf2zh%20-zi-ji-yan-jiu-le-ge-bu-shu-fang-shi.html</link><description>原始项目
 https://github.com/guaguastandup/zotero-pdf2zh?tab=readme-ov-file
 
 起因是不想要每台电脑都部署一遍后端，想着服务器用docker部署就完事了，结果花了一晚上，比一台一台部署浪费时间多多了（悲）
@@ -184,6 +243,8 @@ https://ocw.mit.edu/courses/res-ll-003-build-a-small-radar-system-capable-of-sen
 https://www.youtube.com/watch?v=KSvjJGbFCws
 该项目记录了从头开始构建高分辨率线性扫描相机的过程。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/ji-lu-yi-xie-hao-wan-de-kai-yuan-xiang-mu.html</guid><pubDate>Tue, 29 Jul 2025 10:37:45 +0000</pubDate></item><item><title>[ASRTU-1/AO-123] 单Ubuntu电脑全开源软件卫星地面站部署方法</title><link>https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</link><description>&lt;img width='3634' height='2003' alt='Image' src='https://github.com/user-attachments/assets/bae85381-8970-42c5-a863-7d40803b3589' /&gt;
 
+&lt;img width='889' height='459' alt='Image' src='https://github.com/user-attachments/assets/f2734ccb-1ae0-4b45-bc88-9ec96ca41448' /&gt;
+
 # 1. 硬件配置
 
 电台：IC-9700 USB接IF输出到电脑，同时接USB转CIV到9700的CIV接口
@@ -302,7 +363,60 @@ localhost和4532是hamlib默认的，如果发现上下行相反就切换up/down
 点击engage，过一段时间发现不会自动跳掉即配置成功
 
 # 4. PS
-善用hamlib的 -h 可以解决不少问题。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
+善用hamlib的 -h 可以解决不少问题
+
+# 5.其他的坑
+ 
+## 5.1设置完地面站地址之后，一定还要在configure里面加上
+
+&lt;img width='380' height='358' alt='Image' src='https://github.com/user-attachments/assets/6fc8a0e0-3870-4f8c-bd30-d703195932cc' /&gt;
+
+## 5.2 pulseaudio最好直接干掉
+
+```bash
+
+systemctl --user stop pulseaudio.socket
+systemctl --user stop pulseaudio.service
+
+systemctl --user disable pulseaudio.socket
+systemctl --user disable pulseaudio.service
+
+```
+
+## 5.3 .desktop问题
+
+修改目录所有者，然后给权限
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ sudo chown -R ubuntu:ubuntu ~/Desktop
+ubuntu@ubuntu-PC-MKM27CZG1:~$ ls -ld ~/Desktop
+drwxrwxrwx 3 ubuntu ubuntu 4096  8月  4 20:51 /home/ubuntu/Desktop
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ chmod 755 ~/Desktop
+
+```
+
+## 5.4 USB不确定可以用lsusb辅助
+
+```bash
+
+ubuntu@ubuntu-PC-MKM27CZG1:~$ lsusb
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 005: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 014: ID 08bb:2901 Texas Instruments PCM2901 Audio Codec
+Bus 001 Device 013: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 012: ID 10c4:ea60 Silicon Labs CP210x UART Bridge
+Bus 001 Device 011: ID 0451:2046 Texas Instruments, Inc. TUSB2046 Hub
+Bus 001 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Bus 001 Device 016: ID 1c4f:0002 SiGma Micro Keyboard TRACER Gamma Ivory
+Bus 001 Device 015: ID 093a:2510 Pixart Imaging, Inc. Optical Mouse
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+
+```
+。</description><guid isPermaLink="true">https://Axsye.github.io/blog/post/%5BASRTU-1-AO-123%5D%20-dan-Ubuntu-dian-nao-quan-kai-yuan-ruan-jian-wei-xing-di-mian-zhan-bu-shu-fang-fa.html</guid><pubDate>Tue, 29 Jul 2025 09:08:03 +0000</pubDate></item><item><title>自用：XXXI测试中的外设基本写法</title><link>https://Axsye.github.io/blog/post/zi-yong-%EF%BC%9AXXXI-ce-shi-zhong-de-wai-she-ji-ben-xie-fa.html</link><description># 1、协议编写
 
 首先是添加对应的文件，在其中实现具体协议内容
 
